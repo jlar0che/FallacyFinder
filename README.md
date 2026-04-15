@@ -5,16 +5,16 @@
 <h1 align="center">Fallacy Finder</h1>
 
 <p align="center">
-  Detect logical fallacies in articles and pasted text. 
+  <b>Detect logical fallacies in articles and pasted text.</b> 
   <br>
   Self Hosted • Beautiful Interface • Multilingual
 </p>
 
 <p align="center">
-  <a href="https://github.com/jlar0che/FallacyFinder/releases"><img src="https://img.shields.io/github/v/release/jlar0che/FallacyFinder?style=for-the-badge" alt="Release"></a>
-  <a href="https://hub.docker.com/r/jlaroche/fallacyfinder"><img src="https://img.shields.io/docker/pulls/jlaroche/fallacyfinder?style=for-the-badge" alt="Docker Pulls"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue?style=for-the-badge" alt="License"></a>
-  <img src="https://img.shields.io/badge/self--hosted-yes-6f42c1?style=for-the-badge" alt="Self-hosted">
+  <a href="https://github.com/jlar0che/FallacyFinder/releases"><img src="https://img.shields.io/github/v/release/jlar0che/FallacyFinder" alt="Release"></a>
+  <a href="https://hub.docker.com/r/jlaroche/fallacy-finder"><img src="https://img.shields.io/docker/pulls/jlaroche/fallacy-finder" alt="Docker Pulls"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License"></a>
+  <img src="https://img.shields.io/badge/self--hosted-yes-6f42c1" alt="Self-hosted">
 </p>
 
 <p align="center">
