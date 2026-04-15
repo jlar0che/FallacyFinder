@@ -1,0 +1,13 @@
+bind = "0.0.0.0:8080"
+worker_class = "gthread"
+workers = 1
+threads = 8
+timeout = 300
+graceful_timeout = 30
+keepalive = 5
+accesslog = "-"
+errorlog = "-"
+loglevel = "info"
+capture_output = True
+preload_app = False
+worker_tmp_dir = "/dev/shm"

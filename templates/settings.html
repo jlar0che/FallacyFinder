@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="{{ current_locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ t('page.settings.title') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fallacy-finder-logo-256.png') }}">
+    <style>
+      .ff-advanced-toggle {
+        display: flex;
+        align-items: flex-start;
+        min-height: 100%;
+      }
+      .ff-advanced-toggle .form-check-label {
+        line-height: 1.35;
+      }
+      .ff-inline-field-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .ff-inline-field-main {
+        flex: 1 1 0;
+        min-width: 260px;
+      }
+      .ff-inline-field-action {
+        flex: 0 0 220px;
+      }
+      @media (max-width: 767.98px) {
+        .ff-inline-field-action {
+          flex-basis: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="ff-page">
+      <div class="container py-4 py-md-5 ff-shell">
+        <div class="mx-auto" style="max-width: 980px;">
+          <div class="ff-topbar">
+            <div class="ff-brand">
+              <a href="/" class="ff-logo-link" aria-label="{{ t('nav.go_home') }}"><div class="ff-logo"><img src="{{ url_for('static', filename='fallacy-finder-logo.png') }}" alt="Fallacy Finder logo" class="ff-logo-image"></div></a>
+              <div>
+                <p class="ff-brand-title">{{ t('brand.name') }}</p>
+                <p class="ff-brand-subtitle">{{ t('settings.brand_subtitle') }}</p>
+              </div>
+            </div>
+                        <nav class="ff-toolbar-actions ff-toolbar-actions-icons" aria-label="{{ t('nav.primary_navigation') }}">
+              <a href="/" aria-label="{{ t('nav.analyze_url') }}" title="{{ t('nav.analyze_url') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-url-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-url-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/paste" aria-label="{{ t('nav.paste_text') }}" title="{{ t('nav.paste_text') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-paste-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-paste-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/fallacies" aria-label="{{ t('nav.fallacy_library') }}" title="{{ t('nav.fallacy_library') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-library-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-library-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              {% include "_language_picker.html" %}
+            </nav>
+          </div>
+
+          <section class="ff-card ff-panel ff-panel-lg">
+            <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-4">
+              <div>
+                <!-- <div class="ff-hero-kicker">Runtime configuration</div> -->
+                <h1 class="h2 fw-bold mb-2">{{ t('settings.page_title') }}</h1>
+                <p class="ff-muted mb-0">{{ t('settings.page_copy') }} <code>settings.json</code></p>
+              </div>
+              <div class="ff-alert ff-alert-warning ff-alert-dismissible ff-alert-compact small" data-ff-alert data-ff-alert-timeout="10000" style="--ff-alert-duration:10s;">
+                <div class="ff-alert-icon ff-alert-icon-info" aria-hidden="true"></div>
+                <div class="ff-alert-content">
+                  <p class="ff-alert-text">{{ t('settings.alert_next_request') }}</p>
+                </div>
+                <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+                <div class="ff-alert-progress" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            {% if saved %}<div class="ff-alert ff-alert-success ff-alert-dismissible mb-4" data-ff-alert data-ff-alert-timeout="4000" style="--ff-alert-duration:4s;">
+              <div class="ff-alert-icon ff-alert-icon-info" aria-hidden="true"></div>
+              <div class="ff-alert-content">
+                <p class="ff-alert-text">{{ t('settings.saved') }}</p>
+              </div>
+              <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+              <div class="ff-alert-progress" aria-hidden="true"></div>
+            </div>{% endif %}
+
+            {% if save_error %}
+              <div
+                class="ff-alert ff-alert-compact mb-4"
+                role="alert"
+                style="--ff-alert-bg:rgba(255,107,129,.14); --ff-alert-border:rgba(255,107,129,.30); --ff-alert-text:#ffd7de; --ff-alert-icon-bg:#ff6b81; --ff-alert-icon-fg:#3a0610;"
+              >
+                <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+                <div class="ff-alert-content">
+                  <p class="ff-alert-text">{{ t('settings.save_failed', error=save_error) }}</p>
+                </div>
+              </div>
+            {% endif %}
+
+            {% if model_error %}
+              {% if settings.AI_PROVIDER == 'openai' %}
+                {% set provider_label = 'OPENAI' %}
+                {% set provider_host = ((settings.OPENAI_BASE_URL or '').replace('https://', '').replace('http://', '').split('/')[0]) %}
+              {% else %}
+                {% set provider_label = 'OLLAMA' %}
+                {% set provider_host = ((settings.OLLAMA_BASE_URL or '').replace('https://', '').replace('http://', '').split('/')[0]) %}
+              {% endif %}
+              <div
+                class="ff-alert ff-alert-compact mb-4"
+                role="alert"
+                style="--ff-alert-bg:rgba(255,107,129,.14); --ff-alert-border:rgba(255,107,129,.30); --ff-alert-text:#ffd7de; --ff-alert-icon-bg:#ff6b81; --ff-alert-icon-fg:#3a0610;"
+              >
+                <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+                <div class="ff-alert-content">
+                  <p class="ff-alert-text">{{ t('settings.connection_issue', provider=provider_label, host=provider_host or t('settings.saved_url')) }}</p>
+                </div>
+              </div>
+            {% endif %}
+
+            <div id="settingsTestAlertHost" class="ff-stack mb-4" aria-live="polite"></div>
+
+            <form method="POST" action="/settings" id="settingsForm" class="ff-stack">
+              <div>
+                <label class="form-label fw-semibold">{{ t('settings.ai_provider') }}</label>
+                <select class="form-select" name="AI_PROVIDER" id="providerSelect">
+                  <option value="ollama" {% if settings.AI_PROVIDER == 'ollama' %}selected{% endif %}>Ollama</option>
+                  <option value="openai" {% if settings.AI_PROVIDER == 'openai' %}selected{% endif %}>{{ t('settings.openai_compatible') }}</option>
+                </select>
+              </div>
+
+              <div class="provider-section" id="ollamaSection">
+                <div class="ff-card ff-panel">
+                  <div class="ff-section-title">Ollama</div>
+                  <div class="row g-3">
+                    <div class="col-lg-8">
+                      <label class="form-label fw-semibold">OLLAMA_BASE_URL</label>
+                      <input type="url" class="form-control" name="OLLAMA_BASE_URL" id="ollamaBaseUrl" value="{{ settings.OLLAMA_BASE_URL }}" placeholder="http://192.168.1.77:11434">
+                    </div>
+                    <div class="col-lg-4 d-flex align-items-end">
+                      <button type="button" class="btn btn-outline-secondary w-100" id="testOllamaBtn">{{ t('settings.test_ollama') }}</button>
+                    </div>
+                    <div class="col-12">
+                      <div id="ollamaTestResult" class="small ff-muted"></div>
+                    </div>
+                    <div class="col-lg-8">
+                      <label class="form-label fw-semibold">OLLAMA_MODEL</label>
+                      <select class="form-select" name="OLLAMA_MODEL" id="ollamaModelSelect">
+                        {% if ollama_models %}
+                          {% for model in ollama_models %}
+                            <option value="{{ model }}" {% if model == settings.OLLAMA_MODEL %}selected{% endif %}>{{ model }}</option>
+                          {% endfor %}
+                        {% else %}
+                          <option value="{{ settings.OLLAMA_MODEL }}" selected>{{ settings.OLLAMA_MODEL }}</option>
+                        {% endif %}
+                      </select>
+                      <div class="form-text">{{ t('settings.ollama_models_help') }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="provider-section" id="openaiSection">
+                <div class="ff-card ff-panel">
+                  <div class="ff-section-title">{{ t('settings.openai_compatible') }}</div>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold">OPENAI_BASE_URL</label>
+                      <input type="url" class="form-control" name="OPENAI_BASE_URL" id="openaiBaseUrl" value="{{ settings.OPENAI_BASE_URL }}" placeholder="https://api.openai.com/v1">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold">OPENAI_MODEL</label>
+                      <input type="text" class="form-control" name="OPENAI_MODEL" id="openaiModelInput" value="{{ settings.OPENAI_MODEL }}" placeholder="gpt-4.1-mini">
+                    </div>
+                    <div class="col-12">
+                      <div class="ff-inline-field-row">
+                        <div class="ff-inline-field-main">
+                          <label class="form-label fw-semibold">OPENAI_API_KEY</label>
+                          <div class="form-control d-flex align-items-center justify-content-between gap-3" id="openaiApiKeyStatus" aria-live="polite">
+                            <span>{% if settings.OPENAI_API_KEY_CONFIGURED %}Configured in server environment{% else %}Not configured in server environment{% endif %}</span>
+                            <span class="ff-badge ff-badge-soft">ENV</span>
+                          </div>
+                        </div>
+                        <div class="ff-inline-field-action d-flex align-items-end">
+                          <button type="button" class="btn btn-outline-secondary w-100" id="testOpenaiBtn">{{ t('settings.test_api') }}</button>
+                        </div>
+                      </div>
+                      <div class="form-text">This key is never shown in the UI and is read only from the <code>OPENAI_API_KEY</code> environment variable.</div>
+                    </div>
+                    <div class="col-12">
+                      <div id="openaiTestResult" class="small ff-muted"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="form-text mb-2">{{ t('settings.fallacy_scanning_help') }}</div>
+                <div class="form-check form-switch py-2 mb-2">
+                  <input class="form-check-input" type="checkbox" role="switch" id="toggleAdvancedSwitch" aria-controls="advancedOptions" aria-expanded="false">
+                  <label class="form-check-label ms-2" for="toggleAdvancedSwitch">{{ t('settings.advanced_options') }}</label>
+                </div>
+                <div id="advancedOptions" class="ff-advanced d-none mt-3">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <div class="ff-section-title mb-0"></div>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">OLLAMA_TIMEOUT</label>
+                      <input type="number" step="1" min="1" class="form-control" name="OLLAMA_TIMEOUT" value="{{ settings.OLLAMA_TIMEOUT }}">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">OLLAMA_TEMPERATURE</label>
+                      <input type="number" step="0.01" min="0" class="form-control" name="OLLAMA_TEMPERATURE" value="{{ settings.OLLAMA_TEMPERATURE }}">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">OLLAMA_TOP_P</label>
+                      <input type="number" step="0.01" min="0" max="1" class="form-control" name="OLLAMA_TOP_P" value="{{ settings.OLLAMA_TOP_P }}">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">OLLAMA_TOP_K</label>
+                      <input type="number" step="1" min="1" class="form-control" name="OLLAMA_TOP_K" value="{{ settings.OLLAMA_TOP_K }}">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">FALLACY_PARAGRAPH_TIMEOUT</label>
+                      <input type="number" step="1" min="5" class="form-control" name="FALLACY_PARAGRAPH_TIMEOUT" value="{{ settings.FALLACY_PARAGRAPH_TIMEOUT }}">
+                      <div class="form-text">{{ t('settings.timeout_help') }}</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">FALLACY_MIN_PARAGRAPH_CHARS</label>
+                      <input type="number" step="1" min="1" class="form-control" name="FALLACY_MIN_PARAGRAPH_CHARS" value="{{ settings.FALLACY_MIN_PARAGRAPH_CHARS }}">
+                      <div class="form-text">{{ t('settings.min_chars_help') }}</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">FALLACY_CONTEXT_RADIUS</label>
+                      <input type="number" step="1" min="0" class="form-control" name="FALLACY_CONTEXT_RADIUS" value="{{ settings.FALLACY_CONTEXT_RADIUS }}">
+                      <div class="form-text">{{ t('settings.context_radius_help') }}</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold">FALLACY_CONTEXT_PREVIEW_CHARS</label>
+                      <input type="number" step="1" min="50" class="form-control" name="FALLACY_CONTEXT_PREVIEW_CHARS" value="{{ settings.FALLACY_CONTEXT_PREVIEW_CHARS }}">
+                      <div class="form-text">{{ t('settings.context_preview_help') }}</div>
+                    </div>
+                    <div class="col-12 mt-2">
+                      <div class="ff-section-title mb-2"></div>
+                      <hr>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="OLLAMA_USE_STABLE_SEED" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="stableSeedSwitch" name="OLLAMA_USE_STABLE_SEED" value="1" {% if settings.OLLAMA_USE_STABLE_SEED %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="stableSeedSwitch">{{ t('settings.use_stable_seed') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="INCLUDE_FALLACY_REASONING" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="includeFallacyReasoningSwitch" name="INCLUDE_FALLACY_REASONING" value="1" {% if settings.INCLUDE_FALLACY_REASONING %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="includeFallacyReasoningSwitch">{{ t('settings.include_fallacy_reasoning') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="SHOW_ANALYSIS_MODEL_BADGE" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="showAnalysisModelBadgeSwitch" name="SHOW_ANALYSIS_MODEL_BADGE" value="1" {% if settings.SHOW_ANALYSIS_MODEL_BADGE %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="showAnalysisModelBadgeSwitch">{{ t('settings.show_model_badge') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="SHOW_UNMATCHED_BADGE" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="showUnmatchedBadgeSwitch" name="SHOW_UNMATCHED_BADGE" value="1" {% if settings.SHOW_UNMATCHED_BADGE %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="showUnmatchedBadgeSwitch">{{ t('settings.show_unmatched_badge') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="SHOW_PARAGRAPHS_ANALYZED_BADGE" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="showParagraphsAnalyzedBadgeSwitch" name="SHOW_PARAGRAPHS_ANALYZED_BADGE" value="1" {% if settings.SHOW_PARAGRAPHS_ANALYZED_BADGE %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="showParagraphsAnalyzedBadgeSwitch">{{ t('settings.show_paragraphs_badge') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="SHOW_EXTRACTION_TIME_BADGE" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="showExtractionTimeBadgeSwitch" name="SHOW_EXTRACTION_TIME_BADGE" value="1" {% if settings.SHOW_EXTRACTION_TIME_BADGE %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="showExtractionTimeBadgeSwitch">{{ t('settings.show_extraction_time_badge') }}</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-check form-switch py-2 h-100 ff-advanced-toggle">
+                        <input type="hidden" name="SHOW_FALLACY_TYPE_BADGES" value="0">
+                        <input class="form-check-input" type="checkbox" role="switch" id="showFallacyTypeBadgesSwitch" name="SHOW_FALLACY_TYPE_BADGES" value="1" {% if settings.SHOW_FALLACY_TYPE_BADGES %}checked{% endif %}>
+                        <label class="form-check-label ms-2" for="showFallacyTypeBadgesSwitch">{{ t('settings.show_fallacy_type_badges') }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex gap-2 flex-column flex-sm-row">
+                <button class="btn btn-dark px-4" type="submit" id="saveSettingsBtn" disabled>{{ t('settings.save_button') }}</button>
+                <a class="btn btn-outline-secondary" href="/">{{ t('settings.cancel_button') }}</a>
+              </div>
+              <div id="settingsSaveHint" class="small ff-muted">{{ t('settings.save_hint') }}</div>
+            </form>
+          </section>
+        </div>
+      </div>
+      {% include "_app_footer.html" %}
+    </main>
+
+    <script>
+      (function () {
+        const providerSelect = document.getElementById('providerSelect');
+        const settingsForm = document.getElementById('settingsForm');
+        const saveBtn = document.getElementById('saveSettingsBtn');
+        const saveHint = document.getElementById('settingsSaveHint');
+        const ollamaSection = document.getElementById('ollamaSection');
+        const openaiSection = document.getElementById('openaiSection');
+        const toggleAdvancedSwitch = document.getElementById('toggleAdvancedSwitch');
+        const advancedOptions = document.getElementById('advancedOptions');
+
+        const baseUrlInput = document.getElementById('ollamaBaseUrl');
+        const testBtn = document.getElementById('testOllamaBtn');
+        const resultBox = document.getElementById('ollamaTestResult');
+        const modelSelect = document.getElementById('ollamaModelSelect');
+
+        const openaiBaseUrlInput = document.getElementById('openaiBaseUrl');
+        const openaiModelInput = document.getElementById('openaiModelInput');
+        const openaiTestBtn = document.getElementById('testOpenaiBtn');
+        const openaiResultBox = document.getElementById('openaiTestResult');
+        const settingsTestAlertHost = document.getElementById('settingsTestAlertHost');
+
+        let lastSuccessfulSignature = '';
+        const savedUrlLabel = {{ t('settings.saved_url')|tojson }};
+        const connectionIssueTemplate = {{ t('settings.connection_issue', provider='__PROVIDER__', host='__HOST__')|tojson }};
+
+        function activeProvider() {
+          return (providerSelect && providerSelect.value) || 'ollama';
+        }
+
+        function getConnectionSignature() {
+          if (activeProvider() === 'openai') {
+            return JSON.stringify({
+              provider: 'openai',
+              base_url: (openaiBaseUrlInput && openaiBaseUrlInput.value || '').trim(),
+              model: (openaiModelInput && openaiModelInput.value || '').trim()
+            });
+          }
+          return JSON.stringify({
+            provider: 'ollama',
+            base_url: (baseUrlInput && baseUrlInput.value || '').trim(),
+            model: (modelSelect && modelSelect.value || '').trim()
+          });
+        }
+
+        function connectionHostFromUrl(value) {
+          const raw = (value || '').trim();
+          if (!raw) return savedUrlLabel;
+          try {
+            return new URL(raw).host || savedUrlLabel;
+          } catch (err) {
+            return raw.replace(/^https?:\/\//i, '').split('/')[0] || savedUrlLabel;
+          }
+        }
+
+        function buildProviderIssueMessage() {
+          const provider = activeProvider() === 'openai' ? 'OPENAI' : 'OLLAMA';
+          const host = activeProvider() === 'openai'
+            ? connectionHostFromUrl(openaiBaseUrlInput && openaiBaseUrlInput.value)
+            : connectionHostFromUrl(baseUrlInput && baseUrlInput.value);
+          return connectionIssueTemplate
+            .replace('__PROVIDER__', provider)
+            .replace('__HOST__', host || savedUrlLabel);
+        }
+
+        function removeProviderIssueAlert() {
+          if (!settingsTestAlertHost) return;
+          Array.from(settingsTestAlertHost.querySelectorAll('[data-ff-provider-issue="1"]')).forEach((alert) => {
+            if (alert && alert.parentNode) {
+              alert.parentNode.removeChild(alert);
+            }
+          });
+        }
+
+        function showProviderIssueAlert(message) {
+          if (!settingsTestAlertHost || !message) return;
+          removeProviderIssueAlert();
+          const alert = document.createElement('div');
+          alert.className = 'ff-alert ff-alert-compact mb-0';
+          alert.setAttribute('role', 'alert');
+          alert.setAttribute('data-ff-provider-issue', '1');
+          alert.style.setProperty('--ff-alert-bg', 'rgba(255,107,129,.14)');
+          alert.style.setProperty('--ff-alert-border', 'rgba(255,107,129,.30)');
+          alert.style.setProperty('--ff-alert-text', '#ffd7de');
+          alert.style.setProperty('--ff-alert-icon-bg', '#ff6b81');
+          alert.style.setProperty('--ff-alert-icon-fg', '#3a0610');
+          alert.innerHTML = `
+            <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+            <div class="ff-alert-content">
+              <p class="ff-alert-text"></p>
+            </div>
+          `;
+          const textNode = alert.querySelector('.ff-alert-text');
+          if (textNode) textNode.textContent = message;
+          settingsTestAlertHost.prepend(alert);
+        }
+
+        function setSaveEnabled(isEnabled, message) {
+          if (saveBtn) saveBtn.disabled = !isEnabled;
+          if (saveHint) {
+            if (isEnabled) {
+              saveHint.textContent = '';
+              saveHint.className = 'small ff-muted ff-hidden';
+            } else {
+              saveHint.textContent = message || {{ t('settings.save_hint')|tojson }};
+              saveHint.className = 'small ff-muted';
+            }
+          }
+        }
+
+        function removeManagedTestAlerts() {
+          if (!settingsTestAlertHost) return;
+          Array.from(settingsTestAlertHost.querySelectorAll('[data-ff-test-alert="1"]')).forEach((alert) => {
+            if (alert && alert.parentNode) {
+              alert.parentNode.removeChild(alert);
+            }
+          });
+        }
+
+        function showManagedTestAlert(message, timeoutMs, variant) {
+          if (!settingsTestAlertHost || !message) return;
+          const alert = document.createElement('div');
+          const isError = variant === 'error';
+          alert.className = 'ff-alert ff-alert-dismissible ff-alert-compact mb-0 ' + (isError ? '' : 'ff-alert-success');
+          if (isError) {
+            alert.style.setProperty('--ff-alert-bg', 'rgba(255,107,129,.14)');
+            alert.style.setProperty('--ff-alert-border', 'rgba(255,107,129,.30)');
+            alert.style.setProperty('--ff-alert-text', '#ffd7de');
+            alert.style.setProperty('--ff-alert-icon-bg', '#ff6b81');
+            alert.style.setProperty('--ff-alert-icon-fg', '#3a0610');
+          }
+          alert.setAttribute('data-ff-alert', '');
+          alert.setAttribute('data-ff-test-alert', '1');
+          alert.setAttribute('data-ff-alert-timeout', String(timeoutMs));
+          alert.style.setProperty('--ff-alert-duration', (Math.max(0, Number(timeoutMs) || 0) / 1000) + 's');
+          alert.innerHTML = `
+            <div class="ff-alert-icon ${isError ? 'ff-alert-icon-warning' : 'ff-alert-icon-info'}" aria-hidden="true"></div>
+            <div class="ff-alert-content">
+              <p class="ff-alert-text"></p>
+            </div>
+            <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="ff-alert-progress" aria-hidden="true"></div>
+          `;
+          const textNode = alert.querySelector('.ff-alert-text');
+          if (textNode) textNode.textContent = message;
+          settingsTestAlertHost.appendChild(alert);
+          initDismissibleAlerts(settingsTestAlertHost);
+        }
+
+        function invalidateConnectionTest(message, options) {
+          const opts = options || {};
+          if (lastSuccessfulSignature && lastSuccessfulSignature === getConnectionSignature()) {
+            setSaveEnabled(true, {{ t('settings.save_hint')|tojson }});
+            return;
+          }
+          if (!opts.preserveAlerts) {
+            removeManagedTestAlerts();
+          }
+          setSaveEnabled(false, message || {{ t('settings.save_hint')|tojson }});
+        }
+
+        function renderProvider() {
+          const provider = activeProvider();
+          ollamaSection.style.display = provider === 'ollama' ? '' : 'none';
+          openaiSection.style.display = provider === 'openai' ? '' : 'none';
+          removeProviderIssueAlert();
+          invalidateConnectionTest({{ t('settings.save_hint')|tojson }});
+        }
+        renderProvider();
+        providerSelect.addEventListener('change', renderProvider);
+
+        function renderAdvancedOptions() {
+          const isOpen = !!toggleAdvancedSwitch.checked;
+          advancedOptions.classList.toggle('d-none', !isOpen);
+          toggleAdvancedSwitch.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        renderAdvancedOptions();
+        toggleAdvancedSwitch.addEventListener('change', renderAdvancedOptions);
+
+        function setTestState(message, className) {
+          resultBox.textContent = message || '';
+          resultBox.className = className || 'small ff-muted';
+        }
+
+        function setOpenAITestState(message, className) {
+          openaiResultBox.textContent = message || '';
+          openaiResultBox.className = className || 'small ff-muted';
+        }
+
+        function setTestBusy(isBusy) {
+          testBtn.disabled = !!isBusy;
+          testBtn.textContent = isBusy ? {{ t('common.testing')|tojson }} : {{ t('settings.test_ollama')|tojson }};
+        }
+
+        function setOpenAITestBusy(isBusy) {
+          openaiTestBtn.disabled = !!isBusy;
+          openaiTestBtn.textContent = isBusy ? {{ t('common.testing')|tojson }} : {{ t('settings.test_api')|tojson }};
+        }
+
+        async function refreshOllamaModelOptions(fd, expectedSignature) {
+          const modelResp = await fetch('/api/ollama/models', { method: 'POST', body: fd, cache: 'no-store' });
+          const modelData = await modelResp.json();
+          if (!modelData.ok) return;
+          if (expectedSignature && expectedSignature !== getConnectionSignature()) return;
+
+          const current = modelSelect.value;
+          modelSelect.innerHTML = '';
+          modelData.models.forEach((m, index) => {
+            const opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            if (m === current || (!current && index === 0)) opt.selected = true;
+            modelSelect.appendChild(opt);
+          });
+          if (!modelData.models.includes(current) && current) {
+            const extra = document.createElement('option');
+            extra.value = current;
+            extra.textContent = current + ' (' + {{ t('common.current')|tojson }} + ')';
+            extra.selected = true;
+            modelSelect.appendChild(extra);
+          }
+        }
+
+        async function fetchOllamaModels() {
+          const typedBaseUrl = (baseUrlInput.value || '').trim();
+          const fd = new FormData();
+          fd.append('base_url', typedBaseUrl);
+          setTestBusy(true);
+          setTestState({{ t('settings.checking_ollama', host='__HOST__')|tojson }}.replace('__HOST__', (typedBaseUrl || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
+          setSaveEnabled(false, {{ t('settings.waiting_successful_test')|tojson }});
+
+          try {
+            const resp = await fetch('/api/ollama/test', { method: 'POST', body: fd, cache: 'no-store' });
+            const data = await resp.json();
+            if (!data.ok) {
+              setTestState('', 'small ff-muted');
+              removeManagedTestAlerts();
+              removeProviderIssueAlert();
+              showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+              invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+              return;
+            }
+
+            setTestState('', 'small ff-muted');
+            removeProviderIssueAlert();
+            await refreshOllamaModelOptions(fd, getConnectionSignature());
+
+            lastSuccessfulSignature = getConnectionSignature();
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_successful_models', count='__COUNT__')|tojson }}.replace('__COUNT__', String(data.models_count)), 6000, 'success');
+            setSaveEnabled(true, {{ t('settings.save_hint')|tojson }});
+          } finally {
+            setTestBusy(false);
+          }
+        }
+
+        async function probeSavedProviderConnection() {
+          const initialSignature = getConnectionSignature();
+          const provider = activeProvider();
+
+          try {
+            if (provider === 'openai') {
+              const payload = {
+                base_url: (openaiBaseUrlInput.value || '').trim(),
+                model: (openaiModelInput.value || '').trim()
+              };
+              setOpenAITestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', (payload.base_url || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
+              const resp = await fetch('/api/openai/test', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                cache: 'no-store'
+              });
+              const data = await resp.json();
+              if (initialSignature !== getConnectionSignature()) return;
+              if (!data.ok) {
+                showProviderIssueAlert(buildProviderIssueMessage());
+                return;
+              }
+              removeProviderIssueAlert();
+              return;
+            }
+
+            const typedBaseUrl = (baseUrlInput.value || '').trim();
+            const fd = new FormData();
+            fd.append('base_url', typedBaseUrl);
+            setTestState({{ t('settings.checking_ollama', host='__HOST__')|tojson }}.replace('__HOST__', (typedBaseUrl || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
+            const resp = await fetch('/api/ollama/test', { method: 'POST', body: fd, cache: 'no-store' });
+            const data = await resp.json();
+            if (initialSignature !== getConnectionSignature()) return;
+            if (!data.ok) {
+              showProviderIssueAlert(buildProviderIssueMessage());
+              return;
+            }
+            removeProviderIssueAlert();
+            await refreshOllamaModelOptions(fd, initialSignature);
+          } catch (err) {
+            if (initialSignature !== getConnectionSignature()) return;
+            showProviderIssueAlert(buildProviderIssueMessage());
+          } finally {
+            if (initialSignature !== getConnectionSignature()) return;
+            setTestState('', 'small ff-muted');
+            setOpenAITestState('', 'small ff-muted');
+          }
+        }
+
+        async function testOpenAIConnection() {
+          const payload = {
+            base_url: (openaiBaseUrlInput.value || '').trim(),
+            model: (openaiModelInput.value || '').trim()
+          };
+          setOpenAITestBusy(true);
+          setOpenAITestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', (payload.base_url || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
+          setSaveEnabled(false, {{ t('settings.waiting_successful_test')|tojson }});
+
+          try {
+            const resp = await fetch('/api/openai/test', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              cache: 'no-store'
+            });
+            const data = await resp.json();
+            if (!data.ok) {
+              setOpenAITestState('', 'small ff-muted');
+              removeManagedTestAlerts();
+              removeProviderIssueAlert();
+              showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+              invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+              return;
+            }
+
+            setOpenAITestState('', 'small ff-muted');
+            removeProviderIssueAlert();
+            lastSuccessfulSignature = getConnectionSignature();
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_successful_models', count='__COUNT__')|tojson }}.replace('__COUNT__', String(data.models_count)), 6000, 'success');
+            setSaveEnabled(true, {{ t('settings.save_hint')|tojson }});
+          } finally {
+            setOpenAITestBusy(false);
+          }
+        }
+
+        [baseUrlInput, modelSelect].forEach((el) => {
+          if (!el) return;
+          el.addEventListener('input', function () {
+            removeProviderIssueAlert();
+            setTestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.ollama_settings_changed')|tojson }});
+          });
+          el.addEventListener('change', function () {
+            removeProviderIssueAlert();
+            setTestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.ollama_settings_changed')|tojson }});
+          });
+        });
+
+        [openaiBaseUrlInput, openaiModelInput].forEach((el) => {
+          if (!el) return;
+          el.addEventListener('input', function () {
+            removeProviderIssueAlert();
+            setOpenAITestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.api_settings_changed')|tojson }});
+          });
+          el.addEventListener('change', function () {
+            removeProviderIssueAlert();
+            setOpenAITestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.api_settings_changed')|tojson }});
+          });
+        });
+
+        testBtn.addEventListener('click', function () {
+          fetchOllamaModels().catch((err) => {
+            setTestBusy(false);
+            setTestState('', 'small ff-muted');
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+            invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+          });
+        });
+
+        openaiTestBtn.addEventListener('click', function () {
+          testOpenAIConnection().catch((err) => {
+            setOpenAITestBusy(false);
+            setOpenAITestState('', 'small ff-muted');
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+            invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+          });
+        });
+
+        settingsForm.addEventListener('submit', function (event) {
+          if (!saveBtn || !saveBtn.disabled) return;
+          event.preventDefault();
+          invalidateConnectionTest({{ t('settings.must_test_before_save')|tojson }});
+        });
+
+        invalidateConnectionTest({{ t('settings.save_hint')|tojson }});
+        probeSavedProviderConnection();
+
+        function initDismissibleAlerts(root) {
+          const scope = root || document;
+          const alerts = Array.from(scope.querySelectorAll('[data-ff-alert]'));
+          alerts.forEach((alert) => {
+            if (alert.dataset.ffAlertReady === '1') return;
+            alert.dataset.ffAlertReady = '1';
+            let closeTimer = null;
+            let totalMs = 0;
+            let remainingMs = 0;
+            let timerStartedAt = 0;
+            let progressRaf = null;
+            const progressTrack = alert.querySelector('.ff-alert-progress');
+            let progressBar = progressTrack ? progressTrack.querySelector('.ff-alert-progress-bar') : null;
+
+            if (progressTrack && !progressBar) {
+              progressBar = document.createElement('span');
+              progressBar.className = 'ff-alert-progress-bar';
+              progressTrack.appendChild(progressBar);
+            }
+
+            function clampProgress(value) {
+              return Math.max(0, Math.min(1, Number(value) || 0));
+            }
+
+            function cancelProgressRaf() {
+              if (progressRaf !== null) {
+                window.cancelAnimationFrame(progressRaf);
+                progressRaf = null;
+              }
+            }
+
+            function setProgressInstant(value) {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              progressBar.style.width = (clampProgress(value) * 100) + '%';
+            }
+
+            function tickProgress() {
+              if (!progressBar || !totalMs || !closeTimer || alert.classList.contains('is-closing')) {
+                progressRaf = null;
+                return;
+              }
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              const currentRemainingMs = Math.max(0, remainingMs - elapsedMs);
+              progressBar.style.width = (clampProgress(currentRemainingMs / totalMs) * 100) + '%';
+              if (currentRemainingMs > 0) {
+                progressRaf = window.requestAnimationFrame(tickProgress);
+              } else {
+                progressRaf = null;
+              }
+            }
+
+            function startProgressLoop() {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              setProgressInstant(remainingMs / totalMs);
+              progressRaf = window.requestAnimationFrame(tickProgress);
+            }
+
+            function dismissAlert() {
+              if (alert.classList.contains('is-closing')) return;
+              if (closeTimer) {
+                window.clearTimeout(closeTimer);
+                closeTimer = null;
+              }
+              cancelProgressRaf();
+              alert.classList.remove('is-paused');
+              alert.classList.add('is-closing');
+              window.setTimeout(() => {
+                if (alert && alert.parentNode) {
+                  alert.parentNode.removeChild(alert);
+                }
+              }, 320);
+            }
+
+            function pauseCountdown() {
+              if (!totalMs || !closeTimer || alert.classList.contains('is-closing')) return;
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              remainingMs = Math.max(0, remainingMs - elapsedMs);
+              window.clearTimeout(closeTimer);
+              closeTimer = null;
+              alert.classList.add('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+            }
+
+            function resumeCountdown() {
+              if (!totalMs || closeTimer || alert.classList.contains('is-closing')) return;
+              if (remainingMs <= 0) {
+                dismissAlert();
+                return;
+              }
+              timerStartedAt = performance.now();
+              alert.classList.remove('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+              startProgressLoop();
+              closeTimer = window.setTimeout(dismissAlert, remainingMs);
+            }
+
+            const closeBtn = alert.querySelector('[data-ff-alert-close]');
+            if (closeBtn) {
+              closeBtn.addEventListener('click', dismissAlert);
+            }
+
+            const timeoutMs = parseInt(alert.getAttribute('data-ff-alert-timeout') || '', 10);
+            if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+              totalMs = timeoutMs;
+              remainingMs = timeoutMs;
+              alert.addEventListener('mouseenter', pauseCountdown);
+              alert.addEventListener('mouseleave', resumeCountdown);
+              alert.addEventListener('focusin', pauseCountdown);
+              alert.addEventListener('focusout', function (event) {
+                if (alert.contains(event.relatedTarget)) return;
+                resumeCountdown();
+              });
+              resumeCountdown();
+            }
+          });
+        }
+
+        initDismissibleAlerts(document);
+      })();
+    </script>
+  </body>
+</html>

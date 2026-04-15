@@ -1,0 +1,18 @@
+<div class="ff-language-menu">
+  <details class="ff-language-details">
+    <summary class="ff-icon-link ff-language-trigger" aria-label="{{ t('nav.language_picker') }}" title="{{ t('nav.language_picker') }}">
+      <span class="ff-icon-frame" aria-hidden="true">
+        <img src="{{ url_for('static', filename='ff-language-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+        <img src="{{ url_for('static', filename='ff-language-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+      </span>
+    </summary>
+    <div class="ff-language-dropdown" role="menu" aria-label="{{ t('nav.language_picker') }}">
+      {% for lang in available_ui_languages %}
+      <a href="{{ language_switch_url(lang.code) }}" class="ff-language-option{% if lang.code == current_locale %} is-active{% endif %}" role="menuitem">
+        <span class="ff-language-option-check" aria-hidden="true">{% if lang.code == current_locale %}✓{% endif %}</span>
+        <span class="ff-language-option-label">{{ lang.native_name }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </details>
+</div>

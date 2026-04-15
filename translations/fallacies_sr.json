@@ -1,0 +1,2528 @@
+{
+  "version": 3,
+  "updated_at": "2026-03-31",
+  "fallback": {
+    "icon": "⚠️",
+    "category": "",
+    "description": "Ova otkrivena oznaka još nije definisana u referentnoj biblioteci logičkih zabluda. Pregledajte direktno označeni pasus umesto da se oslanjate na oznaku kategorije."
+  },
+  "aliases": {
+    "Ad Populum": "Argumentum ad Populum",
+    "Appeal to Majority": "Argumentum ad Populum",
+    "Appeal to Popularity": "Argumentum ad Populum",
+    "Appeal to the Majority": "Argumentum ad Populum",
+    "Appeal to the People": "Argumentum ad Populum",
+    "Circular Argument": "Circular Reasoning",
+    "Circular Logic": "Circular Reasoning",
+    "Correlation Implies Causation": "False Cause",
+    "Division": "Division Fallacy",
+    "Fallacy of Composition": "Composition Fallacy",
+    "Fallacy of Division": "Division Fallacy",
+    "False Choice": "False Dilemma",
+    "False Dichotomy": "False Dilemma",
+    "Faulty Analogy": "False Analogy",
+    "Gish Gallop": "Shotgun Argumentation",
+    "Loaded Questions": "Loaded Question",
+    "Post Hoc Ergo Propter Hoc": "Post Hoc",
+    "Quoting Out of Context": "Fallacy of Quoting Out of Context",
+    "Straw Man": "Strawman",
+    "Weak Analogy": "False Analogy",
+    "Potvrđivanje konsekventa": "Affirming the Consequent",
+    "Poricanje antecedensa": "Denying the Antecedent",
+    "Neraspodeljeni srednji pojam": "Undistributed Middle",
+    "Nedopušteni veći pojam": "Illicit Major",
+    "Nedopušteni manji pojam": "Illicit Minor",
+    "Greška četiri pojma": "Four-Term Fallacy",
+    "Propozicione greške": "Propositional Fallacies",
+    "Greške kvantifikacije": "Quantification Fallacies",
+    "Silogističke greške": "Syllogistic Fallacies",
+    "Greška lošeg razloga": "Bad Reason Fallacy",
+    "Greška potonulog troška": "Sunk Cost Fallacy",
+    "Ad hominem": "Ad Hominem",
+    "Dvosmislenost": "Ambiguity",
+    "Anegdotalna greška": "Anecdotal",
+    "Pozivanje na autoritet": "Appeal to Authority",
+    "Pozivanje na emocije": "Appeal to Emotion",
+    "Pozivanje na strah": "Appeal to Fear",
+    "Pozivanje na sažaljenje": "Appeal to Pity",
+    "Pozivanje na silu": "Appeal to Force",
+    "Pozivanje na neznanje": "Appeal to Ignorance",
+    "Pozivanje na prirodu": "Appeal to Nature",
+    "Pozivanje na verovatnoću": "Appeal to Probability",
+    "Pozivanje na podsmeh": "Appeal to Ridicule",
+    "Pozivanje na tradiciju": "Appeal to Tradition",
+    "Pozivanje na posledice": "Appeal to Consequences",
+    "Argument ponavljanjem": "Argument from Repetition",
+    "Argumentum ad populum": "Argumentum ad Populum",
+    "Ad populum": "Argumentum ad Populum",
+    "Pozivanje na većinu": "Argumentum ad Populum",
+    "Pozivanje na popularnost": "Argumentum ad Populum",
+    "Pozivanje na narod": "Argumentum ad Populum",
+    "Pridruživanje većini": "Bandwagon",
+    "Pretpostavljanje zaključka": "Begging the Question",
+    "Teret dokazivanja": "Burden of Proof",
+    "Selektivno biranje dokaza": "Cherry Picking",
+    "Kružno rezonovanje": "Circular Reasoning",
+    "Kružni argument": "Circular Reasoning",
+    "Kružna logika": "Circular Reasoning",
+    "Greška kompozicije": "Composition Fallacy",
+    "Greška kontinuiteta": "Continuum Fallacy",
+    "Greška podele": "Division Fallacy",
+    "Podela": "Division Fallacy",
+    "Ekvivokacija": "Equivocation",
+    "Etimološka greška": "Etymological Fallacy",
+    "Greška o grešci": "Fallacy Fallacy",
+    "Greška kompozicije i podele": "Fallacy of Composition and Division",
+    "Greška citiranja van konteksta": "Fallacy of Quoting Out of Context",
+    "Citiranje van konteksta": "Fallacy of Quoting Out of Context",
+    "Lažna analogija": "False Analogy",
+    "Pogrešna analogija": "False Analogy",
+    "Slaba analogija": "False Analogy",
+    "Pogrešna atribucija": "False Attribution",
+    "Pogrešan uzrok": "False Cause",
+    "Korelacija implicira uzročnost": "False Cause",
+    "Pogrešan uzrok i pogrešna atribucija": "False Cause & False Attribution",
+    "Lažna dilema": "False Dilemma",
+    "Lažni izbor": "False Dilemma",
+    "Lažna dihotomija": "False Dilemma",
+    "Lažna ekvivalencija": "False Equivalence",
+    "Pogrešna generalizacija": "Faulty Generalization",
+    "Greška skrivene namere": "Furtive Fallacy",
+    "Kockarska greška": "Gambler's Fallacy",
+    "Genetska greška": "Genetic Fallacy",
+    "Krivica po povezanosti": "Guilt by Association",
+    "Preuranjena generalizacija": "Hasty Generalization",
+    "Ignoratio elenchi": "Ignoratio Elenchi",
+    "Nepotpuno poređenje": "Incomplete Comparison",
+    "Prenaduvavanje sukoba": "Inflation of Conflict",
+    "Logika kotla": "Kettle Logic",
+    "Sugestivno pitanje": "Loaded Question",
+    "Sugestivna pitanja": "Loaded Question",
+    "Greška sredine": "Middle Ground",
+    "Motte and Bailey": "Motte and Bailey",
+    "Pomeranje stativa": "Moving the Goalposts",
+    "Nirvana greška": "Nirvana Fallacy",
+    "Nijedan pravi Škot": "No True Scotsman",
+    "Lična neverica": "Personal Incredulity",
+    "Trovanje bunara": "Poisoning the Well",
+    "Post hoc": "Post Hoc",
+    "Post hoc ergo propter hoc": "Post Hoc",
+    "Dokaz opširnošću": "Proof by Verbosity",
+    "Dokazivanje previše": "Proving Too Much",
+    "Crvena haringa": "Red Herring",
+    "Reifikacija": "Reification",
+    "Retroaktivni determinizam": "Retrospective Determinism",
+    "Sačmasto argumentovanje": "Shotgun Argumentation",
+    "Klizava padina": "Slippery Slope",
+    "Posebno izuzimanje": "Special Pleading",
+    "Slamnati čovek": "Strawman",
+    "Teksaški strelac": "Texas Sharpshooter",
+    "Tu quoque": "Tu Quoque"
+  },
+  "relatedness_schema": {
+    "same_family": "Broader logical/rhetorical buckets used for close similarity.",
+    "related": "Curated fallacies that are logically close.",
+    "often_with": "Curated fallacies that frequently appear in tandem.",
+    "confused_with": "Fallacies that are commonly mistaken for one another."
+  },
+  "fallacies": {
+    "Affirming the Consequent": {
+      "name": "Potvrđivanje konsekventa",
+      "icon": "🔁",
+      "category": "Formal",
+      "description": "Tretira neki ishod kao dokaz određenog uzroka, iako isti ishod može proisteći i iz drugih uzroka.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako je alarm uključen, kancelarija će biti zaključana. Kancelarija je zaključana, dakle alarm je morao biti uključen."
+      ],
+      "explanation": "Tretira neki ishod kao dokaz određenog uzroka, iako isti ishod može proisteći i iz drugih uzroka. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Denying the Antecedent",
+        "Propositional Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Cause"
+      ]
+    },
+    "Denying the Antecedent": {
+      "name": "Poricanje antecedensa",
+      "icon": "↪️",
+      "category": "Formal",
+      "description": "Pretpostavlja da, ako je neki uslov odsutan, i ishod mora biti odsutan, iako ishod može nastati i na druge načine.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako je fajl u oblaku, mogu da ga otvorim od kuće. Fajl nije u oblaku, dakle ne mogu da ga otvorim od kuće."
+      ],
+      "explanation": "Pretpostavlja da, ako je neki uslov odsutan, i ishod mora biti odsutan, iako ishod može nastati i na druge načine. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Affirming the Consequent",
+        "Propositional Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma"
+      ]
+    },
+    "Undistributed Middle": {
+      "name": "Neraspodeljeni srednji pojam",
+      "icon": "🔺",
+      "category": "Formal",
+      "description": "Koristi zajednički srednji pojam u silogizmu bez pravilnog povezivanja kategorija, pa zaključak ne sledi.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Svi pesnici koriste jezik. Moj komšija koristi jezik. Dakle, moj komšija je pesnik."
+      ],
+      "explanation": "Koristi zajednički srednji pojam u silogizmu bez pravilnog povezivanja kategorija, pa zaključak ne sledi. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Major",
+        "Illicit Minor",
+        "Syllogistic Fallacies",
+        "Quantification Fallacies",
+        "Four-Term Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ]
+    },
+    "Illicit Major": {
+      "name": "Nedopušteni veći pojam",
+      "icon": "📏",
+      "category": "Formal",
+      "description": "Izvodi silogistički zaključak koji veći pojam raspodeljuje šire nego što premise dozvoljavaju.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Sve mačke su sisari. Nijedan pas nije mačka. Dakle, nijedan pas nije sisar."
+      ],
+      "explanation": "Izvodi silogistički zaključak koji veći pojam raspodeljuje šire nego što premise dozvoljavaju. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Minor",
+        "Undistributed Middle",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ]
+    },
+    "Illicit Minor": {
+      "name": "Nedopušteni manji pojam",
+      "icon": "📐",
+      "category": "Formal",
+      "description": "Izvodi silogistički zaključak koji manji pojam raspodeljuje šire nego što premise dozvoljavaju.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Sve mačke su sisari. Neki kućni ljubimci su sisari. Dakle, svi kućni ljubimci su mačke."
+      ],
+      "explanation": "Izvodi silogistički zaključak koji manji pojam raspodeljuje šire nego što premise dozvoljavaju. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Major",
+        "Undistributed Middle",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ]
+    },
+    "Four-Term Fallacy": {
+      "name": "Greška četiri pojma",
+      "icon": "4️⃣",
+      "category": "Formal",
+      "description": "Koristi silogizam sa četiri pojma umesto tri, često zato što ključni pojam menja značenje.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Perje je lako. Ono što je lako ne može biti tamno. Dakle, perje ne može biti tamno."
+      ],
+      "explanation": "Koristi silogizam sa četiri pojma umesto tri, često zato što ključni pojam menja značenje. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "syllogism",
+        "equivocation"
+      ],
+      "related": [
+        "Equivocation",
+        "Syllogistic Fallacies",
+        "Undistributed Middle"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity"
+      ]
+    },
+    "Propositional Fallacies": {
+      "name": "Propozicione greške",
+      "icon": "∴",
+      "category": "Formal",
+      "description": "Širi naziv za nevažeće poteze u propozicionoj logici gde zaključak ne sledi valjano iz premisa.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ili plan funkcioniše ili je tim lenj. Plan nije uspeo, dakle tim mora biti lenj."
+      ],
+      "explanation": "Širi naziv za nevažeće poteze u propozicionoj logici gde zaključak ne sledi valjano iz premisa. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Affirming the Consequent",
+        "Denying the Antecedent"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma"
+      ]
+    },
+    "Quantification Fallacies": {
+      "name": "Greške kvantifikacije",
+      "icon": "🔢",
+      "category": "Formal",
+      "description": "Pogrešno koristi reči poput svi, neki ili nijedan, tako da zaključak ide dalje od onoga što premise podržavaju.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Svi u prostoriji rešili su po jedan problem, dakle je jedna osoba u prostoriji rešila svaki problem."
+      ],
+      "explanation": "Pogrešno koristi reči poput svi, neki ili nijedan, tako da zaključak ide dalje od onoga što premise podržavaju. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "quantifier-logic"
+      ],
+      "related": [
+        "Syllogistic Fallacies",
+        "Undistributed Middle"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Hasty Generalization",
+        "Faulty Generalization",
+        "Illicit Major",
+        "Undistributed Middle",
+        "Illicit Minor"
+      ]
+    },
+    "Syllogistic Fallacies": {
+      "name": "Silogističke greške",
+      "icon": "📚",
+      "category": "Formal",
+      "description": "Koristi neispravan silogizam ili odnos među kategorijama, pa zaključak ne sledi logički.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Neki umetnici su nastavnici. Neki nastavnici su kritičari. Dakle, neki umetnici su kritičari."
+      ],
+      "explanation": "Koristi neispravan silogizam ili odnos među kategorijama, pa zaključak ne sledi logički. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "formal",
+        "syllogism"
+      ],
+      "related": [
+        "Undistributed Middle",
+        "Illicit Major",
+        "Illicit Minor",
+        "Four-Term Fallacy",
+        "Quantification Fallacies",
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ]
+    },
+    "Bad Reason Fallacy": {
+      "name": "Greška lošeg razloga",
+      "icon": "🧩",
+      "category": "Informal",
+      "description": "Nudi razloge koji zapravo ne opravdavaju zaključak koji se iznosi.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ova politika mora biti dobra jer zvuči odvažno i samouvereno."
+      ],
+      "explanation": "Nudi razloge koji zapravo ne opravdavaju zaključak koji se iznosi. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "weak-support"
+      ],
+      "related": [
+        "Circular Reasoning",
+        "Begging the Question",
+        "Appeal to Emotion",
+        "Ignoratio Elenchi",
+        "Proof by Verbosity",
+        "Fallacy Fallacy"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Red Herring"
+      ],
+      "confused_with": []
+    },
+    "Sunk Cost Fallacy": {
+      "name": "Greška potonulog troška",
+      "icon": "🪙",
+      "category": "Informal",
+      "description": "Nastavlja da brani ili održava nešto uglavnom zato što je u to već uloženo vreme, novac ili trud.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Već smo potrošili šest meseci na ovu neuspešnu aplikaciju, pa moramo nastaviti da je finansiramo."
+      ],
+      "explanation": "Nastavlja da brani ili održava nešto uglavnom zato što je u to već uloženo vreme, novac ili trud. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "decision-bias"
+      ],
+      "related": [
+        "Appeal to Consequences",
+        "Personal Incredulity"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": []
+    },
+    "Ad Hominem": {
+      "name": "Ad hominem",
+      "icon": "👤",
+      "category": "Informal",
+      "description": "Napada osobu koja iznosi argument umesto da se bavi samim argumentom.",
+      "common": true,
+      "short_for": "Argumentum ad hominem",
+      "aliases": [],
+      "examples": [
+        "Nemojte slušati njen argument o saobraćajnoj politici; ona iznajmljuje stan i nema čak ni automobil."
+      ],
+      "explanation": "Napada osobu koja iznosi argument umesto da se bavi samim argumentom. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Tu Quoque",
+        "Poisoning the Well",
+        "Genetic Fallacy",
+        "Guilt by Association",
+        "Strawman",
+        "Appeal to Force",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Strawman",
+        "Appeal to Ridicule",
+        "Appeal to Emotion",
+        "Loaded Question",
+        "Red Herring",
+        "Fallacy Fallacy"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Appeal to Ridicule",
+        "Tu Quoque",
+        "Poisoning the Well"
+      ]
+    },
+    "Ambiguity": {
+      "name": "Dvosmislenost",
+      "icon": "🌫️",
+      "category": "Informal",
+      "description": "Oslanja se na nejasno ili klizavo formulisanje koje se može razumeti na više načina.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Na natpisu piše da je muzej besplatan, pa onda sve unutra ne bi trebalo ništa da košta."
+      ],
+      "explanation": "Oslanja se na nejasno ili klizavo formulisanje koje se može razumeti na više načina. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Equivocation",
+        "Loaded Question",
+        "Fallacy of Quoting Out of Context",
+        "Reification",
+        "Etymological Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Equivocation",
+        "Etymological Fallacy",
+        "Four-Term Fallacy",
+        "Reification"
+      ]
+    },
+    "Anecdotal": {
+      "name": "Anegdotalna greška",
+      "icon": "🗣️",
+      "category": "Informal",
+      "description": "Koristi ličnu priču ili izdvojen primer kao da je dovoljan da dokaže široku tvrdnju.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Moj ujak je pušio svakog dana i doživeo devedesetu, dakle su rizici pušenja preuveličani."
+      ],
+      "explanation": "Koristi ličnu priču ili izdvojen primer kao da je dovoljan da dokaže široku tvrdnju. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "weak-evidence",
+        "generalization"
+      ],
+      "related": [
+        "Hasty Generalization",
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [
+        "Appeal to Emotion"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "Hasty Generalization"
+      ]
+    },
+    "Appeal to Authority": {
+      "name": "Pozivanje na autoritet",
+      "icon": "🏛️",
+      "category": "Informal",
+      "description": "Tretira tvrdnju kao istinitu uglavnom zato što ju je izgovorila autoritativna figura ili stručnjak, bez dovoljno potkrepljujućih dokaza.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Poznati glumac kaže da ovaj suplement deluje, pa onda mora biti medicinski efikasan."
+      ],
+      "explanation": "Tretira tvrdnju kao istinitu uglavnom zato što ju je izgovorila autoritativna figura ili stručnjak, bez dovoljno potkrepljujućih dokaza. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "authority",
+        "weak-support"
+      ],
+      "related": [
+        "False Attribution",
+        "Appeal to Ignorance",
+        "Burden of Proof"
+      ],
+      "often_with": [
+        "Argument from Repetition",
+        "Bandwagon"
+      ],
+      "confused_with": [
+        "False Attribution"
+      ]
+    },
+    "Appeal to Emotion": {
+      "name": "Pozivanje na emocije",
+      "icon": "💥",
+      "category": "Informal",
+      "description": "Gura publiku ka zaključku izazivanjem emocija umesto davanjem čvrstih razloga.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako vam je zaista stalo do dece, podržaćete ovaj zakon bez traženja podataka."
+      ],
+      "explanation": "Gura publiku ka zaključku izazivanjem emocija umesto davanjem čvrstih razloga. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "emotion",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "Appeal to Pity",
+        "Appeal to Ridicule",
+        "Appeal to Consequences",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Strawman",
+        "Slippery Slope",
+        "Ignoratio Elenchi",
+        "Anecdotal",
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Appeal to Fear",
+        "Appeal to Pity"
+      ]
+    },
+    "Appeal to Fear": {
+      "name": "Pozivanje na strah",
+      "icon": "😨",
+      "category": "Informal",
+      "description": "Oslanja se na strah ili uzbunu da bi navela na prihvatanje tvrdnje umesto da je potkrepi valjanim rezonovanjem.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako danas ne usvojimo ovu meru, haos će se do sledeće nedelje proširiti na ceo grad."
+      ],
+      "explanation": "Oslanja se na strah ili uzbunu da bi navela na prihvatanje tvrdnje umesto da je potkrepi valjanim rezonovanjem. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "emotion",
+        "fear"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Slippery Slope",
+        "Appeal to Force",
+        "Appeal to Consequences"
+      ],
+      "often_with": [
+        "False Dilemma",
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Slippery Slope",
+        "Appeal to Force",
+        "Appeal to Emotion"
+      ]
+    },
+    "Appeal to Pity": {
+      "name": "Pozivanje na sažaljenje",
+      "icon": "🥺",
+      "category": "Informal",
+      "description": "Tretira saosećanje ili samilost kao da su dokaz da je neka tvrdnja istinita ili opravdana.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Molim vas, dajte mi prolaznu ocenu; imao sam veoma težak mesec."
+      ],
+      "explanation": "Tretira saosećanje ili samilost kao da su dokaz da je neka tvrdnja istinita ili opravdana. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "emotion"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Appeal to Force"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Appeal to Emotion"
+      ]
+    },
+    "Appeal to Force": {
+      "name": "Pozivanje na silu",
+      "icon": "🛑",
+      "category": "Informal",
+      "description": "Koristi pretnje, prinudu ili mogućnost kazne umesto stvarnih razloga.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Složite se sa predlogom, ili možete da zaboravite na unapređenje."
+      ],
+      "explanation": "Koristi pretnje, prinudu ili mogućnost kazne umesto stvarnih razloga. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "coercion",
+        "emotion"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "Ad Hominem",
+        "Appeal to Pity"
+      ],
+      "often_with": [
+        "False Dilemma"
+      ],
+      "confused_with": [
+        "Appeal to Fear"
+      ]
+    },
+    "Appeal to Ignorance": {
+      "name": "Pozivanje na neznanje",
+      "icon": "🌑",
+      "category": "Informal",
+      "description": "Tvrdi da je nešto istinito ili neistinito samo zato što nije dokazano suprotno.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Niko nije dokazao da je ovaj softver nebezbedan, dakle mora biti bezbedan."
+      ],
+      "explanation": "Tvrdi da je nešto istinito ili neistinito samo zato što nije dokazano suprotno. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "burden-shifting",
+        "weak-support"
+      ],
+      "related": [
+        "Burden of Proof",
+        "Personal Incredulity",
+        "Appeal to Authority"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Burden of Proof",
+        "Personal Incredulity"
+      ]
+    },
+    "Appeal to Nature": {
+      "name": "Pozivanje na prirodu",
+      "icon": "🌿",
+      "category": "Informal",
+      "description": "Pretpostavlja da je nešto dobro, ispravno ili bezbednije samo zato što se naziva prirodnim.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ovaj lek je prirodan, pa zato mora biti zdraviji od leka na recept."
+      ],
+      "explanation": "Pretpostavlja da je nešto dobro, ispravno ili bezbednije samo zato što se naziva prirodnim. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "value-judgment",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Tradition",
+        "False Analogy",
+        "Incomplete Comparison"
+      ],
+      "often_with": [
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Appeal to Tradition",
+        "Appeal to Consequences"
+      ]
+    },
+    "Appeal to Probability": {
+      "name": "Pozivanje na verovatnoću",
+      "icon": "🎲",
+      "category": "Informal",
+      "description": "Pretpostavlja da će se nešto dogoditi samo zato što bi moglo da se dogodi ili deluje verovatno.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Sa toliko talentovanih ljudi u timu, uspeh je praktično zagarantovan."
+      ],
+      "explanation": "Pretpostavlja da će se nešto dogoditi samo zato što bi moglo da se dogodi ili deluje verovatno. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "prediction",
+        "causal-error"
+      ],
+      "related": [
+        "Gambler's Fallacy",
+        "Slippery Slope",
+        "False Cause",
+        "Personal Incredulity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Slippery Slope",
+        "Gambler's Fallacy"
+      ]
+    },
+    "Appeal to Ridicule": {
+      "name": "Pozivanje na podsmeh",
+      "icon": "😏",
+      "category": "Informal",
+      "description": "Ismeva neki stav kako bi delovao lažno umesto da ga zaista pobije.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Samo bi idiot pomislio da javnim bibliotekama treba više finansiranja."
+      ],
+      "explanation": "Ismeva neki stav kako bi delovao lažno umesto da ga zaista pobije. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "emotion"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Strawman",
+        "Poisoning the Well",
+        "Appeal to Emotion"
+      ],
+      "often_with": [
+        "Bandwagon",
+        "Strawman",
+        "Argumentum ad Populum",
+        "Tu Quoque",
+        "Ad Hominem",
+        "Poisoning the Well"
+      ],
+      "confused_with": [
+        "Ad Hominem"
+      ]
+    },
+    "Appeal to Tradition": {
+      "name": "Pozivanje na tradiciju",
+      "icon": "🏺",
+      "category": "Informal",
+      "description": "Tvrdi da je nešto ispravno ili poželjno uglavnom zato što se tako dugo radilo.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Trebalo bi da nastavimo da to radimo ovako, jer odeljenje to oduvek radi tako."
+      ],
+      "explanation": "Tvrdi da je nešto ispravno ili poželjno uglavnom zato što se tako dugo radilo. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "tradition",
+        "value-judgment"
+      ],
+      "related": [
+        "Appeal to Nature",
+        "Bandwagon",
+        "Argumentum ad Populum"
+      ],
+      "often_with": [
+        "False Dilemma",
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Appeal to Nature"
+      ]
+    },
+    "Appeal to Consequences": {
+      "name": "Pozivanje na posledice",
+      "icon": "🧭",
+      "category": "Informal",
+      "description": "Tretira poželjne ili nepoželjne posledice kao dokaz da je sama tvrdnja istinita ili neistinita.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Klimatske promene ne mogu biti stvarne, jer bi budućnost bila previše zastrašujuća ako jesu."
+      ],
+      "explanation": "Tretira poželjne ili nepoželjne posledice kao dokaz da je sama tvrdnja istinita ili neistinita. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "emotion",
+        "decision-bias"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Appeal to Fear",
+        "Sunk Cost Fallacy"
+      ],
+      "often_with": [
+        "Slippery Slope",
+        "Appeal to Nature",
+        "Appeal to Fear"
+      ],
+      "confused_with": [
+        "Appeal to Nature"
+      ]
+    },
+    "Argument from Repetition": {
+      "name": "Argument ponavljanjem",
+      "icon": "📣",
+      "category": "Informal",
+      "description": "Ponavlja tvrdnju toliko često da se samo ponavljanje koristi da bi delovala istinito.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Reklama deset puta zaredom kaže da je proizvod revolucionaran, pa ljudi to počinju da prihvataju kao utvrđenu činjenicu."
+      ],
+      "explanation": "Ponavlja tvrdnju toliko često da se samo ponavljanje koristi da bi delovala istinito. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "social-proof",
+        "rhetorical-pressure"
+      ],
+      "related": [
+        "Bandwagon",
+        "Argumentum ad Populum",
+        "Shotgun Argumentation",
+        "Proof by Verbosity"
+      ],
+      "often_with": [
+        "Appeal to Authority"
+      ],
+      "confused_with": [
+        "Bandwagon"
+      ]
+    },
+    "Argumentum ad Populum": {
+      "name": "Argumentum ad populum",
+      "icon": "👥",
+      "category": "Informal",
+      "description": "Tretira popularnost ili javno odobravanje kao dokaz da je neka tvrdnja istinita.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Ad populum",
+        "Pozivanje na većinu",
+        "Pozivanje na popularnost",
+        "Pozivanje na narod"
+      ],
+      "examples": [
+        "Milioni ljudi dele ovu tvrdnju na internetu, pa mora biti tačna."
+      ],
+      "explanation": "Tretira popularnost ili javno odobravanje kao dokaz da je neka tvrdnja istinita. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "social-proof"
+      ],
+      "related": [
+        "Bandwagon",
+        "Argument from Repetition",
+        "Appeal to Tradition"
+      ],
+      "often_with": [
+        "Appeal to Ridicule"
+      ],
+      "confused_with": [
+        "Bandwagon"
+      ]
+    },
+    "Bandwagon": {
+      "name": "Pridruživanje većini",
+      "icon": "🚩",
+      "category": "Informal",
+      "description": "Podstiče prihvatanje tvrdnje zato što je navodno već prihvata mnogo ljudi.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Svi u industriji usvajaju ovaj alat, pa bismo bili glupi da ga ne prihvatimo kao najbolju opciju."
+      ],
+      "explanation": "Podstiče prihvatanje tvrdnje zato što je navodno već prihvata mnogo ljudi. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "social-proof"
+      ],
+      "related": [
+        "Argumentum ad Populum",
+        "Argument from Repetition",
+        "Appeal to Tradition"
+      ],
+      "often_with": [
+        "Appeal to Ridicule",
+        "False Dilemma",
+        "Appeal to Authority"
+      ],
+      "confused_with": [
+        "Argumentum ad Populum",
+        "Argument from Repetition"
+      ]
+    },
+    "Begging the Question": {
+      "name": "Pretpostavljanje zaključka",
+      "icon": "⭕",
+      "category": "Informal",
+      "description": "Ugrađuje zaključak u premisu, pa argument pretpostavlja ono što tek treba da dokaže.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ove novine su pouzdane jer pouzdano izveštavaju o vestima."
+      ],
+      "explanation": "Ugrađuje zaključak u premisu, pa argument pretpostavlja ono što tek treba da dokaže. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "circularity",
+        "weak-support"
+      ],
+      "related": [
+        "Circular Reasoning",
+        "Bad Reason Fallacy",
+        "Proving Too Much"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Circular Reasoning",
+        "Proving Too Much"
+      ]
+    },
+    "Burden of Proof": {
+      "name": "Teret dokazivanja",
+      "icon": "⚖️",
+      "category": "Informal",
+      "description": "Prebacuje odgovornost za dokazivanje tvrdnje na druge umesto da je neposredno potkrepi.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Dokaži da je moja teorija zavere netačna; do tada imam pravo da verujem u nju."
+      ],
+      "explanation": "Prebacuje odgovornost za dokazivanje tvrdnje na druge umesto da je neposredno potkrepi. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "burden-shifting"
+      ],
+      "related": [
+        "Appeal to Ignorance",
+        "Loaded Question",
+        "Personal Incredulity",
+        "No True Scotsman",
+        "Appeal to Authority",
+        "Fallacy Fallacy"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Appeal to Ignorance",
+        "Loaded Question"
+      ]
+    },
+    "Cherry Picking": {
+      "name": "Selektivno biranje dokaza",
+      "icon": "🍒",
+      "category": "Informal",
+      "description": "Bira samo one dokaze koji podržavaju zaključak, dok zanemaruje relevantne dokaze koji ukazuju na suprotno.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Kandidat ističe tri meseca rasta zaposlenosti, ali zanemaruje duži silazni trend."
+      ],
+      "explanation": "Bira samo one dokaze koji podržavaju zaključak, dok zanemaruje relevantne dokaze koji ukazuju na suprotno. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "weak-evidence"
+      ],
+      "related": [
+        "Texas Sharpshooter",
+        "Anecdotal",
+        "Fallacy of Quoting Out of Context",
+        "Hasty Generalization"
+      ],
+      "often_with": [
+        "False Cause",
+        "Hasty Generalization",
+        "Bad Reason Fallacy",
+        "Furtive Fallacy",
+        "Post Hoc"
+      ],
+      "confused_with": [
+        "Texas Sharpshooter",
+        "Anecdotal",
+        "Hasty Generalization",
+        "Fallacy of Quoting Out of Context"
+      ]
+    },
+    "Circular Reasoning": {
+      "name": "Kružno rezonovanje",
+      "icon": "🔄",
+      "category": "Informal",
+      "description": "Ponavlja zaključak drugim rečima umesto da pruži nezavisnu potporu za njega.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Kružni argument",
+        "Kružna logika"
+      ],
+      "examples": [
+        "Pravilo je pravedno jer politika kaže da je pravedno, a politika je ispravna jer odražava naša pravedna pravila."
+      ],
+      "explanation": "Ponavlja zaključak drugim rečima umesto da pruži nezavisnu potporu za njega. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "circularity",
+        "weak-support"
+      ],
+      "related": [
+        "Begging the Question",
+        "Bad Reason Fallacy",
+        "Proving Too Much"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Begging the Question"
+      ]
+    },
+    "Composition Fallacy": {
+      "name": "Greška kompozicije",
+      "icon": "🧱",
+      "category": "Informal",
+      "description": "Pretpostavlja da ono što važi za delove mora važiti i za celinu.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Greška kompozicije"
+      ],
+      "examples": [
+        "Svaki igrač u timu je zvezda, pa tim mora biti nepobediv."
+      ],
+      "explanation": "Pretpostavlja da ono što važi za delove mora važiti i za celinu. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Division Fallacy",
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ]
+    },
+    "Continuum Fallacy": {
+      "name": "Greška kontinuiteta",
+      "icon": "📏",
+      "category": "Informal",
+      "description": "Tvrdi da je neka razlika besmislena samo zato što je granica između slučajeva postepena ili nejasna.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Pošto ne postoji tačan sekund kada sumrak postaje noć, dan i noć zapravo nisu različite stvari."
+      ],
+      "explanation": "Tvrdi da je neka razlika besmislena samo zato što je granica između slučajeva postepena ili nejasna. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "boundary",
+        "false-choice"
+      ],
+      "related": [
+        "Middle Ground",
+        "False Dilemma",
+        "No True Scotsman"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Middle Ground",
+        "False Dilemma"
+      ]
+    },
+    "Division Fallacy": {
+      "name": "Greška podele",
+      "icon": "🧩",
+      "category": "Informal",
+      "description": "Pretpostavlja da ono što važi za celinu mora važiti i za svaki njen deo.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Podela",
+        "Greška podele"
+      ],
+      "examples": [
+        "Kompanija je bogata, pa svaki njen zaposleni mora takođe biti bogat."
+      ],
+      "explanation": "Pretpostavlja da ono što važi za celinu mora važiti i za svaki njen deo. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Composition Fallacy",
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ]
+    },
+    "Equivocation": {
+      "name": "Ekvivokacija",
+      "icon": "🪞",
+      "category": "Informal",
+      "description": "Menja značenje ključne reči ili fraze usred argumenta.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Perje je lako. Ono što je lako ne može biti tamno. Dakle, perje ne može biti tamno."
+      ],
+      "explanation": "Menja značenje ključne reči ili fraze usred argumenta. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Ambiguity",
+        "Four-Term Fallacy",
+        "Loaded Question",
+        "Motte and Bailey",
+        "Etymological Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity",
+        "Etymological Fallacy",
+        "Loaded Question",
+        "Motte and Bailey"
+      ]
+    },
+    "Etymological Fallacy": {
+      "name": "Etimološka greška",
+      "icon": "📚",
+      "category": "Informal",
+      "description": "Pretpostavlja da je sadašnje značenje reči ili istinitost tvrdnje određena njenim istorijskim poreklom.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Reč nice je nekada značila foolish, pa nazvati nekoga nice i dalje mora da podrazumeva glupost."
+      ],
+      "explanation": "Pretpostavlja da je sadašnje značenje reči ili istinitost tvrdnje određena njenim istorijskim poreklom. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Equivocation",
+        "Ambiguity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Equivocation",
+        "Ambiguity"
+      ]
+    },
+    "Fallacy Fallacy": {
+      "name": "Greška o grešci",
+      "icon": "🪤",
+      "category": "Informal",
+      "description": "Pretpostavlja da neka tvrdnja mora biti lažna samo zato što je argument za nju bio slab ili pogrešan.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Taj aktivista je jednom upotrebio loš argument, pa onda sam cilj mora biti pogrešan."
+      ],
+      "explanation": "Pretpostavlja da neka tvrdnja mora biti lažna samo zato što je argument za nju bio slab ili pogrešan. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "meta-reasoning"
+      ],
+      "related": [
+        "Burden of Proof",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Ad Hominem"
+      ],
+      "confused_with": [
+        "Genetic Fallacy"
+      ]
+    },
+    "Fallacy of Composition and Division": {
+      "name": "Greška kompozicije i podele",
+      "icon": "🧱",
+      "category": "Informal",
+      "description": "Nepravilno prenosi neko svojstvo sa delova na celinu ili sa celine na delove.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Pošto je komšiluk skup, svaki predmet koji se prodaje u svakoj prodavnici tamo mora biti skup."
+      ],
+      "explanation": "Nepravilno prenosi neko svojstvo sa delova na celinu ili sa celine na delove. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ]
+    },
+    "Fallacy of Quoting Out of Context": {
+      "name": "Greška citiranja van konteksta",
+      "icon": "✂️",
+      "category": "Informal",
+      "description": "Izvlači reči iz njihovog okruženja tako da deluju kao da znače nešto drugo.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Citiranje van konteksta"
+      ],
+      "examples": [
+        "Jedna rečenica iz dugog intervjua izdvojena je tako da govornik deluje kao da podržava suprotno od onoga što ceo odlomak zapravo kaže."
+      ],
+      "explanation": "Izvlači reči iz njihovog okruženja tako da deluju kao da znače nešto drugo. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "context-distortion"
+      ],
+      "related": [
+        "Cherry Picking",
+        "False Attribution",
+        "Ambiguity"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "False Attribution"
+      ]
+    },
+    "False Analogy": {
+      "name": "Lažna analogija",
+      "icon": "⚠️",
+      "category": "Informal",
+      "description": "Tretira dve stvari kao sličnije nego što zaista jesu, koristeći slabo poređenje da bi podržala zaključak.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Pogrešna analogija",
+        "Slaba analogija"
+      ],
+      "examples": [
+        "Vođenje države je isto kao vođenje domaćinstva, pa bi nacionalni budžeti trebalo da funkcionišu potpuno isto."
+      ],
+      "explanation": "Tretira dve stvari kao sličnije nego što zaista jesu, koristeći slabo poređenje da bi podržala zaključak. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "analogy"
+      ],
+      "related": [
+        "False Equivalence",
+        "Appeal to Nature",
+        "Incomplete Comparison"
+      ],
+      "often_with": [
+        "Slippery Slope"
+      ],
+      "confused_with": [
+        "False Equivalence",
+        "Incomplete Comparison"
+      ]
+    },
+    "False Attribution": {
+      "name": "Pogrešna atribucija",
+      "icon": "🏷️",
+      "category": "Informal",
+      "description": "Pripisuje izjavu, motiv, izvor ili uzrok pogrešnoj osobi ili pogrešnom faktoru.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Citat je na internetu pripisan Ajnštajnu, pa čitaoci pretpostavljaju da nosi naučni autoritet."
+      ],
+      "explanation": "Pripisuje izjavu, motiv, izvor ili uzrok pogrešnoj osobi ili pogrešnom faktoru. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "source-error",
+        "authority"
+      ],
+      "related": [
+        "Appeal to Authority",
+        "Fallacy of Quoting Out of Context",
+        "False Cause & False Attribution"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Authority",
+        "Fallacy of Quoting Out of Context",
+        "False Cause & False Attribution"
+      ]
+    },
+    "False Cause": {
+      "name": "Pogrešan uzrok",
+      "icon": "🔗",
+      "category": "Informal",
+      "description": "Tretira dve stvari kao uzročno povezane bez dovoljno dokaza da je jedna zaista uzrokovala drugu.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Korelacija implicira uzročnost"
+      ],
+      "examples": [
+        "Nosio sam svoju srećnu jaknu i onda smo pobedili, dakle jakna je izazvala pobedu."
+      ],
+      "explanation": "Tretira dve stvari kao uzročno povezane bez dovoljno dokaza da je jedna zaista uzrokovala drugu. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "causal-error"
+      ],
+      "related": [
+        "Post Hoc",
+        "Texas Sharpshooter",
+        "Appeal to Probability",
+        "False Cause & False Attribution",
+        "Retrospective Determinism",
+        "Furtive Fallacy",
+        "Gambler's Fallacy"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Slippery Slope",
+        "Hasty Generalization"
+      ],
+      "confused_with": [
+        "Post Hoc",
+        "Texas Sharpshooter",
+        "False Cause & False Attribution",
+        "Gambler's Fallacy",
+        "Affirming the Consequent"
+      ]
+    },
+    "False Cause & False Attribution": {
+      "name": "Pogrešan uzrok i pogrešna atribucija",
+      "icon": "🔗",
+      "category": "Informal",
+      "description": "Tretira dve stvari kao uzročno povezane, ili pripisuje zaslugu ili krivicu, bez dovoljno dokaza.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Govornik pripisuje ekonomski oporavak jednoj politici, ignorišući širi skup sila koje su se promenile u isto vreme."
+      ],
+      "explanation": "Tretira dve stvari kao uzročno povezane, ili pripisuje zaslugu ili krivicu, bez dovoljno dokaza. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "causal-error",
+        "source-error"
+      ],
+      "related": [
+        "False Cause",
+        "False Attribution",
+        "Post Hoc"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Cause",
+        "False Attribution"
+      ]
+    },
+    "False Dilemma": {
+      "name": "Lažna dilema",
+      "icon": "🚪",
+      "category": "Informal",
+      "description": "Uokviruje situaciju kao da postoje samo dve mogućnosti, iako ih ima više.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Lažni izbor",
+        "Lažna dihotomija"
+      ],
+      "examples": [
+        "Ili podržavate ovaj predlog tačno ovakav kakav je napisan, ili vam uopšte nije stalo do problema."
+      ],
+      "explanation": "Uokviruje situaciju kao da postoje samo dve mogućnosti, iako ih ima više. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "false-choice"
+      ],
+      "related": [
+        "Middle Ground",
+        "Continuum Fallacy",
+        "Loaded Question",
+        "Proving Too Much",
+        "Nirvana Fallacy",
+        "Inflation of Conflict",
+        "Slippery Slope"
+      ],
+      "often_with": [
+        "Slippery Slope",
+        "Appeal to Fear",
+        "Bandwagon",
+        "Appeal to Tradition",
+        "Appeal to Force"
+      ],
+      "confused_with": [
+        "Middle Ground",
+        "Continuum Fallacy",
+        "Nirvana Fallacy",
+        "Slippery Slope",
+        "Propositional Fallacies",
+        "Denying the Antecedent"
+      ]
+    },
+    "False Equivalence": {
+      "name": "Lažna ekvivalencija",
+      "icon": "⚖️",
+      "category": "Informal",
+      "description": "Tretira dve stvari kao moralno, logički ili praktično ekvivalentne iako su razlike važne.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Zaturiti jednu priznanicu tretira se kao moralno isto što i finansijska prevara velikih razmera."
+      ],
+      "explanation": "Tretira dve stvari kao moralno, logički ili praktično ekvivalentne iako su razlike važne. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "comparison"
+      ],
+      "related": [
+        "False Analogy",
+        "Incomplete Comparison",
+        "Reification"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "False Analogy",
+        "Incomplete Comparison"
+      ]
+    },
+    "Faulty Generalization": {
+      "name": "Pogrešna generalizacija",
+      "icon": "📉",
+      "category": "Informal",
+      "description": "Izvodi široko pravilo ili zaključak iz premalo, preusko odabranih ili nereprezentativnih dokaza.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Dva nepristojna turista bila su iz jedne zemlje, pa ljudi iz te zemlje moraju biti nepristojni."
+      ],
+      "explanation": "Izvodi široko pravilo ili zaključak iz premalo, preusko odabranih ili nereprezentativnih dokaza. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "generalization",
+        "weak-evidence"
+      ],
+      "related": [],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ]
+    },
+    "Furtive Fallacy": {
+      "name": "Greška skrivene namere",
+      "icon": "🕵️",
+      "category": "Informal",
+      "description": "Pretpostavlja skrivenu nameru, tajnu koordinaciju ili namerni plan bez dovoljnih dokaza.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Politika je tiho promenjena, što dokazuje da je iza nje stajala tajna zavera."
+      ],
+      "explanation": "Pretpostavlja skrivenu nameru, tajnu koordinaciju ili namerni plan bez dovoljnih dokaza. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "hidden-intent",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Genetic Fallacy",
+        "Inflation of Conflict"
+      ],
+      "often_with": [
+        "Cherry Picking"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Inflation of Conflict"
+      ]
+    },
+    "Gambler's Fallacy": {
+      "name": "Kockarska greška",
+      "icon": "🎰",
+      "category": "Informal",
+      "description": "Pretpostavlja da prethodni nasumični ishodi čine drugačiji budući ishod verovatnijim, iako su događaji nezavisni.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Novčić je pet puta pao na glavu, pa je sada red na pismo."
+      ],
+      "explanation": "Pretpostavlja da prethodni nasumični ishodi čine drugačiji budući ishod verovatnijim, iako su događaji nezavisni. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "probability",
+        "prediction"
+      ],
+      "related": [
+        "Appeal to Probability",
+        "False Cause",
+        "Post Hoc"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Probability",
+        "False Cause"
+      ]
+    },
+    "Genetic Fallacy": {
+      "name": "Genetska greška",
+      "icon": "🧬",
+      "category": "Informal",
+      "description": "Sudi o tvrdnji prema tome odakle potiče, a ne prema kvalitetu same tvrdnje.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ideja je došla sa društvenih mreža, pa ne može nikako biti valjana."
+      ],
+      "explanation": "Sudi o tvrdnji prema tome odakle potiče, a ne prema kvalitetu same tvrdnje. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "source-judgment",
+        "personal-attack"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Guilt by Association",
+        "Poisoning the Well",
+        "Furtive Fallacy"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Fallacy Fallacy",
+        "Furtive Fallacy",
+        "Guilt by Association"
+      ]
+    },
+    "Guilt by Association": {
+      "name": "Krivica po povezanosti",
+      "icon": "🕸️",
+      "category": "Informal",
+      "description": "Odbacuje osobu ili tvrdnju povezivanjem sa nekim ili nečim nepoželjnim umesto da se bavi samim rezonovanjem.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "On je jednom prisustvovao istom događaju kao i prevarant, pa i njegov sopstveni argument mora biti nepošten."
+      ],
+      "explanation": "Odbacuje osobu ili tvrdnju povezivanjem sa nekim ili nečim nepoželjnim umesto da se bavi samim rezonovanjem. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "source-judgment"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Genetic Fallacy",
+        "Poisoning the Well"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Poisoning the Well"
+      ]
+    },
+    "Hasty Generalization": {
+      "name": "Preuranjena generalizacija",
+      "icon": "📉",
+      "category": "Informal",
+      "description": "Preskače sa malog ili nereprezentativnog uzorka na širok zaključak.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Sreo sam dva nepažljiva vozača iz tog grada, pa su vozači odande sigurno nesavesni."
+      ],
+      "explanation": "Preskače sa malog ili nereprezentativnog uzorka na širok zaključak. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "generalization",
+        "weak-evidence"
+      ],
+      "related": [
+        "Anecdotal",
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [
+        "False Cause",
+        "Cherry Picking"
+      ],
+      "confused_with": [
+        "Anecdotal",
+        "Cherry Picking",
+        "Quantification Fallacies"
+      ]
+    },
+    "Ignoratio Elenchi": {
+      "name": "Ignoratio elenchi",
+      "icon": "🎯",
+      "category": "Informal",
+      "description": "Izlaže razloge koji mogu zvučati relevantno, ali zapravo ne odgovaraju na spornu tačku.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Na pitanje da li politika smanjuje emisije, govornik odgovara da zemlji trebaju radna mesta."
+      ],
+      "explanation": "Izlaže razloge koji mogu zvučati relevantno, ali zapravo ne odgovaraju na spornu tačku. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Red Herring",
+        "Strawman",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Appeal to Emotion"
+      ],
+      "confused_with": [
+        "Red Herring"
+      ]
+    },
+    "Incomplete Comparison": {
+      "name": "Nepotpuno poređenje",
+      "icon": "⚗️",
+      "category": "Informal",
+      "description": "Pravi poređenje bez navođenja sa čim se nešto poredi ili po kom standardu.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ovo je jači proizvod."
+      ],
+      "explanation": "Pravi poređenje bez navođenja sa čim se nešto poredi ili po kom standardu. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "comparison"
+      ],
+      "related": [
+        "False Analogy",
+        "False Equivalence",
+        "Appeal to Nature",
+        "Nirvana Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Analogy",
+        "False Equivalence",
+        "Nirvana Fallacy"
+      ]
+    },
+    "Inflation of Conflict": {
+      "name": "Prenaduvavanje sukoba",
+      "icon": "🔥",
+      "category": "Informal",
+      "description": "Prikazuje neslaganje kao dramatičan sukob iako stvarni jaz može biti manji ili nijansiraniji.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Umereno političko neslaganje opisuje se kao borba za dušu civilizacije."
+      ],
+      "explanation": "Prikazuje neslaganje kao dramatičan sukob iako stvarni jaz može biti manji ili nijansiraniji. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "framing",
+        "hidden-intent"
+      ],
+      "related": [
+        "Furtive Fallacy",
+        "Red Herring",
+        "False Dilemma"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Furtive Fallacy"
+      ]
+    },
+    "Kettle Logic": {
+      "name": "Logika kotla",
+      "icon": "🫖",
+      "category": "Informal",
+      "description": "Koristi međusobno nedosledne odbrane odjednom, nadajući se da će neka od njih uspeti.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Nisam uzeo tvoju knjigu; već je bila polomljena kad sam je pozajmio; a uostalom, ti je ionako nikada nisi stvarno želeo nazad."
+      ],
+      "explanation": "Koristi međusobno nedosledne odbrane odjednom, nadajući se da će neka od njih uspeti. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "inconsistency",
+        "self-contradiction"
+      ],
+      "related": [
+        "Special Pleading",
+        "Moving the Goalposts",
+        "Tu Quoque"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Special Pleading"
+      ]
+    },
+    "Loaded Question": {
+      "name": "Sugestivno pitanje",
+      "icon": "❓",
+      "category": "Informal",
+      "description": "Postavlja pitanje koje krišom unosi nedokazanu pretpostavku.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Sugestivna pitanja"
+      ],
+      "examples": [
+        "Zašto i dalje ignorišete dokaze?"
+      ],
+      "explanation": "Postavlja pitanje koje krišom unosi nedokazanu pretpostavku. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "presupposition",
+        "burden-shifting"
+      ],
+      "related": [
+        "Burden of Proof",
+        "False Dilemma",
+        "Equivocation",
+        "Ambiguity"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Tu Quoque"
+      ],
+      "confused_with": [
+        "Equivocation",
+        "Burden of Proof"
+      ]
+    },
+    "Middle Ground": {
+      "name": "Greška sredine",
+      "icon": "🤝",
+      "category": "Informal",
+      "description": "Pretpostavlja da kompromisna pozicija mora biti tačna samo zato što se nalazi između dve krajnosti.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Jedan stručnjak kaže da je most bezbedan, a drugi da nije, pa istina mora biti da je samo upola nebezbedan."
+      ],
+      "explanation": "Pretpostavlja da kompromisna pozicija mora biti tačna samo zato što se nalazi između dve krajnosti. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "false-choice",
+        "compromise"
+      ],
+      "related": [
+        "False Dilemma",
+        "Continuum Fallacy",
+        "Nirvana Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma",
+        "Continuum Fallacy"
+      ]
+    },
+    "Motte and Bailey": {
+      "name": "Motte and Bailey",
+      "icon": "🏰",
+      "category": "Informal",
+      "description": "Povlači se na sigurniju i lakšu tvrdnju kada je izazvana, a zatim se vraća jačoj i kontroverznijoj tvrdnji kada pritisak prođe.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Kada je suočen sa širokom tvrdnjom o cenzuri, govornik se povlači na sigurniju tvrdnju da moderacija postoji na internetu, a zatim se kasnije vraća široj tvrdnji."
+      ],
+      "explanation": "Povlači se na sigurniju i lakšu tvrdnju kada je izazvana, a zatim se vraća jačoj i kontroverznijoj tvrdnji kada pritisak prođe. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "retreat-and-return",
+        "strategic-ambiguity"
+      ],
+      "related": [
+        "Moving the Goalposts",
+        "Equivocation",
+        "Special Pleading"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Equivocation",
+        "Moving the Goalposts"
+      ]
+    },
+    "Moving the Goalposts": {
+      "name": "Pomeranje stativa",
+      "icon": "🥅",
+      "category": "Informal",
+      "description": "Menja standard dokazivanja ili uspeha nakon što je prvobitni standard već ispunjen.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Nakon što studija odgovori na prvi prigovor, kritičar kaže da rezultat važi samo ako su ispunjena još tri nepovezana uslova."
+      ],
+      "explanation": "Menja standard dokazivanja ili uspeha nakon što je prvobitni standard već ispunjen. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "standards-shifting"
+      ],
+      "related": [
+        "Motte and Bailey",
+        "Special Pleading",
+        "Kettle Logic",
+        "No True Scotsman"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Special Pleading",
+        "Motte and Bailey"
+      ]
+    },
+    "Nirvana Fallacy": {
+      "name": "Nirvana greška",
+      "icon": "✨",
+      "category": "Informal",
+      "description": "Odbacuje realističnu opciju zato što nije savršena, poredeći je nepravedno sa idealizovanom alternativom.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Pošto nijedan saobraćajni sistem ne može potpuno da ukloni nezgode, nema smisla unapređivati bezbednost na putevima."
+      ],
+      "explanation": "Odbacuje realističnu opciju zato što nije savršena, poredeći je nepravedno sa idealizovanom alternativom. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "perfectionism",
+        "comparison"
+      ],
+      "related": [
+        "False Dilemma",
+        "Incomplete Comparison",
+        "Middle Ground"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma",
+        "Incomplete Comparison"
+      ]
+    },
+    "No True Scotsman": {
+      "name": "Nijedan pravi Škot",
+      "icon": "🛡️",
+      "category": "Informal",
+      "description": "Štiti opštu tvrdnju tako što redefiniše grupu kad god se pojavi protivprimer.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Nijedan pravi navijač nikada ne bi kritikovao tim; ako ga kritikujete, nikada niste ni bili pravi navijač."
+      ],
+      "explanation": "Štiti opštu tvrdnju tako što redefiniše grupu kad god se pojavi protivprimer. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "group-redefinition",
+        "standards-shifting"
+      ],
+      "related": [
+        "Special Pleading",
+        "Moving the Goalposts",
+        "Burden of Proof",
+        "Continuum Fallacy"
+      ],
+      "often_with": [
+        "Appeal to Tradition",
+        "Appeal to Ignorance",
+        "Moving the Goalposts",
+        "Burden of Proof"
+      ],
+      "confused_with": [
+        "Special Pleading"
+      ]
+    },
+    "Personal Incredulity": {
+      "name": "Lična neverica",
+      "icon": "🤨",
+      "category": "Informal",
+      "description": "Tretira nešto kao lažno samo zato što deluje teško zamislivo, razumljivo ili uverljivo.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ne mogu da zamislim kako bi evolucija mogla da funkcioniše, pa onda mora biti netačna."
+      ],
+      "explanation": "Tretira nešto kao lažno samo zato što deluje teško zamislivo, razumljivo ili uverljivo. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "burden-shifting",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Ignorance",
+        "Burden of Proof",
+        "Appeal to Probability",
+        "Sunk Cost Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Ignorance"
+      ]
+    },
+    "Poisoning the Well": {
+      "name": "Trovanje bunara",
+      "icon": "☠️",
+      "category": "Informal",
+      "description": "Unapred diskredituje neku osobu kako bi sve što kaže bilo odbačeno pre nego što se uopšte razmotri.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Pre nego što ona uopšte progovori, kaže nam se da joj ne verujemo jer je autsajder."
+      ],
+      "explanation": "Unapred diskredituje neku osobu kako bi sve što kaže bilo odbačeno pre nego što se uopšte razmotri. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "preemptive-dismissal"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Genetic Fallacy",
+        "Guilt by Association",
+        "Tu Quoque",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Strawman",
+        "Appeal to Ridicule"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Guilt by Association",
+        "Tu Quoque"
+      ]
+    },
+    "Post Hoc": {
+      "name": "Post hoc",
+      "icon": "⏱️",
+      "category": "Informal",
+      "description": "Pretpostavlja da je, zato što se jedna stvar dogodila posle druge, prva morala da uzrokuje drugu.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Post hoc ergo propter hoc"
+      ],
+      "examples": [
+        "Gradonačelnik je stupio na dužnost u januaru, a kriminal je opao u martu, pa je sam gradonačelnik izazvao taj pad."
+      ],
+      "explanation": "Pretpostavlja da je, zato što se jedna stvar dogodila posle druge, prva morala da uzrokuje drugu. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Gambler's Fallacy",
+        "False Cause & False Attribution",
+        "Retrospective Determinism"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "confused_with": [
+        "False Cause",
+        "Retrospective Determinism"
+      ]
+    },
+    "Proof by Verbosity": {
+      "name": "Dokaz opširnošću",
+      "icon": "🧵",
+      "category": "Informal",
+      "description": "Koristi bujicu reči, složenost ili detalje da stvori utisak dokaza bez stvarnog dokazivanja poente.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Govornik zatrpava slabu tvrdnju dugačkim zidom tehnički zvučećeg jezika i tretira dužinu kao dokaz."
+      ],
+      "explanation": "Koristi bujicu reči, složenost ili detalje da stvori utisak dokaza bez stvarnog dokazivanja poente. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "rhetorical-pressure",
+        "weak-support"
+      ],
+      "related": [
+        "Shotgun Argumentation",
+        "Bad Reason Fallacy",
+        "Argument from Repetition"
+      ],
+      "often_with": [
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Shotgun Argumentation"
+      ]
+    },
+    "Proving Too Much": {
+      "name": "Dokazivanje previše",
+      "icon": "📣",
+      "category": "Informal",
+      "description": "Koristi rezonovanje koje bi, kada bi bilo prihvaćeno, opravdalo mnogo više nego što govornik verovatno namerava.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako jedan izuzetak znači da je pravilo beskorisno, onda nijedno opšte pravilo nikada ne bi moglo da vodi delanje."
+      ],
+      "explanation": "Koristi rezonovanje koje bi, kada bi bilo prihvaćeno, opravdalo mnogo više nego što govornik verovatno namerava. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "overreach",
+        "circularity"
+      ],
+      "related": [
+        "Begging the Question",
+        "Circular Reasoning",
+        "False Dilemma"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Begging the Question"
+      ]
+    },
+    "Red Herring": {
+      "name": "Crvena haringa",
+      "icon": "🐟",
+      "category": "Informal",
+      "description": "Uvodi skretanje pažnje koje odvlači fokus sa glavnog pitanja.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Kada ga pitaju o korupciji, ministar počinje da govori o tome koliko je zemlja lepa u proleće."
+      ],
+      "explanation": "Uvodi skretanje pažnje koje odvlači fokus sa glavnog pitanja. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Ignoratio Elenchi",
+        "Strawman",
+        "Shotgun Argumentation",
+        "Inflation of Conflict"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Appeal to Emotion",
+        "Bad Reason Fallacy",
+        "Proof by Verbosity",
+        "Shotgun Argumentation"
+      ],
+      "confused_with": [
+        "Ignoratio Elenchi",
+        "Strawman"
+      ]
+    },
+    "Reification": {
+      "name": "Reifikacija",
+      "icon": "🗿",
+      "category": "Informal",
+      "description": "Tretira apstraktnu ideju ili oznaku kao da je konkretna stvar sa nezavisnim postojanjem.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Tržište želi stabilnost, pa moramo da slušamo ono što tržište želi."
+      ],
+      "explanation": "Tretira apstraktnu ideju ili oznaku kao da je konkretna stvar sa nezavisnim postojanjem. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "abstraction-error"
+      ],
+      "related": [
+        "False Equivalence",
+        "Ambiguity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity"
+      ]
+    },
+    "Retrospective Determinism": {
+      "name": "Retroaktivni determinizam",
+      "icon": "🕰️",
+      "category": "Informal",
+      "description": "Gleda unazad na prošle događaje kao da je ishod od početka bio neizbežan.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Nakon što startap uspe, komentatori kažu da je ishod bio neizbežan od prvog dana."
+      ],
+      "explanation": "Gleda unazad na prošle događaje kao da je ishod od početka bio neizbežan. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "hindsight",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Post Hoc",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Post Hoc"
+      ]
+    },
+    "Shotgun Argumentation": {
+      "name": "Sačmasto argumentovanje",
+      "icon": "💬",
+      "category": "Informal",
+      "description": "Izbacuje mnogo slabih tačaka odjednom tako da postaje teško odgovoriti na svaku pojedinačno.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Gish Gallop"
+      ],
+      "examples": [
+        "Debater izbacuje dvadeset slabih tvrdnji u brzom nizu tako da protivnici ne mogu pažljivo odgovoriti na svaku od njih."
+      ],
+      "explanation": "Izbacuje mnogo slabih tačaka odjednom tako da postaje teško odgovoriti na svaku pojedinačno. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "rhetorical-pressure",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Proof by Verbosity",
+        "Red Herring",
+        "Argument from Repetition"
+      ],
+      "often_with": [
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Proof by Verbosity"
+      ]
+    },
+    "Slippery Slope": {
+      "name": "Klizava padina",
+      "icon": "🛝",
+      "category": "Informal",
+      "description": "Tvrdi da će relativno mali prvi korak neizbežno pokrenuti lanac krajnjih posledica.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Ako dozvolimo jedan zakasneli zadatak, uskoro rokovi više neće ništa značiti i ceo kurs će se raspasti."
+      ],
+      "explanation": "Tvrdi da će relativno mali prvi korak neizbežno pokrenuti lanac krajnjih posledica. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "prediction",
+        "chain-reaction"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "False Dilemma",
+        "Appeal to Probability"
+      ],
+      "often_with": [
+        "Appeal to Emotion",
+        "Strawman",
+        "False Analogy",
+        "False Dilemma",
+        "False Cause",
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Appeal to Probability",
+        "False Dilemma",
+        "Appeal to Fear"
+      ]
+    },
+    "Special Pleading": {
+      "name": "Posebno izuzimanje",
+      "icon": "🎟️",
+      "category": "Informal",
+      "description": "Selektivno primenjuje standarde i pravi izuzetak kada pravilo postane nezgodno.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Pravilo važi za sve ostale, ali moj slučaj je drugačiji i ne bi trebalo da bude procenjivan po istom standardu."
+      ],
+      "explanation": "Selektivno primenjuje standarde i pravi izuzetak kada pravilo postane nezgodno. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "exception-making",
+        "standards-shifting"
+      ],
+      "related": [
+        "No True Scotsman",
+        "Moving the Goalposts",
+        "Kettle Logic",
+        "Motte and Bailey"
+      ],
+      "often_with": [
+        "Begging the Question",
+        "Appeal to Pity",
+        "Circular Reasoning",
+        "Sunk Cost Fallacy"
+      ],
+      "confused_with": [
+        "No True Scotsman",
+        "Moving the Goalposts",
+        "Kettle Logic"
+      ]
+    },
+    "Strawman": {
+      "name": "Slamnati čovek",
+      "icon": "🌾",
+      "category": "Informal",
+      "description": "Pogrešno predstavlja suprotno stanovište kako bi ga bilo lakše odbaciti.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Slamnati čovek"
+      ],
+      "examples": [
+        "Ona kaže da treba regulisati industriju, a on odgovara da ona želi da uništi svaki posao u zemlji."
+      ],
+      "explanation": "Pogrešno predstavlja suprotno stanovište kako bi ga bilo lakše odbaciti. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "misrepresentation",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Red Herring",
+        "Ad Hominem",
+        "Ignoratio Elenchi",
+        "Tu Quoque",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Appeal to Ridicule",
+        "Appeal to Emotion",
+        "Tu Quoque",
+        "Inflation of Conflict",
+        "Motte and Bailey",
+        "Ad Hominem",
+        "Slippery Slope",
+        "Poisoning the Well",
+        "Fallacy of Quoting Out of Context",
+        "Guilt by Association",
+        "Genetic Fallacy",
+        "False Equivalence"
+      ],
+      "confused_with": [
+        "Red Herring"
+      ]
+    },
+    "Texas Sharpshooter": {
+      "name": "Teksaški strelac",
+      "icon": "🎯",
+      "category": "Informal",
+      "description": "Selektivno izdvaja obrazac ili grupu nakon činjenice dok zanemaruje širu celinu dokaza.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Nakon pregleda podataka, govornik zaokružuje jednu pogodnu grupu i predstavlja je kao pravi obrazac."
+      ],
+      "explanation": "Selektivno izdvaja obrazac ili grupu nakon činjenice dok zanemaruje širu celinu dokaza. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "pattern-imposition"
+      ],
+      "related": [
+        "Cherry Picking",
+        "False Cause",
+        "Anecdotal",
+        "Retrospective Determinism",
+        "Hasty Generalization"
+      ],
+      "often_with": [
+        "Post Hoc"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "False Cause"
+      ]
+    },
+    "Tu Quoque": {
+      "name": "Tu quoque",
+      "icon": "↩️",
+      "category": "Informal",
+      "description": "Odgovara na kritiku optuživanjem kritičara za slično ponašanje umesto da se bavi samom kritikom.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Vi kažete da je bacanje smeća pogrešno, ali sam vas prošle nedelje video kako ste bacili čašu, pa vaša kritika nije važna."
+      ],
+      "explanation": "Odgovara na kritiku optuživanjem kritičara za slično ponašanje umesto da se bavi samom kritikom. U praksi, ključno pitanje je da li je zaključak potkrepljen dokazima i logikom ili se umesto toga oslanja na ovu prečicu u rezonovanju.",
+      "keywords": [],
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "deflection"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Poisoning the Well",
+        "Strawman",
+        "Kettle Logic"
+      ],
+      "often_with": [
+        "Loaded Question",
+        "Appeal to Ridicule",
+        "Strawman"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Poisoning the Well"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2362 @@
+{
+  "version": 3,
+  "updated_at": "2026-03-31",
+  "fallback": {
+    "icon": "⚠️",
+    "category": "",
+    "description": "This detected label is not yet defined in the fallacy reference library. Review the highlighted passage directly instead of relying on a category badge."
+  },
+  "aliases": {
+    "Ad Populum": "Argumentum ad Populum",
+    "Appeal to Majority": "Argumentum ad Populum",
+    "Appeal to Popularity": "Argumentum ad Populum",
+    "Appeal to the Majority": "Argumentum ad Populum",
+    "Appeal to the People": "Argumentum ad Populum",
+    "Circular Argument": "Circular Reasoning",
+    "Circular Logic": "Circular Reasoning",
+    "Correlation Implies Causation": "False Cause",
+    "Division": "Division Fallacy",
+    "Fallacy of Composition": "Composition Fallacy",
+    "Fallacy of Division": "Division Fallacy",
+    "False Choice": "False Dilemma",
+    "False Dichotomy": "False Dilemma",
+    "Faulty Analogy": "False Analogy",
+    "Gish Gallop": "Shotgun Argumentation",
+    "Loaded Questions": "Loaded Question",
+    "Post Hoc Ergo Propter Hoc": "Post Hoc",
+    "Quoting Out of Context": "Fallacy of Quoting Out of Context",
+    "Straw Man": "Strawman",
+    "Weak Analogy": "False Analogy"
+  },
+  "relatedness_schema": {
+    "same_family": "Broader logical/rhetorical buckets used for close similarity.",
+    "related": "Curated fallacies that are logically close.",
+    "often_with": "Curated fallacies that frequently appear in tandem.",
+    "confused_with": "Fallacies that are commonly mistaken for one another."
+  },
+  "fallacies": {
+    "Affirming the Consequent": {
+      "icon": "🔁",
+      "category": "Formal",
+      "description": "Treats a result as proof of a particular cause, even though the same result could follow from other causes too.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If the alarm is set, the office will be locked. The office is locked, so the alarm must have been set."
+      ],
+      "explanation": "Treats a result as proof of a particular cause, even though the same result could follow from other causes too. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Denying the Antecedent",
+        "Propositional Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Cause"
+      ],
+      "name": "Affirming the Consequent"
+    },
+    "Denying the Antecedent": {
+      "icon": "↪️",
+      "category": "Formal",
+      "description": "Assumes that if a condition is absent, the outcome must also be absent, even though the outcome could still arise in other ways.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If the file is in the cloud, I can open it from home. The file is not in the cloud, so I cannot open it from home."
+      ],
+      "explanation": "Assumes that if a condition is absent, the outcome must also be absent, even though the outcome could still arise in other ways. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Affirming the Consequent",
+        "Propositional Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma"
+      ],
+      "name": "Denying the Antecedent"
+    },
+    "Undistributed Middle": {
+      "icon": "🔺",
+      "category": "Formal",
+      "description": "Uses a shared middle term in a syllogism without properly connecting the categories, so the conclusion does not follow.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "All poets use language. My neighbor uses language. Therefore my neighbor is a poet."
+      ],
+      "explanation": "Uses a shared middle term in a syllogism without properly connecting the categories, so the conclusion does not follow. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Major",
+        "Illicit Minor",
+        "Syllogistic Fallacies",
+        "Quantification Fallacies",
+        "Four-Term Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ],
+      "name": "Undistributed Middle"
+    },
+    "Illicit Major": {
+      "icon": "📏",
+      "category": "Formal",
+      "description": "Draws a syllogistic conclusion that distributes the major term more broadly than the premises allow.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "All cats are mammals. No dogs are cats. Therefore no dogs are mammals."
+      ],
+      "explanation": "Draws a syllogistic conclusion that distributes the major term more broadly than the premises allow. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Minor",
+        "Undistributed Middle",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ],
+      "name": "Illicit Major"
+    },
+    "Illicit Minor": {
+      "icon": "📐",
+      "category": "Formal",
+      "description": "Draws a syllogistic conclusion that distributes the minor term more broadly than the premises allow.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "All cats are mammals. Some pets are mammals. Therefore all pets are cats."
+      ],
+      "explanation": "Draws a syllogistic conclusion that distributes the minor term more broadly than the premises allow. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "syllogism",
+        "term-distribution"
+      ],
+      "related": [
+        "Illicit Major",
+        "Undistributed Middle",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ],
+      "name": "Illicit Minor"
+    },
+    "Four-Term Fallacy": {
+      "icon": "4️⃣",
+      "category": "Formal",
+      "description": "Uses a syllogism with four terms instead of three, often because a key term shifts meaning.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Feathers are light. What is light cannot be dark. Therefore feathers cannot be dark."
+      ],
+      "explanation": "Uses a syllogism with four terms instead of three, often because a key term shifts meaning. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "syllogism",
+        "equivocation"
+      ],
+      "related": [
+        "Equivocation",
+        "Syllogistic Fallacies",
+        "Undistributed Middle"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity"
+      ],
+      "name": "Four-Term Fallacy"
+    },
+    "Propositional Fallacies": {
+      "icon": "∴",
+      "category": "Formal",
+      "description": "A broader label for invalid moves in propositional logic where the conclusion does not validly follow from the premises.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Either the plan works or the team is lazy. The plan did not work, so the team must be lazy."
+      ],
+      "explanation": "A broader label for invalid moves in propositional logic where the conclusion does not validly follow from the premises. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "conditional-logic"
+      ],
+      "related": [
+        "Affirming the Consequent",
+        "Denying the Antecedent"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma"
+      ],
+      "name": "Propositional Fallacies"
+    },
+    "Quantification Fallacies": {
+      "icon": "🔢",
+      "category": "Formal",
+      "description": "Misuses words like all, some, or none so the conclusion goes beyond what the premises support.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Everyone in the room solved one problem, so one person in the room solved every problem."
+      ],
+      "explanation": "Misuses words like all, some, or none so the conclusion goes beyond what the premises support. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "quantifier-logic"
+      ],
+      "related": [
+        "Syllogistic Fallacies",
+        "Undistributed Middle"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Hasty Generalization",
+        "Faulty Generalization",
+        "Illicit Major",
+        "Undistributed Middle",
+        "Illicit Minor"
+      ],
+      "name": "Quantification Fallacies"
+    },
+    "Syllogistic Fallacies": {
+      "icon": "📚",
+      "category": "Formal",
+      "description": "Uses a broken syllogism or category relationship so the conclusion does not logically follow.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Some artists are teachers. Some teachers are critics. Therefore some artists are critics."
+      ],
+      "explanation": "Uses a broken syllogism or category relationship so the conclusion does not logically follow. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "formal",
+        "syllogism"
+      ],
+      "related": [
+        "Undistributed Middle",
+        "Illicit Major",
+        "Illicit Minor",
+        "Four-Term Fallacy",
+        "Quantification Fallacies",
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "name": "Syllogistic Fallacies"
+    },
+    "Bad Reason Fallacy": {
+      "icon": "🧩",
+      "category": "Informal",
+      "description": "Offers reasons that do not actually justify the conclusion being claimed.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "This policy must be good because it sounds bold and confident."
+      ],
+      "explanation": "Offers reasons that do not actually justify the conclusion being claimed. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "weak-support"
+      ],
+      "related": [
+        "Circular Reasoning",
+        "Begging the Question",
+        "Appeal to Emotion",
+        "Ignoratio Elenchi",
+        "Proof by Verbosity",
+        "Fallacy Fallacy"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Red Herring"
+      ],
+      "confused_with": [],
+      "name": "Bad Reason Fallacy"
+    },
+    "Sunk Cost Fallacy": {
+      "icon": "🪙",
+      "category": "Informal",
+      "description": "Keeps defending or continuing something mainly because time, money, or effort has already been spent on it.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "We have already spent six months on this failing app, so we have to keep funding it."
+      ],
+      "explanation": "Keeps defending or continuing something mainly because time, money, or effort has already been spent on it. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "decision-bias"
+      ],
+      "related": [
+        "Appeal to Consequences",
+        "Personal Incredulity"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [],
+      "name": "Sunk Cost Fallacy"
+    },
+    "Ad Hominem": {
+      "icon": "👤",
+      "category": "Informal",
+      "description": "Attacks the person making the argument instead of addressing the argument itself.",
+      "common": true,
+      "short_for": "Argumentum ad hominem",
+      "aliases": [],
+      "examples": [
+        "Do not listen to her argument about transit policy; she rents an apartment and does not even own a car."
+      ],
+      "explanation": "Attacks the person making the argument instead of addressing the argument itself. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Tu Quoque",
+        "Poisoning the Well",
+        "Genetic Fallacy",
+        "Guilt by Association",
+        "Strawman",
+        "Appeal to Force",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Strawman",
+        "Appeal to Ridicule",
+        "Appeal to Emotion",
+        "Loaded Question",
+        "Red Herring",
+        "Fallacy Fallacy"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Appeal to Ridicule",
+        "Tu Quoque",
+        "Poisoning the Well"
+      ],
+      "name": "Ad Hominem"
+    },
+    "Ambiguity": {
+      "icon": "🌫️",
+      "category": "Informal",
+      "description": "Relies on vague or slippery wording that can be taken in more than one way.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The sign says the museum is free, so everything inside should cost nothing."
+      ],
+      "explanation": "Relies on vague or slippery wording that can be taken in more than one way. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Equivocation",
+        "Loaded Question",
+        "Fallacy of Quoting Out of Context",
+        "Reification",
+        "Etymological Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Equivocation",
+        "Etymological Fallacy",
+        "Four-Term Fallacy",
+        "Reification"
+      ],
+      "name": "Ambiguity"
+    },
+    "Anecdotal": {
+      "icon": "🗣️",
+      "category": "Informal",
+      "description": "Uses a personal story or isolated example as if it were enough to prove a broad claim.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "My uncle smoked every day and lived to ninety, so smoking risks are exaggerated."
+      ],
+      "explanation": "Uses a personal story or isolated example as if it were enough to prove a broad claim. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "weak-evidence",
+        "generalization"
+      ],
+      "related": [
+        "Hasty Generalization",
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [
+        "Appeal to Emotion"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "Hasty Generalization"
+      ],
+      "name": "Anecdotal"
+    },
+    "Appeal to Authority": {
+      "icon": "🏛️",
+      "category": "Informal",
+      "description": "Treats a claim as true mainly because an authority figure or expert said it, without enough supporting evidence.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "A famous actor says this supplement works, so it must be medically effective."
+      ],
+      "explanation": "Treats a claim as true mainly because an authority figure or expert said it, without enough supporting evidence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "authority",
+        "weak-support"
+      ],
+      "related": [
+        "False Attribution",
+        "Appeal to Ignorance",
+        "Burden of Proof"
+      ],
+      "often_with": [
+        "Argument from Repetition",
+        "Bandwagon"
+      ],
+      "confused_with": [
+        "False Attribution"
+      ],
+      "name": "Appeal to Authority"
+    },
+    "Appeal to Emotion": {
+      "icon": "💥",
+      "category": "Informal",
+      "description": "Pushes the audience toward a conclusion by provoking emotion rather than giving solid reasons.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If you really cared about children, you would support this bill without asking for data."
+      ],
+      "explanation": "Pushes the audience toward a conclusion by provoking emotion rather than giving solid reasons. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "emotion",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "Appeal to Pity",
+        "Appeal to Ridicule",
+        "Appeal to Consequences",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Strawman",
+        "Slippery Slope",
+        "Ignoratio Elenchi",
+        "Anecdotal",
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Appeal to Fear",
+        "Appeal to Pity"
+      ],
+      "name": "Appeal to Emotion"
+    },
+    "Appeal to Fear": {
+      "icon": "😨",
+      "category": "Informal",
+      "description": "Leans on fear or alarm to drive acceptance of a claim instead of supporting it with sound reasoning.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If we do not approve this measure today, chaos will spread through the entire city by next week."
+      ],
+      "explanation": "Leans on fear or alarm to drive acceptance of a claim instead of supporting it with sound reasoning. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "emotion",
+        "fear"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Slippery Slope",
+        "Appeal to Force",
+        "Appeal to Consequences"
+      ],
+      "often_with": [
+        "False Dilemma",
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Slippery Slope",
+        "Appeal to Force",
+        "Appeal to Emotion"
+      ],
+      "name": "Appeal to Fear"
+    },
+    "Appeal to Pity": {
+      "icon": "🥺",
+      "category": "Informal",
+      "description": "Treats sympathy or compassion as if it were evidence that a claim is true or justified.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Please give me a passing grade; I have had a very difficult month."
+      ],
+      "explanation": "Treats sympathy or compassion as if it were evidence that a claim is true or justified. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "emotion"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Appeal to Force"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Appeal to Emotion"
+      ],
+      "name": "Appeal to Pity"
+    },
+    "Appeal to Force": {
+      "icon": "🛑",
+      "category": "Informal",
+      "description": "Uses threats, coercion, or the prospect of punishment in place of actual reasons.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Agree with the proposal, or you can forget about your promotion."
+      ],
+      "explanation": "Uses threats, coercion, or the prospect of punishment in place of actual reasons. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "coercion",
+        "emotion"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "Ad Hominem",
+        "Appeal to Pity"
+      ],
+      "often_with": [
+        "False Dilemma"
+      ],
+      "confused_with": [
+        "Appeal to Fear"
+      ],
+      "name": "Appeal to Force"
+    },
+    "Appeal to Ignorance": {
+      "icon": "🌑",
+      "category": "Informal",
+      "description": "Claims something is true or false simply because it has not been proven otherwise.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "No one has proven that the software is unsafe, so it must be safe."
+      ],
+      "explanation": "Claims something is true or false simply because it has not been proven otherwise. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "burden-shifting",
+        "weak-support"
+      ],
+      "related": [
+        "Burden of Proof",
+        "Personal Incredulity",
+        "Appeal to Authority"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Burden of Proof",
+        "Personal Incredulity"
+      ],
+      "name": "Appeal to Ignorance"
+    },
+    "Appeal to Nature": {
+      "icon": "🌿",
+      "category": "Informal",
+      "description": "Assumes something is good, right, or safer simply because it is called natural.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "This remedy is natural, so it has to be healthier than the prescription drug."
+      ],
+      "explanation": "Assumes something is good, right, or safer simply because it is called natural. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "value-judgment",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Tradition",
+        "False Analogy",
+        "Incomplete Comparison"
+      ],
+      "often_with": [
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Appeal to Tradition",
+        "Appeal to Consequences"
+      ],
+      "name": "Appeal to Nature"
+    },
+    "Appeal to Probability": {
+      "icon": "🎲",
+      "category": "Informal",
+      "description": "Assumes that because something could happen or seems likely, it therefore will happen.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "With so many talented people on the team, success is basically guaranteed."
+      ],
+      "explanation": "Assumes that because something could happen or seems likely, it therefore will happen. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "prediction",
+        "causal-error"
+      ],
+      "related": [
+        "Gambler's Fallacy",
+        "Slippery Slope",
+        "False Cause",
+        "Personal Incredulity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Slippery Slope",
+        "Gambler's Fallacy"
+      ],
+      "name": "Appeal to Probability"
+    },
+    "Appeal to Ridicule": {
+      "icon": "😏",
+      "category": "Informal",
+      "description": "Mocks a position to make it seem false instead of actually refuting it.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Only an idiot would think that public libraries need more funding."
+      ],
+      "explanation": "Mocks a position to make it seem false instead of actually refuting it. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "emotion"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Strawman",
+        "Poisoning the Well",
+        "Appeal to Emotion"
+      ],
+      "often_with": [
+        "Bandwagon",
+        "Strawman",
+        "Argumentum ad Populum",
+        "Tu Quoque",
+        "Ad Hominem",
+        "Poisoning the Well"
+      ],
+      "confused_with": [
+        "Ad Hominem"
+      ],
+      "name": "Appeal to Ridicule"
+    },
+    "Appeal to Tradition": {
+      "icon": "🏺",
+      "category": "Informal",
+      "description": "Claims something is correct or preferable mainly because it has long been done that way.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "We should keep doing it this way because this is how the department has always done it."
+      ],
+      "explanation": "Claims something is correct or preferable mainly because it has long been done that way. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "tradition",
+        "value-judgment"
+      ],
+      "related": [
+        "Appeal to Nature",
+        "Bandwagon",
+        "Argumentum ad Populum"
+      ],
+      "often_with": [
+        "False Dilemma",
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Appeal to Nature"
+      ],
+      "name": "Appeal to Tradition"
+    },
+    "Appeal to Consequences": {
+      "icon": "🧭",
+      "category": "Informal",
+      "description": "Treats desirable or undesirable consequences as proof that a claim itself is true or false.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Climate change cannot be real, because if it were real the future would be too frightening."
+      ],
+      "explanation": "Treats desirable or undesirable consequences as proof that a claim itself is true or false. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "emotion",
+        "decision-bias"
+      ],
+      "related": [
+        "Appeal to Emotion",
+        "Appeal to Fear",
+        "Sunk Cost Fallacy"
+      ],
+      "often_with": [
+        "Slippery Slope",
+        "Appeal to Nature",
+        "Appeal to Fear"
+      ],
+      "confused_with": [
+        "Appeal to Nature"
+      ],
+      "name": "Appeal to Consequences"
+    },
+    "Argument from Repetition": {
+      "icon": "📣",
+      "category": "Informal",
+      "description": "Repeats a claim so often that the repetition itself is used to make it feel true.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The ad says the product is revolutionary ten times in a row, so people start taking it as established fact."
+      ],
+      "explanation": "Repeats a claim so often that the repetition itself is used to make it feel true. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "social-proof",
+        "rhetorical-pressure"
+      ],
+      "related": [
+        "Bandwagon",
+        "Argumentum ad Populum",
+        "Shotgun Argumentation",
+        "Proof by Verbosity"
+      ],
+      "often_with": [
+        "Appeal to Authority"
+      ],
+      "confused_with": [
+        "Bandwagon"
+      ],
+      "name": "Argument from Repetition"
+    },
+    "Argumentum ad Populum": {
+      "icon": "👥",
+      "category": "Informal",
+      "description": "Treats popularity or public approval as evidence that a claim is true.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Ad Populum",
+        "Appeal to Majority",
+        "Appeal to Popularity",
+        "Appeal to the Majority",
+        "Appeal to the People"
+      ],
+      "examples": [
+        "Millions of people share this claim online, so it must be true."
+      ],
+      "explanation": "Treats popularity or public approval as evidence that a claim is true. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "social-proof"
+      ],
+      "related": [
+        "Bandwagon",
+        "Argument from Repetition",
+        "Appeal to Tradition"
+      ],
+      "often_with": [
+        "Appeal to Ridicule"
+      ],
+      "confused_with": [
+        "Bandwagon"
+      ],
+      "name": "Argumentum ad Populum"
+    },
+    "Bandwagon": {
+      "icon": "🚩",
+      "category": "Informal",
+      "description": "Urges acceptance of a claim because many people supposedly already accept it.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Everyone in the industry is adopting this tool, so we would be foolish not to accept it as the best option."
+      ],
+      "explanation": "Urges acceptance of a claim because many people supposedly already accept it. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "social-proof"
+      ],
+      "related": [
+        "Argumentum ad Populum",
+        "Argument from Repetition",
+        "Appeal to Tradition"
+      ],
+      "often_with": [
+        "Appeal to Ridicule",
+        "False Dilemma",
+        "Appeal to Authority"
+      ],
+      "confused_with": [
+        "Argumentum ad Populum",
+        "Argument from Repetition"
+      ],
+      "name": "Bandwagon"
+    },
+    "Begging the Question": {
+      "icon": "⭕",
+      "category": "Informal",
+      "description": "Builds the conclusion into the premise, so the argument assumes what it is trying to prove.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "This newspaper is trustworthy because it reports the news reliably."
+      ],
+      "explanation": "Builds the conclusion into the premise, so the argument assumes what it is trying to prove. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "circularity",
+        "weak-support"
+      ],
+      "related": [
+        "Circular Reasoning",
+        "Bad Reason Fallacy",
+        "Proving Too Much"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Circular Reasoning",
+        "Proving Too Much"
+      ],
+      "name": "Begging the Question"
+    },
+    "Burden of Proof": {
+      "icon": "⚖️",
+      "category": "Informal",
+      "description": "Shifts responsibility for proving a claim onto other people instead of supporting it directly.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Prove that my conspiracy theory is false; until then, I am justified in believing it."
+      ],
+      "explanation": "Shifts responsibility for proving a claim onto other people instead of supporting it directly. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "burden-shifting"
+      ],
+      "related": [
+        "Appeal to Ignorance",
+        "Loaded Question",
+        "Personal Incredulity",
+        "No True Scotsman",
+        "Appeal to Authority",
+        "Fallacy Fallacy"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Appeal to Ignorance",
+        "Loaded Question"
+      ],
+      "name": "Burden of Proof"
+    },
+    "Cherry Picking": {
+      "icon": "🍒",
+      "category": "Informal",
+      "description": "Selects only the evidence that supports a conclusion while ignoring relevant evidence that points the other way.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The candidate highlights the three months of job growth but ignores the longer downward trend."
+      ],
+      "explanation": "Selects only the evidence that supports a conclusion while ignoring relevant evidence that points the other way. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "weak-evidence"
+      ],
+      "related": [
+        "Texas Sharpshooter",
+        "Anecdotal",
+        "Fallacy of Quoting Out of Context",
+        "Hasty Generalization"
+      ],
+      "often_with": [
+        "False Cause",
+        "Hasty Generalization",
+        "Bad Reason Fallacy",
+        "Furtive Fallacy",
+        "Post Hoc"
+      ],
+      "confused_with": [
+        "Texas Sharpshooter",
+        "Anecdotal",
+        "Hasty Generalization",
+        "Fallacy of Quoting Out of Context"
+      ],
+      "name": "Cherry Picking"
+    },
+    "Circular Reasoning": {
+      "icon": "🔄",
+      "category": "Informal",
+      "description": "Restates the conclusion in different words instead of supplying independent support for it.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Circular Argument",
+        "Circular Logic"
+      ],
+      "examples": [
+        "The rule is fair because the policy says it is fair, and the policy is correct because it reflects our fair rules."
+      ],
+      "explanation": "Restates the conclusion in different words instead of supplying independent support for it. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "circularity",
+        "weak-support"
+      ],
+      "related": [
+        "Begging the Question",
+        "Bad Reason Fallacy",
+        "Proving Too Much"
+      ],
+      "often_with": [
+        "Special Pleading"
+      ],
+      "confused_with": [
+        "Begging the Question"
+      ],
+      "name": "Circular Reasoning"
+    },
+    "Composition Fallacy": {
+      "icon": "🧱",
+      "category": "Informal",
+      "description": "Assumes that what is true of the parts must also be true of the whole.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Fallacy of Composition"
+      ],
+      "examples": [
+        "Each player on the team is a star, so the team must be unbeatable."
+      ],
+      "explanation": "Assumes that what is true of the parts must also be true of the whole. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Division Fallacy",
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "name": "Composition Fallacy"
+    },
+    "Continuum Fallacy": {
+      "icon": "📏",
+      "category": "Informal",
+      "description": "Claims a distinction is meaningless just because the boundary between cases is gradual or fuzzy.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Because there is no exact second when dusk becomes night, day and night are not really different things."
+      ],
+      "explanation": "Claims a distinction is meaningless just because the boundary between cases is gradual or fuzzy. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "boundary",
+        "false-choice"
+      ],
+      "related": [
+        "Middle Ground",
+        "False Dilemma",
+        "No True Scotsman"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Middle Ground",
+        "False Dilemma"
+      ],
+      "name": "Continuum Fallacy"
+    },
+    "Division Fallacy": {
+      "icon": "🧩",
+      "category": "Informal",
+      "description": "Assumes that what is true of the whole must also be true of each part.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Division",
+        "Fallacy of Division"
+      ],
+      "examples": [
+        "The company is wealthy, so every employee there must be wealthy too."
+      ],
+      "explanation": "Assumes that what is true of the whole must also be true of each part. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Composition Fallacy",
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Fallacy of Composition and Division",
+        "Syllogistic Fallacies"
+      ],
+      "name": "Division Fallacy"
+    },
+    "Equivocation": {
+      "icon": "🪞",
+      "category": "Informal",
+      "description": "Switches the meaning of a key word or phrase in the middle of an argument.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Feathers are light. What is light cannot be dark. Therefore feathers cannot be dark."
+      ],
+      "explanation": "Switches the meaning of a key word or phrase in the middle of an argument. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Ambiguity",
+        "Four-Term Fallacy",
+        "Loaded Question",
+        "Motte and Bailey",
+        "Etymological Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity",
+        "Etymological Fallacy",
+        "Loaded Question",
+        "Motte and Bailey"
+      ],
+      "name": "Equivocation"
+    },
+    "Etymological Fallacy": {
+      "icon": "📚",
+      "category": "Informal",
+      "description": "Assumes a word’s current meaning or truth is determined by its historical origin.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The word nice used to mean foolish, so calling someone nice must still imply foolishness."
+      ],
+      "explanation": "Assumes a word’s current meaning or truth is determined by its historical origin. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "language",
+        "meaning-shift"
+      ],
+      "related": [
+        "Equivocation",
+        "Ambiguity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Equivocation",
+        "Ambiguity"
+      ],
+      "name": "Etymological Fallacy"
+    },
+    "Fallacy Fallacy": {
+      "icon": "🪤",
+      "category": "Informal",
+      "description": "Assumes a claim must be false merely because the argument for it was weak or fallacious.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "That activist used a bad argument once, so the cause itself must be wrong."
+      ],
+      "explanation": "Assumes a claim must be false merely because the argument for it was weak or fallacious. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "meta-reasoning"
+      ],
+      "related": [
+        "Burden of Proof",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Ad Hominem"
+      ],
+      "confused_with": [
+        "Genetic Fallacy"
+      ],
+      "name": "Fallacy Fallacy"
+    },
+    "Fallacy of Composition and Division": {
+      "icon": "🧱",
+      "category": "Informal",
+      "description": "Improperly transfers a property from parts to the whole, or from the whole to the parts.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Because the neighborhood is expensive, every item sold in every shop there must be expensive."
+      ],
+      "explanation": "Improperly transfers a property from parts to the whole, or from the whole to the parts. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "part-whole"
+      ],
+      "related": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Composition Fallacy",
+        "Division Fallacy"
+      ],
+      "name": "Fallacy of Composition and Division"
+    },
+    "Fallacy of Quoting Out of Context": {
+      "icon": "✂️",
+      "category": "Informal",
+      "description": "Pulls words from their surrounding context so they appear to mean something different.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Quoting Out of Context"
+      ],
+      "examples": [
+        "A sentence from a long interview is isolated so the speaker appears to support the opposite of what the full passage says."
+      ],
+      "explanation": "Pulls words from their surrounding context so they appear to mean something different. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "context-distortion"
+      ],
+      "related": [
+        "Cherry Picking",
+        "False Attribution",
+        "Ambiguity"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "False Attribution"
+      ],
+      "name": "Fallacy of Quoting Out of Context"
+    },
+    "False Analogy": {
+      "icon": "⚠️",
+      "category": "Informal",
+      "description": "Treats two things as more alike than they really are, using a weak comparison to support the conclusion.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Faulty Analogy",
+        "Weak Analogy"
+      ],
+      "examples": [
+        "Running a country is just like running a household, so national budgets should work exactly the same way."
+      ],
+      "explanation": "Treats two things as more alike than they really are, using a weak comparison to support the conclusion. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "analogy"
+      ],
+      "related": [
+        "False Equivalence",
+        "Appeal to Nature",
+        "Incomplete Comparison"
+      ],
+      "often_with": [
+        "Slippery Slope"
+      ],
+      "confused_with": [
+        "False Equivalence",
+        "Incomplete Comparison"
+      ],
+      "name": "False Analogy"
+    },
+    "False Attribution": {
+      "icon": "🏷️",
+      "category": "Informal",
+      "description": "Assigns a statement, motive, source, or cause to the wrong person or factor.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "A quote is assigned to Einstein online, so readers assume it carries scientific authority."
+      ],
+      "explanation": "Assigns a statement, motive, source, or cause to the wrong person or factor. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "source-error",
+        "authority"
+      ],
+      "related": [
+        "Appeal to Authority",
+        "Fallacy of Quoting Out of Context",
+        "False Cause & False Attribution"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Authority",
+        "Fallacy of Quoting Out of Context",
+        "False Cause & False Attribution"
+      ],
+      "name": "False Attribution"
+    },
+    "False Cause": {
+      "icon": "🔗",
+      "category": "Informal",
+      "description": "Treats two things as causally connected without enough evidence that one really caused the other.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Correlation Implies Causation"
+      ],
+      "examples": [
+        "I wore my lucky jacket and then we won, so the jacket caused the victory."
+      ],
+      "explanation": "Treats two things as causally connected without enough evidence that one really caused the other. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "causal-error"
+      ],
+      "related": [
+        "Post Hoc",
+        "Texas Sharpshooter",
+        "Appeal to Probability",
+        "False Cause & False Attribution",
+        "Retrospective Determinism",
+        "Furtive Fallacy",
+        "Gambler's Fallacy"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Slippery Slope",
+        "Hasty Generalization"
+      ],
+      "confused_with": [
+        "Post Hoc",
+        "Texas Sharpshooter",
+        "False Cause & False Attribution",
+        "Gambler's Fallacy",
+        "Affirming the Consequent"
+      ],
+      "name": "False Cause"
+    },
+    "False Cause & False Attribution": {
+      "icon": "🔗",
+      "category": "Informal",
+      "description": "Treats two things as causally connected, or assigns credit or blame, without enough evidence.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The speaker credits one policy for economic recovery while ignoring the larger set of forces that changed at the same time."
+      ],
+      "explanation": "Treats two things as causally connected, or assigns credit or blame, without enough evidence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "causal-error",
+        "source-error"
+      ],
+      "related": [
+        "False Cause",
+        "False Attribution",
+        "Post Hoc"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Cause",
+        "False Attribution"
+      ],
+      "name": "False Cause & False Attribution"
+    },
+    "False Dilemma": {
+      "icon": "🚪",
+      "category": "Informal",
+      "description": "Frames a situation as if there were only two options when more possibilities exist.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "False Choice",
+        "False Dichotomy"
+      ],
+      "examples": [
+        "Either you support this proposal exactly as written, or you do not care about the problem at all."
+      ],
+      "explanation": "Frames a situation as if there were only two options when more possibilities exist. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "false-choice"
+      ],
+      "related": [
+        "Middle Ground",
+        "Continuum Fallacy",
+        "Loaded Question",
+        "Proving Too Much",
+        "Nirvana Fallacy",
+        "Inflation of Conflict",
+        "Slippery Slope"
+      ],
+      "often_with": [
+        "Slippery Slope",
+        "Appeal to Fear",
+        "Bandwagon",
+        "Appeal to Tradition",
+        "Appeal to Force"
+      ],
+      "confused_with": [
+        "Middle Ground",
+        "Continuum Fallacy",
+        "Nirvana Fallacy",
+        "Slippery Slope",
+        "Propositional Fallacies",
+        "Denying the Antecedent"
+      ],
+      "name": "False Dilemma"
+    },
+    "False Equivalence": {
+      "icon": "⚖️",
+      "category": "Informal",
+      "description": "Treats two things as morally, logically, or practically equivalent when the differences matter.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Misplacing one receipt is treated as morally identical to large-scale financial fraud."
+      ],
+      "explanation": "Treats two things as morally, logically, or practically equivalent when the differences matter. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "comparison"
+      ],
+      "related": [
+        "False Analogy",
+        "Incomplete Comparison",
+        "Reification"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "False Analogy",
+        "Incomplete Comparison"
+      ],
+      "name": "False Equivalence"
+    },
+    "Faulty Generalization": {
+      "icon": "📉",
+      "category": "Informal",
+      "description": "Draws a broad rule or conclusion from too little, too narrow, or unrepresentative evidence.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Two rude tourists were from one country, so people from that country must be rude."
+      ],
+      "explanation": "Draws a broad rule or conclusion from too little, too narrow, or unrepresentative evidence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "generalization",
+        "weak-evidence"
+      ],
+      "related": [],
+      "often_with": [],
+      "confused_with": [
+        "Quantification Fallacies"
+      ],
+      "name": "Faulty Generalization"
+    },
+    "Furtive Fallacy": {
+      "icon": "🕵️",
+      "category": "Informal",
+      "description": "Assumes hidden intent, secret coordination, or deliberate design without sufficient evidence.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The policy changed quietly, which proves there was a secret plot behind it."
+      ],
+      "explanation": "Assumes hidden intent, secret coordination, or deliberate design without sufficient evidence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "hidden-intent",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Genetic Fallacy",
+        "Inflation of Conflict"
+      ],
+      "often_with": [
+        "Cherry Picking"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Inflation of Conflict"
+      ],
+      "name": "Furtive Fallacy"
+    },
+    "Gambler's Fallacy": {
+      "icon": "🎰",
+      "category": "Informal",
+      "description": "Assumes past random outcomes make a different future outcome more likely, even when events are independent.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The coin has landed on heads five times, so tails is now due."
+      ],
+      "explanation": "Assumes past random outcomes make a different future outcome more likely, even when events are independent. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "probability",
+        "prediction"
+      ],
+      "related": [
+        "Appeal to Probability",
+        "False Cause",
+        "Post Hoc"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Probability",
+        "False Cause"
+      ],
+      "name": "Gambler's Fallacy"
+    },
+    "Genetic Fallacy": {
+      "icon": "🧬",
+      "category": "Informal",
+      "description": "Judges a claim by where it came from rather than by the quality of the claim itself.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The idea came from social media, so it cannot possibly be valid."
+      ],
+      "explanation": "Judges a claim by where it came from rather than by the quality of the claim itself. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "source-judgment",
+        "personal-attack"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Guilt by Association",
+        "Poisoning the Well",
+        "Furtive Fallacy"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Fallacy Fallacy",
+        "Furtive Fallacy",
+        "Guilt by Association"
+      ],
+      "name": "Genetic Fallacy"
+    },
+    "Guilt by Association": {
+      "icon": "🕸️",
+      "category": "Informal",
+      "description": "Dismisses a person or claim by linking it to someone or something disliked rather than addressing the reasoning itself.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "He once attended the same event as a fraudster, so his own argument must be dishonest too."
+      ],
+      "explanation": "Dismisses a person or claim by linking it to someone or something disliked rather than addressing the reasoning itself. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "source-judgment"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Genetic Fallacy",
+        "Poisoning the Well"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Genetic Fallacy",
+        "Poisoning the Well"
+      ],
+      "name": "Guilt by Association"
+    },
+    "Hasty Generalization": {
+      "icon": "📉",
+      "category": "Informal",
+      "description": "Jumps from a small or unrepresentative sample to a sweeping conclusion.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "I met two careless drivers from that city, so drivers from there are reckless."
+      ],
+      "explanation": "Jumps from a small or unrepresentative sample to a sweeping conclusion. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "generalization",
+        "weak-evidence"
+      ],
+      "related": [
+        "Anecdotal",
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [
+        "False Cause",
+        "Cherry Picking"
+      ],
+      "confused_with": [
+        "Anecdotal",
+        "Cherry Picking",
+        "Quantification Fallacies"
+      ],
+      "name": "Hasty Generalization"
+    },
+    "Ignoratio Elenchi": {
+      "icon": "🎯",
+      "category": "Informal",
+      "description": "Presents reasons that may sound relevant but do not actually answer the point at issue.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Asked whether the policy reduces emissions, the speaker answers by saying the country needs jobs."
+      ],
+      "explanation": "Presents reasons that may sound relevant but do not actually answer the point at issue. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Red Herring",
+        "Strawman",
+        "Bad Reason Fallacy"
+      ],
+      "often_with": [
+        "Appeal to Emotion"
+      ],
+      "confused_with": [
+        "Red Herring"
+      ],
+      "name": "Ignoratio Elenchi"
+    },
+    "Incomplete Comparison": {
+      "icon": "⚗️",
+      "category": "Informal",
+      "description": "Makes a comparison without stating what the thing is being compared against or by which standard.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "This is the stronger product."
+      ],
+      "explanation": "Makes a comparison without stating what the thing is being compared against or by which standard. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "comparison"
+      ],
+      "related": [
+        "False Analogy",
+        "False Equivalence",
+        "Appeal to Nature",
+        "Nirvana Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Analogy",
+        "False Equivalence",
+        "Nirvana Fallacy"
+      ],
+      "name": "Incomplete Comparison"
+    },
+    "Inflation of Conflict": {
+      "icon": "🔥",
+      "category": "Informal",
+      "description": "Presents a disagreement as a dramatic clash when the actual gap may be smaller or more nuanced.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "A modest policy disagreement is described as a battle for the soul of civilization."
+      ],
+      "explanation": "Presents a disagreement as a dramatic clash when the actual gap may be smaller or more nuanced. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "framing",
+        "hidden-intent"
+      ],
+      "related": [
+        "Furtive Fallacy",
+        "Red Herring",
+        "False Dilemma"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Furtive Fallacy"
+      ],
+      "name": "Inflation of Conflict"
+    },
+    "Kettle Logic": {
+      "icon": "🫖",
+      "category": "Informal",
+      "description": "Uses mutually inconsistent defenses all at once, hoping one of them will stick.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "I did not take your book; it was already broken when I borrowed it; and anyway you never really wanted it back."
+      ],
+      "explanation": "Uses mutually inconsistent defenses all at once, hoping one of them will stick. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "inconsistency",
+        "self-contradiction"
+      ],
+      "related": [
+        "Special Pleading",
+        "Moving the Goalposts",
+        "Tu Quoque"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Special Pleading"
+      ],
+      "name": "Kettle Logic"
+    },
+    "Loaded Question": {
+      "icon": "❓",
+      "category": "Informal",
+      "description": "Asks a question that smuggles in an unproven assumption.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Loaded Questions"
+      ],
+      "examples": [
+        "Why are you still ignoring the evidence?"
+      ],
+      "explanation": "Asks a question that smuggles in an unproven assumption. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "presupposition",
+        "burden-shifting"
+      ],
+      "related": [
+        "Burden of Proof",
+        "False Dilemma",
+        "Equivocation",
+        "Ambiguity"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Tu Quoque"
+      ],
+      "confused_with": [
+        "Equivocation",
+        "Burden of Proof"
+      ],
+      "name": "Loaded Question"
+    },
+    "Middle Ground": {
+      "icon": "🤝",
+      "category": "Informal",
+      "description": "Assumes the compromise position must be correct simply because it sits between two extremes.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "One expert says the bridge is safe and another says it is unsafe, so the truth must be that it is only half unsafe."
+      ],
+      "explanation": "Assumes the compromise position must be correct simply because it sits between two extremes. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "false-choice",
+        "compromise"
+      ],
+      "related": [
+        "False Dilemma",
+        "Continuum Fallacy",
+        "Nirvana Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma",
+        "Continuum Fallacy"
+      ],
+      "name": "Middle Ground"
+    },
+    "Motte and Bailey": {
+      "icon": "🏰",
+      "category": "Informal",
+      "description": "Retreats to a safer, easier claim when challenged, then returns to the stronger controversial claim once the pressure passes.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "When challenged on a sweeping claim about censorship, the speaker retreats to the safer claim that moderation exists online, then returns to the sweeping claim later."
+      ],
+      "explanation": "Retreats to a safer, easier claim when challenged, then returns to the stronger controversial claim once the pressure passes. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "retreat-and-return",
+        "strategic-ambiguity"
+      ],
+      "related": [
+        "Moving the Goalposts",
+        "Equivocation",
+        "Special Pleading"
+      ],
+      "often_with": [
+        "Strawman"
+      ],
+      "confused_with": [
+        "Equivocation",
+        "Moving the Goalposts"
+      ],
+      "name": "Motte and Bailey"
+    },
+    "Moving the Goalposts": {
+      "icon": "🥅",
+      "category": "Informal",
+      "description": "Changes the standard of proof or success after the original standard has been met.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "After the study answers the first objection, the critic says the result only counts if three more unrelated conditions are met."
+      ],
+      "explanation": "Changes the standard of proof or success after the original standard has been met. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "standards-shifting"
+      ],
+      "related": [
+        "Motte and Bailey",
+        "Special Pleading",
+        "Kettle Logic",
+        "No True Scotsman"
+      ],
+      "often_with": [
+        "No True Scotsman"
+      ],
+      "confused_with": [
+        "Special Pleading",
+        "Motte and Bailey"
+      ],
+      "name": "Moving the Goalposts"
+    },
+    "Nirvana Fallacy": {
+      "icon": "✨",
+      "category": "Informal",
+      "description": "Rejects a realistic option because it is not perfect, comparing it unfairly to an idealized alternative.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Because no transportation system can eliminate accidents entirely, there is no point in improving road safety."
+      ],
+      "explanation": "Rejects a realistic option because it is not perfect, comparing it unfairly to an idealized alternative. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "perfectionism",
+        "comparison"
+      ],
+      "related": [
+        "False Dilemma",
+        "Incomplete Comparison",
+        "Middle Ground"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "False Dilemma",
+        "Incomplete Comparison"
+      ],
+      "name": "Nirvana Fallacy"
+    },
+    "No True Scotsman": {
+      "icon": "🛡️",
+      "category": "Informal",
+      "description": "Protects a general claim by redefining the group whenever a counterexample appears.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "No true fan would ever criticize the team; if you criticize it, you were never a real fan."
+      ],
+      "explanation": "Protects a general claim by redefining the group whenever a counterexample appears. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "group-redefinition",
+        "standards-shifting"
+      ],
+      "related": [
+        "Special Pleading",
+        "Moving the Goalposts",
+        "Burden of Proof",
+        "Continuum Fallacy"
+      ],
+      "often_with": [
+        "Appeal to Tradition",
+        "Appeal to Ignorance",
+        "Moving the Goalposts",
+        "Burden of Proof"
+      ],
+      "confused_with": [
+        "Special Pleading"
+      ],
+      "name": "No True Scotsman"
+    },
+    "Personal Incredulity": {
+      "icon": "🤨",
+      "category": "Informal",
+      "description": "Treats something as false simply because it seems hard to imagine, understand, or believe.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "I cannot imagine how evolution could work, so it must be false."
+      ],
+      "explanation": "Treats something as false simply because it seems hard to imagine, understand, or believe. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "burden-shifting",
+        "weak-support"
+      ],
+      "related": [
+        "Appeal to Ignorance",
+        "Burden of Proof",
+        "Appeal to Probability",
+        "Sunk Cost Fallacy"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Appeal to Ignorance"
+      ],
+      "name": "Personal Incredulity"
+    },
+    "Poisoning the Well": {
+      "icon": "☠️",
+      "category": "Informal",
+      "description": "Discredits a person in advance so that anything they say is dismissed before it is even considered.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "Before she even speaks, we are told not to trust her because she is an outsider."
+      ],
+      "explanation": "Discredits a person in advance so that anything they say is dismissed before it is even considered. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "preemptive-dismissal"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Genetic Fallacy",
+        "Guilt by Association",
+        "Tu Quoque",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Strawman",
+        "Appeal to Ridicule"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Guilt by Association",
+        "Tu Quoque"
+      ],
+      "name": "Poisoning the Well"
+    },
+    "Post Hoc": {
+      "icon": "⏱️",
+      "category": "Informal",
+      "description": "Assumes that because one thing happened after another, the first thing must have caused the second.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Post Hoc Ergo Propter Hoc"
+      ],
+      "examples": [
+        "The mayor took office in January and crime dropped in March, so the mayor alone caused the drop."
+      ],
+      "explanation": "Assumes that because one thing happened after another, the first thing must have caused the second. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Gambler's Fallacy",
+        "False Cause & False Attribution",
+        "Retrospective Determinism"
+      ],
+      "often_with": [
+        "Cherry Picking",
+        "Texas Sharpshooter"
+      ],
+      "confused_with": [
+        "False Cause",
+        "Retrospective Determinism"
+      ],
+      "name": "Post Hoc"
+    },
+    "Proof by Verbosity": {
+      "icon": "🧵",
+      "category": "Informal",
+      "description": "Uses a flood of words, complexity, or detail to create the impression of proof without actually proving the point.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "A speaker buries a weak claim under a long wall of technical-sounding language and treats length as proof."
+      ],
+      "explanation": "Uses a flood of words, complexity, or detail to create the impression of proof without actually proving the point. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "rhetorical-pressure",
+        "weak-support"
+      ],
+      "related": [
+        "Shotgun Argumentation",
+        "Bad Reason Fallacy",
+        "Argument from Repetition"
+      ],
+      "often_with": [
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Shotgun Argumentation"
+      ],
+      "name": "Proof by Verbosity"
+    },
+    "Proving Too Much": {
+      "icon": "📣",
+      "category": "Informal",
+      "description": "Uses reasoning that, if accepted, would justify far more than the speaker likely intends.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If one exception means the rule is useless, then no general rule could ever guide action."
+      ],
+      "explanation": "Uses reasoning that, if accepted, would justify far more than the speaker likely intends. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "overreach",
+        "circularity"
+      ],
+      "related": [
+        "Begging the Question",
+        "Circular Reasoning",
+        "False Dilemma"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Begging the Question"
+      ],
+      "name": "Proving Too Much"
+    },
+    "Red Herring": {
+      "icon": "🐟",
+      "category": "Informal",
+      "description": "Introduces a distraction that pulls attention away from the main issue.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "When asked about corruption, the minister starts talking about how beautiful the country is in spring."
+      ],
+      "explanation": "Introduces a distraction that pulls attention away from the main issue. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Ignoratio Elenchi",
+        "Strawman",
+        "Shotgun Argumentation",
+        "Inflation of Conflict"
+      ],
+      "often_with": [
+        "Ad Hominem",
+        "Appeal to Emotion",
+        "Bad Reason Fallacy",
+        "Proof by Verbosity",
+        "Shotgun Argumentation"
+      ],
+      "confused_with": [
+        "Ignoratio Elenchi",
+        "Strawman"
+      ],
+      "name": "Red Herring"
+    },
+    "Reification": {
+      "icon": "🗿",
+      "category": "Informal",
+      "description": "Treats an abstract idea or label as if it were a concrete thing with independent existence.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The market wants stability, so we must obey what the market wants."
+      ],
+      "explanation": "Treats an abstract idea or label as if it were a concrete thing with independent existence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "abstraction-error"
+      ],
+      "related": [
+        "False Equivalence",
+        "Ambiguity"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Ambiguity"
+      ],
+      "name": "Reification"
+    },
+    "Retrospective Determinism": {
+      "icon": "🕰️",
+      "category": "Informal",
+      "description": "Looks back at past events as if the outcome had been inevitable all along.",
+      "common": false,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "After the startup succeeds, commentators say the outcome was inevitable from the first day."
+      ],
+      "explanation": "Looks back at past events as if the outcome had been inevitable all along. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "hindsight",
+        "causal-error"
+      ],
+      "related": [
+        "False Cause",
+        "Post Hoc",
+        "Texas Sharpshooter"
+      ],
+      "often_with": [],
+      "confused_with": [
+        "Post Hoc"
+      ],
+      "name": "Retrospective Determinism"
+    },
+    "Shotgun Argumentation": {
+      "icon": "💬",
+      "category": "Informal",
+      "description": "Throws out many weak points at once so they become difficult to answer individually.",
+      "common": false,
+      "short_for": "",
+      "aliases": [
+        "Gish Gallop"
+      ],
+      "examples": [
+        "The debater fires off twenty weak claims in rapid sequence so opponents cannot answer each one carefully."
+      ],
+      "explanation": "Throws out many weak points at once so they become difficult to answer individually. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "rhetorical-pressure",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Proof by Verbosity",
+        "Red Herring",
+        "Argument from Repetition"
+      ],
+      "often_with": [
+        "Red Herring"
+      ],
+      "confused_with": [
+        "Proof by Verbosity"
+      ],
+      "name": "Shotgun Argumentation"
+    },
+    "Slippery Slope": {
+      "icon": "🛝",
+      "category": "Informal",
+      "description": "Claims a relatively small first step will inevitably trigger a chain of extreme consequences.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "If we allow one late assignment, soon deadlines will mean nothing and the whole course will collapse."
+      ],
+      "explanation": "Claims a relatively small first step will inevitably trigger a chain of extreme consequences. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "prediction",
+        "chain-reaction"
+      ],
+      "related": [
+        "Appeal to Fear",
+        "False Dilemma",
+        "Appeal to Probability"
+      ],
+      "often_with": [
+        "Appeal to Emotion",
+        "Strawman",
+        "False Analogy",
+        "False Dilemma",
+        "False Cause",
+        "Appeal to Consequences"
+      ],
+      "confused_with": [
+        "Appeal to Probability",
+        "False Dilemma",
+        "Appeal to Fear"
+      ],
+      "name": "Slippery Slope"
+    },
+    "Special Pleading": {
+      "icon": "🎟️",
+      "category": "Informal",
+      "description": "Applies standards selectively, carving out an exception when the rule becomes inconvenient.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "The rule applies to everyone else, but my case is different and should not be judged by the same standard."
+      ],
+      "explanation": "Applies standards selectively, carving out an exception when the rule becomes inconvenient. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "exception-making",
+        "standards-shifting"
+      ],
+      "related": [
+        "No True Scotsman",
+        "Moving the Goalposts",
+        "Kettle Logic",
+        "Motte and Bailey"
+      ],
+      "often_with": [
+        "Begging the Question",
+        "Appeal to Pity",
+        "Circular Reasoning",
+        "Sunk Cost Fallacy"
+      ],
+      "confused_with": [
+        "No True Scotsman",
+        "Moving the Goalposts",
+        "Kettle Logic"
+      ],
+      "name": "Special Pleading"
+    },
+    "Strawman": {
+      "icon": "🌾",
+      "category": "Informal",
+      "description": "Misrepresents an opposing view so it becomes easier to dismiss.",
+      "common": true,
+      "short_for": "",
+      "aliases": [
+        "Straw Man"
+      ],
+      "examples": [
+        "She says we should regulate the industry, and he replies that she wants to destroy every business in the country."
+      ],
+      "explanation": "Misrepresents an opposing view so it becomes easier to dismiss. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "misrepresentation",
+        "relevance-diversion"
+      ],
+      "related": [
+        "Red Herring",
+        "Ad Hominem",
+        "Ignoratio Elenchi",
+        "Tu Quoque",
+        "Appeal to Ridicule"
+      ],
+      "often_with": [
+        "Appeal to Ridicule",
+        "Appeal to Emotion",
+        "Tu Quoque",
+        "Inflation of Conflict",
+        "Motte and Bailey",
+        "Ad Hominem",
+        "Slippery Slope",
+        "Poisoning the Well",
+        "Fallacy of Quoting Out of Context",
+        "Guilt by Association",
+        "Genetic Fallacy",
+        "False Equivalence"
+      ],
+      "confused_with": [
+        "Red Herring"
+      ],
+      "name": "Strawman"
+    },
+    "Texas Sharpshooter": {
+      "icon": "🎯",
+      "category": "Informal",
+      "description": "Cherry-picks a pattern or cluster after the fact while ignoring the larger body of evidence.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "After scanning the data, the speaker circles one convenient cluster and presents it as the real pattern."
+      ],
+      "explanation": "Cherry-picks a pattern or cluster after the fact while ignoring the larger body of evidence. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "evidence-selection",
+        "pattern-imposition"
+      ],
+      "related": [
+        "Cherry Picking",
+        "False Cause",
+        "Anecdotal",
+        "Retrospective Determinism",
+        "Hasty Generalization"
+      ],
+      "often_with": [
+        "Post Hoc"
+      ],
+      "confused_with": [
+        "Cherry Picking",
+        "False Cause"
+      ],
+      "name": "Texas Sharpshooter"
+    },
+    "Tu Quoque": {
+      "icon": "↩️",
+      "category": "Informal",
+      "description": "Responds to criticism by accusing the critic of similar behavior instead of addressing the criticism.",
+      "common": true,
+      "short_for": "",
+      "aliases": [],
+      "examples": [
+        "You say littering is wrong, but I saw you drop a cup last week, so your criticism does not matter."
+      ],
+      "explanation": "Responds to criticism by accusing the critic of similar behavior instead of addressing the criticism. In practice, the key question is whether the conclusion is supported by evidence and logic, or whether it depends on this reasoning shortcut instead.",
+      "same_family": [
+        "informal",
+        "personal-attack",
+        "deflection"
+      ],
+      "related": [
+        "Ad Hominem",
+        "Poisoning the Well",
+        "Strawman",
+        "Kettle Logic"
+      ],
+      "often_with": [
+        "Loaded Question",
+        "Appeal to Ridicule",
+        "Strawman"
+      ],
+      "confused_with": [
+        "Ad Hominem",
+        "Poisoning the Well"
+      ],
+      "name": "Tu Quoque"
+    }
+  }
+}

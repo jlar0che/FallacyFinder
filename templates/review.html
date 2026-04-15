@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="{{ current_locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ t('page.review.title') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fallacy-finder-logo-256.png') }}">
+  </head>
+  <body>
+    <main class="ff-page">
+      <div class="container py-4 py-md-5 ff-shell">
+        <div class="mx-auto" style="max-width: 1040px;">
+          <div class="ff-topbar">
+            <div class="ff-brand">
+              <a href="/" class="ff-logo-link" aria-label="{{ t('nav.go_home') }}"><div class="ff-logo"><img src="{{ url_for('static', filename='fallacy-finder-logo.png') }}" alt="Fallacy Finder logo" class="ff-logo-image"></div></a>
+              <div>
+                <p class="ff-brand-title">{{ t('brand.name') }}</p>
+                <p class="ff-brand-subtitle">{{ t('review.brand_subtitle') }}</p>
+              </div>
+            </div>
+            <nav class="ff-toolbar-actions ff-toolbar-actions-icons" aria-label="{{ t('nav.primary_navigation') }}">
+              <a href="/" aria-label="{{ t('nav.analyze_url') }}" title="{{ t('nav.analyze_url') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-url-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-url-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/paste" aria-label="{{ t('nav.paste_text') }}" title="{{ t('nav.paste_text') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-paste-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-paste-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/fallacies" aria-label="{{ t('nav.fallacy_library') }}" title="{{ t('nav.fallacy_library') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-library-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-library-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="{{ url }}" aria-label="{{ t('nav.view_article_source') }}" title="{{ t('nav.view_article_source') }}" class="ff-icon-link" target="_blank" rel="noopener">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-source-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-source-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              {% include "_language_picker.html" %}
+              <a href="/settings" aria-label="{{ t('nav.settings') }}" title="{{ t('nav.settings') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-settings-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-settings-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+            </nav>
+          </div>
+
+          <section class="ff-card ff-panel ff-panel-lg">
+            <h1 class="fw-bold mb-3">{{ title }}</h1>
+            <div class="ff-meta-row">
+              {% if author %}<span>{{ t('common.by') }} <strong>{{ author }}</strong></span>{% endif %}
+              {% if date %}<span><strong>{{ date }}</strong></span>{% endif %}
+              <span>{{ t('common.source') }} <span class="ff-mono text-break">{{ url }}</span></span>
+            </div>
+
+            {% if info %}
+              <div class="alert alert-success" role="alert">{{ info }}</div>
+            {% endif %}
+            {% if error %}
+              {% if error_kind == 'provider_connection' %}
+                <div class="ff-alert ff-alert-compact mb-4" role="alert" style="--ff-alert-bg:rgba(255,107,129,.14); --ff-alert-border:rgba(255,107,129,.30); --ff-alert-text:#ffd7de; --ff-alert-icon-bg:#ff6b81; --ff-alert-icon-fg:#3a0610;">
+                  <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+                  <div class="ff-alert-content">
+                    <p class="ff-alert-text">{{ error }}</p>
+                  </div>
+                </div>
+              {% else %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endif %}
+            {% endif %}
+
+            <div class="ff-summary-row mb-3">
+              <span class="badge text-bg-dark">{{ t('review.summary_paragraphs') }}: {{ "{:,}".format(extraction_stats.paragraph_count or 0) }}</span>
+              <span class="badge text-bg-secondary">{{ t('review.summary_characters') }}: {{ "{:,}".format(extraction_stats.character_count or 0) }}</span>
+              <span class="badge text-bg-secondary">{{ t('review.summary_words') }}: {{ "{:,}".format(extraction_stats.word_count or 0) }}</span>
+              {% if settings.SHOW_EXTRACTION_TIME_BADGE %}<span class="badge text-bg-light">{{ t('review.summary_extraction_time') }}: {{ extraction_stats.elapsed_display or '00:00' }}</span>{% endif %}
+            </div>
+
+            <div class="ff-alert ff-alert-info ff-alert-dismissible ff-alert-compact mb-4" data-ff-alert data-ff-alert-timeout="10000" style="--ff-alert-duration:10s;">
+              <div class="ff-alert-icon ff-alert-icon-info" aria-hidden="true"></div>
+              <div class="ff-alert-content">
+                <p class="ff-alert-text">{{ t('review.alert') }}</p>
+              </div>
+              <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+              <div class="ff-alert-progress" aria-hidden="true"></div>
+            </div>
+
+            <br>
+
+            <div class="d-flex gap-2 flex-column flex-sm-row mb-4">
+              <button id="analyzeBtn" class="btn btn-dark px-4" type="button" {% if not job.job_id %}disabled{% endif %}>{{ t('review.continue_to_analysis') }}</button>
+              <a class="btn btn-outline-secondary px-4" href="{{ url_for('home', info=t('messages.extraction_cancelled')) }}">{{ t('common.cancel') }}</a>
+            </div>
+
+            <hr class="my-4"/>
+
+            <article class="ff-article">
+              {% for p in paragraphs %}<p class="mb-4 article-paragraph">{{ p }}</p>{% endfor %}
+            </article>
+          </section>
+        </div>
+      </div>
+      {% include "_app_footer.html" %}
+    </main>
+
+    <div id="loadingOverlay" class="ff-loading-overlay ff-hidden" aria-hidden="true">
+      <div class="ff-loading-card" role="dialog" aria-modal="true" aria-label="{{ t('review.loading_aria') }}">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="fw-semibold">{{ t('review.loading_title') }}</div>
+          <div class="ff-loading-stats" aria-live="polite">
+            <span id="loadingPct" class="ff-muted small">0%</span>
+            <span class="ff-loading-divider" aria-hidden="true">•</span>
+            <span id="loadingElapsed" class="ff-loading-elapsed-inline">00:00</span>
+          </div>
+        </div>
+        <div class="progress mb-3 ff-progress">
+          <div id="loadingBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+        <div id="loadingStage" class="ff-muted small">{{ t('review.loading_starting') }}</div>
+        <div class="d-flex justify-content-end mt-3">
+          <button id="cancelBtn" type="button" class="btn btn-outline-secondary px-4">{{ t('review.cancel_analysis') }}</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        function initDismissibleAlerts(root) {
+          const scope = root || document;
+          const alerts = Array.from(scope.querySelectorAll('[data-ff-alert]'));
+          alerts.forEach((alert) => {
+            if (alert.dataset.ffAlertReady === '1') return;
+            alert.dataset.ffAlertReady = '1';
+            let closeTimer = null;
+            let totalMs = 0;
+            let remainingMs = 0;
+            let timerStartedAt = 0;
+            let progressRaf = null;
+            const progressTrack = alert.querySelector('.ff-alert-progress');
+            let progressBar = progressTrack ? progressTrack.querySelector('.ff-alert-progress-bar') : null;
+
+            if (progressTrack && !progressBar) {
+              progressBar = document.createElement('span');
+              progressBar.className = 'ff-alert-progress-bar';
+              progressTrack.appendChild(progressBar);
+            }
+
+            function clampProgress(value) {
+              return Math.max(0, Math.min(1, Number(value) || 0));
+            }
+
+            function cancelProgressRaf() {
+              if (progressRaf !== null) {
+                window.cancelAnimationFrame(progressRaf);
+                progressRaf = null;
+              }
+            }
+
+            function setProgressInstant(value) {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              progressBar.style.width = (clampProgress(value) * 100) + '%';
+            }
+
+            function tickProgress() {
+              if (!progressBar || !totalMs || !closeTimer || alert.classList.contains('is-closing')) {
+                progressRaf = null;
+                return;
+              }
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              const currentRemainingMs = Math.max(0, remainingMs - elapsedMs);
+              progressBar.style.width = (clampProgress(currentRemainingMs / totalMs) * 100) + '%';
+              if (currentRemainingMs > 0) {
+                progressRaf = window.requestAnimationFrame(tickProgress);
+              } else {
+                progressRaf = null;
+              }
+            }
+
+            function startProgressLoop() {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              setProgressInstant(remainingMs / totalMs);
+              progressRaf = window.requestAnimationFrame(tickProgress);
+            }
+
+            function dismissAlert() {
+              if (alert.classList.contains('is-closing')) return;
+              if (closeTimer) {
+                window.clearTimeout(closeTimer);
+                closeTimer = null;
+              }
+              cancelProgressRaf();
+              alert.classList.remove('is-paused');
+              alert.classList.add('is-closing');
+              window.setTimeout(() => {
+                if (alert && alert.parentNode) {
+                  alert.parentNode.removeChild(alert);
+                }
+              }, 320);
+            }
+
+            function pauseCountdown() {
+              if (!totalMs || !closeTimer || alert.classList.contains('is-closing')) return;
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              remainingMs = Math.max(0, remainingMs - elapsedMs);
+              window.clearTimeout(closeTimer);
+              closeTimer = null;
+              alert.classList.add('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+            }
+
+            function resumeCountdown() {
+              if (!totalMs || closeTimer || alert.classList.contains('is-closing')) return;
+              if (remainingMs <= 0) {
+                dismissAlert();
+                return;
+              }
+              timerStartedAt = performance.now();
+              alert.classList.remove('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+              startProgressLoop();
+              closeTimer = window.setTimeout(dismissAlert, remainingMs);
+            }
+
+            const closeBtn = alert.querySelector('[data-ff-alert-close]');
+            if (closeBtn) {
+              closeBtn.addEventListener('click', dismissAlert);
+            }
+
+            const timeoutMs = parseInt(alert.getAttribute('data-ff-alert-timeout') || '', 10);
+            if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+              totalMs = timeoutMs;
+              remainingMs = timeoutMs;
+              alert.addEventListener('mouseenter', pauseCountdown);
+              alert.addEventListener('mouseleave', resumeCountdown);
+              alert.addEventListener('focusin', pauseCountdown);
+              alert.addEventListener('focusout', function (event) {
+                if (alert.contains(event.relatedTarget)) return;
+                resumeCountdown();
+              });
+              resumeCountdown();
+            }
+          });
+        }
+
+        initDismissibleAlerts(document);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const overlay = document.getElementById('loadingOverlay');
+        const bar = document.getElementById('loadingBar');
+        const pct = document.getElementById('loadingPct');
+        const stage = document.getElementById('loadingStage');
+        const elapsed = document.getElementById('loadingElapsed');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const jobId = {{ job.job_id|tojson }};
+
+        let elapsedTimerId = null;
+        let elapsedBaseSeconds = 0;
+        let elapsedSyncedAt = 0;
+        let isCancelling = false;
+        let activeStatusController = null;
+        let activeStartController = null;
+
+        if (!analyzeBtn || !jobId) return;
+
+        function setProgress(value) {
+          const v = Math.max(0, Math.min(100, Math.round(value)));
+          bar.style.width = v + '%';
+          bar.setAttribute('aria-valuenow', String(v));
+          pct.textContent = v + '%';
+        }
+
+        function setStage(text) {
+          stage.textContent = text || {{ t('review.loading_title')|tojson }};
+        }
+
+        function showOverlay() {
+          overlay.classList.remove('ff-hidden');
+          overlay.setAttribute('aria-hidden', 'false');
+        }
+
+        function hideOverlay() {
+          overlay.classList.add('ff-hidden');
+          overlay.setAttribute('aria-hidden', 'true');
+          stopElapsedTimer();
+        }
+
+        function formatElapsed(totalSeconds) {
+          const safeSeconds = Math.max(0, Math.floor(Number(totalSeconds) || 0));
+          const hours = Math.floor(safeSeconds / 3600);
+          const minutes = Math.floor((safeSeconds % 3600) / 60);
+          const seconds = safeSeconds % 60;
+          if (hours > 0) {
+            return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+          }
+          return String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+        }
+
+        function setElapsed(seconds) {
+          if (elapsed) elapsed.textContent = formatElapsed(seconds);
+        }
+
+        function stopElapsedTimer() {
+          if (elapsedTimerId) {
+            clearInterval(elapsedTimerId);
+            elapsedTimerId = null;
+          }
+        }
+
+        function syncElapsedTimer(seconds) {
+          elapsedBaseSeconds = Math.max(0, Number(seconds) || 0);
+          elapsedSyncedAt = performance.now();
+          setElapsed(elapsedBaseSeconds);
+          if (elapsedTimerId) return;
+          elapsedTimerId = window.setInterval(() => {
+            const deltaSeconds = (performance.now() - elapsedSyncedAt) / 1000;
+            setElapsed(elapsedBaseSeconds + deltaSeconds);
+          }, 250);
+        }
+
+        function setAnalyzeBusy(isBusy) {
+          analyzeBtn.disabled = !!isBusy;
+          analyzeBtn.textContent = isBusy ? {{ t('common.working')|tojson }} : {{ t('review.continue_to_analysis')|tojson }};
+        }
+
+        function setCancelBusy(isBusy) {
+          cancelBtn.disabled = !!isBusy;
+          cancelBtn.textContent = (isBusy && isCancelling) ? {{ t('common.cancelling')|tojson }} : {{ t('review.cancel_analysis')|tojson }};
+        }
+
+        function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function cleanupActiveRequests() {
+          if (activeStatusController) {
+            activeStatusController.abort();
+            activeStatusController = null;
+          }
+          if (activeStartController) {
+            activeStartController.abort();
+            activeStartController = null;
+          }
+        }
+
+        async function startAnalysis() {
+          activeStartController = new AbortController();
+          const resp = await fetch('/api/analyze/start/' + encodeURIComponent(jobId), {
+            method: 'POST',
+            cache: 'no-store',
+            signal: activeStartController.signal
+          });
+          activeStartController = null;
+          const data = await resp.json().catch(() => ({}));
+          if (!resp.ok || !data.ok) {
+            throw new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+          }
+          syncElapsedTimer(data.elapsed_seconds || 0);
+        }
+
+        async function pollJob() {
+          while (true) {
+            activeStatusController = new AbortController();
+            const resp = await fetch('/api/extract/status/' + encodeURIComponent(jobId), {
+              method: 'GET',
+              cache: 'no-store',
+              signal: activeStatusController.signal
+            });
+            activeStatusController = null;
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+              throw new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+            }
+
+            setProgress(data.progress || 0);
+            syncElapsedTimer(data.elapsed_seconds || 0);
+            let stageText = data.stage || {{ t('review.loading_title')|tojson }};
+            if (data.status === 'running' && data.paragraph_total) {
+              stageText += '  (' + (data.paragraph_current || 0) + '/' + data.paragraph_total + ' ' + {{ t('common.analyzed_label')|tojson }};
+              if (data.paragraphs_timed_out) stageText += ', ' + data.paragraphs_timed_out + ' ' + {{ t('common.timed_out_label')|tojson }};
+              if (data.paragraphs_failed) stageText += ', ' + data.paragraphs_failed + ' ' + {{ t('common.failed_label')|tojson }};
+              stageText += ')';
+            }
+            if (data.status === 'cancelling' || data.cancel_requested) {
+              stageText = data.cancel_message || {{ t('job.cancelling_analysis')|tojson }};
+            }
+            setStage(stageText);
+
+            if (data.status === 'done') {
+              setProgress(100);
+              syncElapsedTimer(data.elapsed_seconds || 0);
+              stopElapsedTimer();
+              window.location.assign('/result/' + encodeURIComponent(jobId));
+              return;
+            }
+
+            if (data.status === 'ready' && data.phase === 'review' && isCancelling) {
+              hideOverlay();
+              setAnalyzeBusy(false);
+              setCancelBusy(false);
+              isCancelling = false;
+              window.location.assign('/review/' + encodeURIComponent(jobId) + '?info=' + encodeURIComponent(data.info_message || 'Analysis cancelled.'));
+              return;
+            }
+
+            if (data.status === 'error') {
+              const error = new Error(data.error || {{ t('errors.analysis_failed')|tojson }});
+              error.ffErrorKind = data.error_kind || '';
+              throw error;
+            }
+
+            await sleep(1000);
+          }
+        }
+
+        async function cancelAnalysis() {
+          if (isCancelling) return;
+          isCancelling = true;
+          setCancelBusy(true);
+          setStage({{ t('job.cancelling_analysis')|tojson }});
+          try {
+            await fetch('/api/extract/cancel/' + encodeURIComponent(jobId), {
+              method: 'POST',
+              cache: 'no-store'
+            });
+          } catch (err) {
+            // Keep polling; the worker may still notice cancellation.
+          }
+        }
+
+        async function runAnalysis() {
+          isCancelling = false;
+          setAnalyzeBusy(true);
+          setCancelBusy(false);
+          showOverlay();
+          setProgress(4);
+          setElapsed(0);
+          setStage({{ t('paste.job_queueing_analysis')|tojson }});
+
+          try {
+            await startAnalysis();
+            setStage({{ t('paste.job_started')|tojson }});
+            await pollJob();
+          } catch (err) {
+            if (err && err.name === 'AbortError') {
+              return;
+            }
+            cleanupActiveRequests();
+            hideOverlay();
+            setAnalyzeBusy(false);
+            setCancelBusy(false);
+            isCancelling = false;
+            if (err && err.ffErrorKind === 'provider_connection') {
+              window.location.assign('/review/' + encodeURIComponent(jobId) + '?error_kind=provider_connection&error=' + encodeURIComponent(err.message || ''));
+              return;
+            }
+            alert('{{ t('errors.analysis_failed') }}: ' + err.message);
+          }
+        }
+
+        analyzeBtn.addEventListener('click', function () {
+          runAnalysis();
+        });
+
+        cancelBtn.addEventListener('click', function () {
+          cancelAnalysis();
+        });
+      })();
+    </script>
+  </body>
+</html>

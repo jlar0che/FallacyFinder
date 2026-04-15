@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="{{ current_locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ t('page.index.title') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.3.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fallacy-finder-logo-256.png') }}">
+  </head>
+  <body>
+    <main class="ff-page">
+      <div class="container py-4 py-md-5 ff-shell">
+        <div class="mx-auto" style="max-width: 960px;">
+          <div class="ff-topbar">
+            <div class="ff-brand">
+              <a href="/" class="ff-logo-link" aria-label="{{ t('nav.go_home') }}"><div class="ff-logo"><img src="{{ url_for('static', filename='fallacy-finder-logo.png') }}" alt="Fallacy Finder logo" class="ff-logo-image"></div></a>
+              <div>
+                <p class="ff-brand-title">{{ t('brand.name') }}</p>
+                <p class="ff-brand-subtitle">{{ t('index.brand_subtitle') }}</p>
+              </div>
+            </div>
+                        <nav class="ff-toolbar-actions ff-toolbar-actions-icons" aria-label="{{ t('nav.primary_navigation') }}">
+              <a href="/paste" aria-label="{{ t('nav.paste_text') }}" title="{{ t('nav.paste_text') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-paste-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-paste-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/fallacies" aria-label="{{ t('nav.fallacy_library') }}" title="{{ t('nav.fallacy_library') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-library-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-library-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              {% include "_language_picker.html" %}
+              <a href="/settings" aria-label="{{ t('nav.settings') }}" title="{{ t('nav.settings') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-settings-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-settings-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+            </nav>
+          </div>
+
+          <section class="ff-card ff-panel ff-panel-lg">
+             <!-- Here you can add a custom bubble (.ff-hero-kicker) if needed <div class="ff-hero-kicker">Some info here...</div> -->
+            <h1 class="ff-hero-title fw-bold">{{ t('index.hero_title') }}</h1>
+            <p class="ff-hero-copy mb-0">{{ t('index.hero_copy') }}</p>
+
+            <div class="ff-grid ff-grid-stats">
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_ai_provider') }}</div>
+                <div class="ff-stat-value">{{ settings.AI_PROVIDER|upper }}</div>
+              </div>
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_current_model') }}</div>
+                <div class="ff-stat-value">{{ settings.OPENAI_MODEL if settings.AI_PROVIDER == 'openai' else settings.OLLAMA_MODEL }}</div>
+              </div>
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_workflow') }}</div>
+                <div class="ff-stat-value">{{ t('index.workflow_value') }}</div>
+              </div>
+            </div>
+
+            {% if error %}
+              <div class="alert alert-danger mt-4" role="alert">{{ error }}</div>
+            {% endif %}
+            {% if info %}
+              {% if info == t('messages.extraction_cancelled') %}
+                <div class="ff-alert ff-alert-info ff-alert-dismissible ff-alert-compact mt-4" data-ff-alert data-ff-alert-timeout="4000" style="--ff-alert-duration:4s;" role="status">
+                  <div class="ff-alert-icon ff-alert-icon-info" aria-hidden="true"></div>
+                  <div class="ff-alert-content">
+                    <p class="ff-alert-text">{{ info }}</p>
+                  </div>
+                  <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+                  <div class="ff-alert-progress" aria-hidden="true"></div>
+                </div>
+              {% else %}
+                <div class="alert alert-success mt-4" role="alert">{{ info }}</div>
+              {% endif %}
+            {% endif %}
+
+            <form id="extractForm" method="POST" action="/extract" class="mt-4 ff-stack">
+              <div>
+                <label class="form-label fw-semibold">{{ t('index.article_url_label') }}</label>
+                <input type="url" name="url" class="form-control form-control-lg" placeholder="{{ t('index.article_url_placeholder') }}" value="{{ url or '' }}" required />
+              </div>
+              <div class="d-flex gap-2 flex-column flex-sm-row">
+                <button id="extractBtn" class="btn btn-dark btn-lg px-4" type="submit">{{ t('index.extract_button') }}</button>
+              </div>
+            </form>
+
+            <div class="ff-alert ff-alert-warning ff-alert-dismissible ff-alert-compact mt-4 small" data-ff-alert data-ff-alert-timeout="12000" style="--ff-alert-duration:10s;">
+              <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+              <div class="ff-alert-content">
+                <p class="ff-alert-text">{{ t('index.paywall_alert') }}</p>
+              </div>
+              <button type="button" class="ff-alert-close" data-ff-alert-close aria-label="{{ t('common.dismiss_alert') }}"><span aria-hidden="true">&times;</span></button>
+              <div class="ff-alert-progress" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+      {% include "_app_footer.html" %}
+    </main>
+
+    <div id="loadingOverlay" class="ff-loading-overlay ff-hidden" aria-hidden="true">
+      <div class="ff-loading-card" role="dialog" aria-modal="true" aria-label="{{ t('index.loading_aria') }}">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="fw-semibold">{{ t('common.working') }}</div>
+          <div class="ff-loading-stats" aria-live="polite">
+            <span id="loadingPct" class="ff-muted small">0%</span>
+            <span class="ff-loading-divider" aria-hidden="true">•</span>
+            <span id="loadingElapsed" class="ff-loading-elapsed-inline">00:00</span>
+          </div>
+        </div>
+        <div class="progress mb-3 ff-progress">
+          <div id="loadingBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+        <div id="loadingStage" class="ff-muted small">{{ t('index.loading_starting') }}</div>
+        <div class="d-flex justify-content-end mt-3">
+          <button id="cancelBtn" type="button" class="btn btn-outline-secondary px-4">{{ t('index.cancel_extraction') }}</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="historyOverlay" class="ff-loading-overlay ff-hidden" aria-hidden="true">
+      <div class="ff-loading-card ff-history-card" role="dialog" aria-modal="true" aria-label="{{ t('index.history_aria') }}">
+        <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <div class="fw-semibold">{{ t('index.history_title') }}</div>
+            <div class="ff-muted small">{{ t('index.history_copy') }}</div>
+          </div>
+        </div>
+
+        <div class="ff-history-grid">
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_url') }}</div>
+            <div id="historyUrl" class="ff-history-value ff-mono"></div>
+          </div>
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_saved_analyses') }}</div>
+            <div id="historyRunCount" class="ff-history-value"></div>
+          </div>
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_models_used') }}</div>
+            <div id="historyModels" class="ff-history-value"></div>
+          </div>
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_latest_analysis') }}</div>
+            <div id="historyAnalyzedAt" class="ff-history-value"></div>
+          </div>
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_latest_total_fallacies') }}</div>
+            <div id="historyTotalFallacies" class="ff-history-value"></div>
+          </div>
+          <div class="ff-history-item">
+            <div class="ff-history-label">{{ t('index.history_current_model') }}</div>
+            <div id="historyCurrentModel" class="ff-history-value"></div>
+          </div>
+        </div>
+
+        <div class="ff-history-breakdown mt-3">
+          <div class="ff-history-label">{{ t('index.history_latest_breakdown') }}</div>
+          <div id="historyBreakdown" class="ff-history-value"></div>
+        </div>
+
+        <div id="historyCurrentModelHint" class="ff-alert ff-alert-success ff-alert-compact mt-3 small" role="status">
+          <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+          <div class="ff-alert-content">
+            <p class="ff-alert-text"><span id="historyCurrentModelHintText"></span></p>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 flex-column flex-sm-row justify-content-end mt-3">
+          <button id="historyRerunBtn" type="button" class="btn btn-dark px-4">{{ t('index.history_rerun') }}</button>
+          <button id="historyUseSavedBtn" type="button" class="btn btn-outline-primary px-4">{{ t('index.history_use_saved') }}</button>
+          <button id="historyCancelBtn" type="button" class="btn btn-outline-secondary px-4">{{ t('index.history_cancel') }}</button>
+        </div>
+      </div>
+    </div>
+    <script>
+  (function () {
+    const form = document.getElementById('extractForm');
+    if (!form) return;
+    const urlInput = form.querySelector('input[name="url"]');
+    const overlay = document.getElementById('loadingOverlay');
+    const bar = document.getElementById('loadingBar');
+    const pct = document.getElementById('loadingPct');
+    const stage = document.getElementById('loadingStage');
+    const elapsed = document.getElementById('loadingElapsed');
+    const submitBtn = document.getElementById('extractBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    const historyOverlay = document.getElementById('historyOverlay');
+    const historyUrl = document.getElementById('historyUrl');
+    const historyRunCount = document.getElementById('historyRunCount');
+    const historyModels = document.getElementById('historyModels');
+    const historyAnalyzedAt = document.getElementById('historyAnalyzedAt');
+    const historyTotalFallacies = document.getElementById('historyTotalFallacies');
+    const historyCurrentModel = document.getElementById('historyCurrentModel');
+    const historyBreakdown = document.getElementById('historyBreakdown');
+    const historyCurrentModelHint = document.getElementById('historyCurrentModelHint');
+    const historyCurrentModelHintText = document.getElementById('historyCurrentModelHintText');
+    const historyRerunBtn = document.getElementById('historyRerunBtn');
+    const historyUseSavedBtn = document.getElementById('historyUseSavedBtn');
+    const historyCancelBtn = document.getElementById('historyCancelBtn');
+
+    let elapsedTimerId = null;
+    let elapsedBaseSeconds = 0;
+    let elapsedSyncedAt = 0;
+    let currentJobId = null;
+    let isCancelling = false;
+    let activeStatusController = null;
+    let activeStartController = null;
+    let pendingHistory = null;
+
+    function setProgress(value) {
+      const v = Math.max(0, Math.min(100, Math.round(value)));
+      bar.style.width = v + '%';
+      bar.setAttribute('aria-valuenow', String(v));
+      pct.textContent = v + '%';
+    }
+
+    function showOverlay() {
+      overlay.classList.remove('ff-hidden');
+      overlay.setAttribute('aria-hidden', 'false');
+      setElapsed(0);
+      setCancelBusy(true);
+    }
+
+    function hideOverlay() {
+      overlay.classList.add('ff-hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+      stopElapsedTimer();
+      setCancelBusy(false);
+    }
+
+    function showHistoryOverlay() {
+      historyOverlay.classList.remove('ff-hidden');
+      historyOverlay.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideHistoryOverlay() {
+      historyOverlay.classList.add('ff-hidden');
+      historyOverlay.setAttribute('aria-hidden', 'true');
+      setHistoryBusy(false);
+    }
+
+    function setHistoryBusy(isBusy) {
+      [historyRerunBtn, historyUseSavedBtn, historyCancelBtn].forEach((btn) => {
+        if (btn) btn.disabled = !!isBusy;
+      });
+      if (historyUseSavedBtn) {
+        historyUseSavedBtn.textContent = isBusy ? {{ t('common.loading')|tojson }} : {{ t('index.history_use_saved')|tojson }};
+      }
+      if (historyRerunBtn) {
+        historyRerunBtn.textContent = isBusy ? {{ t('common.please_wait')|tojson }} : {{ t('index.history_rerun')|tojson }};
+      }
+    }
+
+    function setStage(text) {
+      stage.textContent = text || {{ t('common.working')|tojson }};
+    }
+
+    function formatElapsed(totalSeconds) {
+      const safeSeconds = Math.max(0, Math.floor(Number(totalSeconds) || 0));
+      const hours = Math.floor(safeSeconds / 3600);
+      const minutes = Math.floor((safeSeconds % 3600) / 60);
+      const seconds = safeSeconds % 60;
+      if (hours > 0) {
+        return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+      }
+      return String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+    }
+
+    function setElapsed(seconds) {
+      if (elapsed) elapsed.textContent = formatElapsed(seconds);
+    }
+
+    function stopElapsedTimer() {
+      if (elapsedTimerId) {
+        clearInterval(elapsedTimerId);
+        elapsedTimerId = null;
+      }
+    }
+
+    function syncElapsedTimer(seconds) {
+      elapsedBaseSeconds = Math.max(0, Number(seconds) || 0);
+      elapsedSyncedAt = performance.now();
+      setElapsed(elapsedBaseSeconds);
+      if (elapsedTimerId) return;
+      elapsedTimerId = window.setInterval(() => {
+        const deltaSeconds = (performance.now() - elapsedSyncedAt) / 1000;
+        setElapsed(elapsedBaseSeconds + deltaSeconds);
+      }, 250);
+    }
+
+    function setBusy(isBusy) {
+      if (!submitBtn) return;
+      if (isBusy) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.oldText = submitBtn.textContent;
+        submitBtn.textContent = {{ t('common.working')|tojson }};
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.dataset.oldText || {{ t('index.extract_button')|tojson }};
+      }
+    }
+
+    function setCancelBusy(isBusy) {
+      if (!cancelBtn) return;
+      cancelBtn.disabled = !!isBusy;
+      cancelBtn.textContent = (isBusy && isCancelling) ? {{ t('common.cancelling')|tojson }} : {{ t('index.cancel_extraction')|tojson }};
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function cleanupActiveRequests() {
+      if (activeStatusController) {
+        activeStatusController.abort();
+        activeStatusController = null;
+      }
+      if (activeStartController) {
+        activeStartController.abort();
+        activeStartController = null;
+      }
+    }
+
+    function formatNumber(value) {
+      const n = Number(value || 0);
+      return Number.isFinite(n) ? n.toLocaleString() : '0';
+    }
+
+    function formatBreakdown(breakdown) {
+      if (!breakdown || typeof breakdown !== 'object') return {{ t('index.history_no_fallacies')|tojson }};
+      const parts = Object.entries(breakdown)
+        .sort((a, b) => String(a[0]).localeCompare(String(b[0])))
+        .map(([name, count]) => name + ': ' + formatNumber(count));
+      return parts.length ? parts.join(' • ') : {{ t('index.history_no_fallacies')|tojson }};
+    }
+
+    function renderHistoryModal(data) {
+      pendingHistory = data || null;
+      const latest = (data && data.latest_record) || {};
+      const preferred = (data && data.preferred_record) || latest;
+      const models = ((data && data.models_used) || []).map((item) => item.model_label || item.model_name || '').filter(Boolean);
+
+      historyUrl.textContent = (data && data.url_original) || (urlInput && urlInput.value.trim()) || '';
+      historyRunCount.textContent = formatNumber(data && data.saved_run_count) + ' ' + (((data && data.saved_run_count) === 1) ? {{ t('index.history_saved_run_singular')|tojson }} : {{ t('index.history_saved_run_plural')|tojson }});
+      historyModels.textContent = models.length ? models.join(' • ') : {{ t('common.unknown')|tojson }};
+      historyAnalyzedAt.textContent = latest.analyzed_at || {{ t('common.unknown')|tojson }};
+      historyTotalFallacies.textContent = formatNumber(latest.total_fallacies);
+      historyCurrentModel.textContent = (data && data.current_model_label) || {{ t('common.unknown')|tojson }};
+      historyBreakdown.textContent = formatBreakdown(latest.fallacy_breakdown);
+
+      if (data && data.current_model_has_saved_result) {
+        if (historyCurrentModelHintText) historyCurrentModelHintText.textContent = {{ t('index.history_hint_current_model_has_result')|tojson }};
+      } else {
+        if (historyCurrentModelHintText) historyCurrentModelHintText.textContent = {{ t('index.history_hint_current_model_missing_result')|tojson }};
+      }
+
+      if (historyUseSavedBtn) {
+        historyUseSavedBtn.dataset.recordId = String((preferred && preferred.record_id) || '');
+      }
+    }
+
+    async function checkHistory(url) {
+      const fd = new FormData();
+      fd.append('url', url || '');
+      const resp = await fetch('/api/history/check', {
+        method: 'POST',
+        body: fd,
+        cache: 'no-store'
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data.ok) {
+        throw new Error(data.error || ('{{ t('errors.history_check_failed', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+      }
+      return data;
+    }
+
+    async function useSavedResult(recordId) {
+      setHistoryBusy(true);
+      try {
+        const resp = await fetch('/api/history/use/' + encodeURIComponent(recordId), {
+          method: 'POST',
+          cache: 'no-store'
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) {
+          throw new Error(data.error || ('{{ t('errors.load_saved_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+        }
+        window.location.assign(data.result_url);
+      } catch (err) {
+        setHistoryBusy(false);
+        alert('{{ t('index.alert_load_saved_failed', message='__MSG__') }}'.replace('__MSG__', err.message));
+      }
+    }
+
+    async function startJob(forceRerun) {
+      activeStartController = new AbortController();
+      const fd = new FormData(form);
+      if (forceRerun) fd.append('force_rerun', '1');
+      const resp = await fetch('/api/extract/start', {
+        method: 'POST',
+        body: fd,
+        cache: 'no-store',
+        signal: activeStartController.signal
+      });
+      activeStartController = null;
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data.ok) {
+        if (data && data.duplicate) {
+          const dupErr = new Error(data.error || {{ t('errors.this_url_already_analyzed')|tojson }});
+          dupErr.name = 'DuplicateHistoryError';
+          dupErr.history = data;
+          throw dupErr;
+        }
+        throw new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+      }
+      syncElapsedTimer(data.elapsed_seconds || 0);
+      return data.job_id;
+    }
+
+    async function pollJob(jobId) {
+      while (true) {
+        activeStatusController = new AbortController();
+        const resp = await fetch('/api/extract/status/' + encodeURIComponent(jobId), {
+          method: 'GET',
+          cache: 'no-store',
+          signal: activeStatusController.signal
+        });
+        activeStatusController = null;
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) {
+          throw new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+        }
+
+        setProgress(data.progress || 0);
+        syncElapsedTimer(data.elapsed_seconds || 0);
+        let stageText = data.stage || {{ t('common.working')|tojson }};
+        if (data.status === 'running' && data.paragraph_total) {
+          stageText += '  (' + (data.paragraph_current || 0) + '/' + data.paragraph_total + ' ' + {{ t('common.analyzed_label')|tojson }};
+          if (data.paragraphs_timed_out) stageText += ', ' + data.paragraphs_timed_out + ' ' + {{ t('common.timed_out_label')|tojson }};
+          if (data.paragraphs_failed) stageText += ', ' + data.paragraphs_failed + ' ' + {{ t('common.failed_label')|tojson }};
+          stageText += ')';
+        }
+        if (data.status === 'cancelling' || data.cancel_requested) {
+          stageText = data.cancel_message || {{ t('job.cancelling_extraction')|tojson }};
+        }
+        setStage(stageText);
+
+        if (data.status === 'ready') {
+          setProgress(100);
+          syncElapsedTimer(data.elapsed_seconds || 0);
+          stopElapsedTimer();
+          setStage({{ t('job.extraction_opening_review')|tojson }});
+          window.location.assign('/review/' + encodeURIComponent(jobId));
+          return;
+        }
+
+        if (data.status === 'done') {
+          setProgress(100);
+          syncElapsedTimer(data.elapsed_seconds || 0);
+          stopElapsedTimer();
+          setStage({{ t('common.done')|tojson }});
+          window.location.assign('/result/' + encodeURIComponent(jobId));
+          return;
+        }
+
+        if (data.status === 'cancelled') {
+          window.location.assign('/?info=' + encodeURIComponent({{ t('messages.extraction_cancelled')|tojson }}));
+          return;
+        }
+
+        if (data.status === 'error') {
+          throw new Error(data.error || {{ t('errors.analysis_failed')|tojson }});
+        }
+
+        await sleep(1000);
+      }
+    }
+
+    async function cancelJobAndReturnHome() {
+      if (isCancelling) return;
+      isCancelling = true;
+      setCancelBusy(true);
+      setStage({{ t('job.cancelling_extraction')|tojson }});
+
+      if (currentJobId) {
+        try {
+          await fetch('/api/extract/cancel/' + encodeURIComponent(currentJobId), {
+            method: 'POST',
+            cache: 'no-store'
+          });
+        } catch (err) {
+        }
+      }
+
+      cleanupActiveRequests();
+      stopElapsedTimer();
+      window.location.assign('/?info=' + encodeURIComponent({{ t('messages.extraction_cancelled')|tojson }}));
+    }
+
+    async function submitViaFetch(forceRerun) {
+      isCancelling = false;
+      currentJobId = null;
+      setBusy(true);
+      showOverlay();
+      setProgress(2);
+      setElapsed(0);
+      setStage({{ t('job.queueing_extraction')|tojson }});
+
+      try {
+        const jobId = await startJob(!!forceRerun);
+        currentJobId = jobId;
+        setCancelBusy(false);
+        setProgress(4);
+        setStage({{ t('job.job_started')|tojson }});
+        await pollJob(jobId);
+      } catch (err) {
+        if (err && err.name === 'AbortError') {
+          return;
+        }
+        if (err && err.name === 'DuplicateHistoryError') {
+          hideOverlay();
+          setBusy(false);
+          renderHistoryModal(err.history || pendingHistory || {});
+          showHistoryOverlay();
+          return;
+        }
+        hideOverlay();
+        alert('{{ t('index.alert_request_failed', message='__MSG__') }}'.replace('__MSG__', err.message));
+        setBusy(false);
+        currentJobId = null;
+        isCancelling = false;
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const url = (urlInput && urlInput.value || '').trim();
+      try {
+        const history = await checkHistory(url);
+        if (history && history.exists) {
+          renderHistoryModal(history);
+          showHistoryOverlay();
+          return;
+        }
+        submitViaFetch(false);
+      } catch (err) {
+        alert('{{ t('index.alert_request_failed', message='__MSG__') }}'.replace('__MSG__', err.message));
+      }
+    });
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function () {
+        cancelJobAndReturnHome();
+      });
+    }
+
+    if (historyCancelBtn) {
+      historyCancelBtn.addEventListener('click', function () {
+        hideHistoryOverlay();
+        if (urlInput) urlInput.focus();
+      });
+    }
+
+    if (historyRerunBtn) {
+      historyRerunBtn.addEventListener('click', function () {
+        hideHistoryOverlay();
+        submitViaFetch(true);
+      });
+    }
+
+    if (historyUseSavedBtn) {
+      historyUseSavedBtn.addEventListener('click', function () {
+        const recordId = historyUseSavedBtn.dataset.recordId;
+        if (!recordId) {
+          alert({{ t('index.alert_unknown_saved_result')|tojson }});
+          return;
+        }
+        useSavedResult(recordId);
+      });
+    }
+
+
+        function initDismissibleAlerts(root) {
+          const scope = root || document;
+          const alerts = Array.from(scope.querySelectorAll('[data-ff-alert]'));
+          alerts.forEach((alert) => {
+            if (alert.dataset.ffAlertReady === '1') return;
+            alert.dataset.ffAlertReady = '1';
+            let closeTimer = null;
+            let totalMs = 0;
+            let remainingMs = 0;
+            let timerStartedAt = 0;
+            let progressRaf = null;
+            const progressTrack = alert.querySelector('.ff-alert-progress');
+            let progressBar = progressTrack ? progressTrack.querySelector('.ff-alert-progress-bar') : null;
+
+            if (progressTrack && !progressBar) {
+              progressBar = document.createElement('span');
+              progressBar.className = 'ff-alert-progress-bar';
+              progressTrack.appendChild(progressBar);
+            }
+
+            function clampProgress(value) {
+              return Math.max(0, Math.min(1, Number(value) || 0));
+            }
+
+            function cancelProgressRaf() {
+              if (progressRaf !== null) {
+                window.cancelAnimationFrame(progressRaf);
+                progressRaf = null;
+              }
+            }
+
+            function setProgressInstant(value) {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              progressBar.style.width = (clampProgress(value) * 100) + '%';
+            }
+
+            function tickProgress() {
+              if (!progressBar || !totalMs || !closeTimer || alert.classList.contains('is-closing')) {
+                progressRaf = null;
+                return;
+              }
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              const currentRemainingMs = Math.max(0, remainingMs - elapsedMs);
+              progressBar.style.width = (clampProgress(currentRemainingMs / totalMs) * 100) + '%';
+              if (currentRemainingMs > 0) {
+                progressRaf = window.requestAnimationFrame(tickProgress);
+              } else {
+                progressRaf = null;
+              }
+            }
+
+            function startProgressLoop() {
+              if (!progressBar) return;
+              cancelProgressRaf();
+              setProgressInstant(remainingMs / totalMs);
+              progressRaf = window.requestAnimationFrame(tickProgress);
+            }
+
+            function dismissAlert() {
+              if (alert.classList.contains('is-closing')) return;
+              if (closeTimer) {
+                window.clearTimeout(closeTimer);
+                closeTimer = null;
+              }
+              cancelProgressRaf();
+              alert.classList.remove('is-paused');
+              alert.classList.add('is-closing');
+              window.setTimeout(() => {
+                if (alert && alert.parentNode) {
+                  alert.parentNode.removeChild(alert);
+                }
+              }, 320);
+            }
+
+            function pauseCountdown() {
+              if (!totalMs || !closeTimer || alert.classList.contains('is-closing')) return;
+              const elapsedMs = Math.max(0, performance.now() - timerStartedAt);
+              remainingMs = Math.max(0, remainingMs - elapsedMs);
+              window.clearTimeout(closeTimer);
+              closeTimer = null;
+              alert.classList.add('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+            }
+
+            function resumeCountdown() {
+              if (!totalMs || closeTimer || alert.classList.contains('is-closing')) return;
+              if (remainingMs <= 0) {
+                dismissAlert();
+                return;
+              }
+              timerStartedAt = performance.now();
+              alert.classList.remove('is-paused');
+              setProgressInstant(remainingMs / totalMs);
+              startProgressLoop();
+              closeTimer = window.setTimeout(dismissAlert, remainingMs);
+            }
+
+            const closeBtn = alert.querySelector('[data-ff-alert-close]');
+            if (closeBtn) {
+              closeBtn.addEventListener('click', dismissAlert);
+            }
+
+            const timeoutMs = parseInt(alert.getAttribute('data-ff-alert-timeout') || '', 10);
+            if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
+              totalMs = timeoutMs;
+              remainingMs = timeoutMs;
+              alert.addEventListener('mouseenter', pauseCountdown);
+              alert.addEventListener('mouseleave', resumeCountdown);
+              alert.addEventListener('focusin', pauseCountdown);
+              alert.addEventListener('focusout', function (event) {
+                if (alert.contains(event.relatedTarget)) return;
+                resumeCountdown();
+              });
+              resumeCountdown();
+            }
+          });
+        }
+
+        initDismissibleAlerts(document);
+  })();
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="{{ current_locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ t('page.paste.title') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fallacy-finder-logo-256.png') }}">
+  </head>
+  <body>
+    <main class="ff-page">
+      <div class="container py-4 py-md-5 ff-shell">
+        <div class="mx-auto" style="max-width: 980px;">
+          <div class="ff-topbar">
+            <div class="ff-brand">
+              <a href="/" class="ff-logo-link" aria-label="{{ t('nav.go_home') }}"><div class="ff-logo"><img src="{{ url_for('static', filename='fallacy-finder-logo.png') }}" alt="Fallacy Finder logo" class="ff-logo-image"></div></a>
+              <div>
+                <p class="ff-brand-title">{{ t('brand.name') }}</p>
+                <p class="ff-brand-subtitle">{{ t('paste.brand_subtitle') }}</p>
+              </div>
+            </div>
+                        <nav class="ff-toolbar-actions ff-toolbar-actions-icons" aria-label="{{ t('nav.primary_navigation') }}">
+              <a href="/" aria-label="{{ t('nav.analyze_url') }}" title="{{ t('nav.analyze_url') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-url-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-url-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/fallacies" aria-label="{{ t('nav.fallacy_library') }}" title="{{ t('nav.fallacy_library') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-library-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-library-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              {% include "_language_picker.html" %}
+              <a href="/settings" aria-label="{{ t('nav.settings') }}" title="{{ t('nav.settings') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-settings-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-settings-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+            </nav>
+          </div>
+
+          <section class="ff-card ff-panel ff-panel-lg">
+            <h1 class="ff-hero-title fw-bold">{{ t('paste.hero_title') }}</h1>
+            <p class="ff-hero-copy mb-0">{{ t('paste.hero_copy') }}</p>
+
+            <div class="ff-grid ff-grid-stats">
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_ai_provider') }}</div>
+                <div class="ff-stat-value">{{ settings.AI_PROVIDER|upper }}</div>
+              </div>
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_current_model') }}</div>
+                <div class="ff-stat-value">{{ settings.OPENAI_MODEL if settings.AI_PROVIDER == 'openai' else settings.OLLAMA_MODEL }}</div>
+              </div>
+              <div class="ff-stat">
+                <div class="ff-stat-label">{{ t('index.stat_workflow') }}</div>
+                <div class="ff-stat-value">{{ t('paste.workflow_value') }}</div>
+              </div>
+            </div>
+
+            <div id="pasteAlertHost">
+              {% if error %}
+                {% if error_kind == 'provider_connection' %}
+                  <div class="ff-alert ff-alert-provider-error ff-alert-compact mt-4" role="alert">
+                    <div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>
+                    <div class="ff-alert-content">
+                      <p class="ff-alert-text">{{ error }}</p>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="alert alert-danger mt-4" role="alert">{{ error }}</div>
+                {% endif %}
+              {% endif %}
+              {% if info %}
+                <div class="alert alert-success mt-4" role="alert">{{ info }}</div>
+              {% endif %}
+            </div>
+
+            <form id="pasteForm" method="POST" action="/paste" class="mt-4 ff-stack">
+              <div>
+                <label class="form-label fw-semibold" for="pastedText">{{ t('paste.text_label') }}</label>
+                <textarea id="pastedText" name="pasted_text" class="form-control ff-textarea-lg" placeholder="{{ t('paste.text_placeholder') }}" required>{{ pasted_text or '' }}</textarea>
+                <div class="form-text mt-2">{{ t('paste.text_help') }}</div>
+              </div>
+              <div class="d-flex gap-2 flex-column flex-sm-row">
+                <button id="pasteAnalyzeBtn" class="btn btn-dark btn-lg px-4" type="submit">{{ t('paste.analyze_button') }}</button>
+              </div>
+            </form>            
+          </section>
+        </div>
+      </div>
+      {% include "_app_footer.html" %}
+    </main>
+
+    <div id="loadingOverlay" class="ff-loading-overlay ff-hidden" aria-hidden="true">
+      <div class="ff-loading-card" role="dialog" aria-modal="true" aria-label="{{ t('paste.loading_aria') }}">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="fw-semibold">{{ t('paste.loading_title') }}</div>
+          <div class="ff-loading-stats" aria-live="polite">
+            <span id="loadingPct" class="ff-muted small">0%</span>
+            <span class="ff-loading-divider" aria-hidden="true">•</span>
+            <span id="loadingElapsed" class="ff-loading-elapsed-inline">00:00</span>
+          </div>
+        </div>
+        <div class="progress mb-3 ff-progress">
+          <div id="loadingBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+        <div id="loadingStage" class="ff-muted small">{{ t('paste.loading_starting') }}</div>
+        <div class="d-flex justify-content-end mt-3">
+          <button id="cancelBtn" type="button" class="btn btn-outline-secondary px-4">{{ t('paste.cancel_analysis') }}</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const form = document.getElementById('pasteForm');
+        const textInput = document.getElementById('pastedText');
+        const overlay = document.getElementById('loadingOverlay');
+        const bar = document.getElementById('loadingBar');
+        const pct = document.getElementById('loadingPct');
+        const stage = document.getElementById('loadingStage');
+        const elapsed = document.getElementById('loadingElapsed');
+        const submitBtn = document.getElementById('pasteAnalyzeBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const alertHost = document.getElementById('pasteAlertHost');
+        const providerConnectionMessage = {{ t('errors.provider_connection_required')|tojson }};
+
+        let elapsedTimerId = null;
+        let elapsedBaseSeconds = 0;
+        let elapsedSyncedAt = 0;
+        let currentJobId = null;
+        let isCancelling = false;
+        let activeStatusController = null;
+        let activeStartController = null;
+
+        if (!form || !textInput) return;
+
+        function setProgress(value) {
+          const v = Math.max(0, Math.min(100, Math.round(value)));
+          bar.style.width = v + '%';
+          bar.setAttribute('aria-valuenow', String(v));
+          pct.textContent = v + '%';
+        }
+
+        function setStage(text) {
+          stage.textContent = text || {{ t('paste.loading_title')|tojson }};
+        }
+
+        function showOverlay() {
+          overlay.classList.remove('ff-hidden');
+          overlay.setAttribute('aria-hidden', 'false');
+          setElapsed(0);
+          setCancelBusy(true);
+        }
+
+        function hideOverlay() {
+          overlay.classList.add('ff-hidden');
+          overlay.setAttribute('aria-hidden', 'true');
+          stopElapsedTimer();
+          setCancelBusy(false);
+        }
+
+        function formatElapsed(totalSeconds) {
+          const safeSeconds = Math.max(0, Math.floor(Number(totalSeconds) || 0));
+          const hours = Math.floor(safeSeconds / 3600);
+          const minutes = Math.floor((safeSeconds % 3600) / 60);
+          const seconds = safeSeconds % 60;
+          if (hours > 0) {
+            return String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+          }
+          return String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+        }
+
+        function setElapsed(seconds) {
+          if (elapsed) elapsed.textContent = formatElapsed(seconds);
+        }
+
+        function stopElapsedTimer() {
+          if (elapsedTimerId) {
+            clearInterval(elapsedTimerId);
+            elapsedTimerId = null;
+          }
+        }
+
+        function syncElapsedTimer(seconds) {
+          elapsedBaseSeconds = Math.max(0, Number(seconds) || 0);
+          elapsedSyncedAt = performance.now();
+          setElapsed(elapsedBaseSeconds);
+          if (elapsedTimerId) return;
+          elapsedTimerId = window.setInterval(() => {
+            const deltaSeconds = (performance.now() - elapsedSyncedAt) / 1000;
+            setElapsed(elapsedBaseSeconds + deltaSeconds);
+          }, 250);
+        }
+
+        function setBusy(isBusy) {
+          submitBtn.disabled = !!isBusy;
+          submitBtn.textContent = isBusy ? {{ t('common.working')|tojson }} : {{ t('paste.analyze_button')|tojson }};
+        }
+
+        function setCancelBusy(isBusy) {
+          cancelBtn.disabled = !!isBusy;
+          cancelBtn.textContent = (isBusy && isCancelling) ? {{ t('common.cancelling')|tojson }} : {{ t('paste.cancel_analysis')|tojson }};
+        }
+
+        function clearInlineAlerts() {
+          if (!alertHost) return;
+          alertHost.innerHTML = '';
+        }
+
+        function showProviderConnectionAlert(message) {
+          if (!alertHost) return;
+          clearInlineAlerts();
+          const alert = document.createElement('div');
+          alert.className = 'ff-alert ff-alert-provider-error ff-alert-compact mt-4';
+          alert.setAttribute('role', 'alert');
+          alert.innerHTML = '' +
+            '<div class="ff-alert-icon ff-alert-icon-warning" aria-hidden="true"></div>' +
+            '<div class="ff-alert-content">' +
+              '<p class="ff-alert-text"></p>' +
+            '</div>';
+          const textEl = alert.querySelector('.ff-alert-text');
+          if (textEl) textEl.textContent = message || providerConnectionMessage;
+          alertHost.appendChild(alert);
+        }
+
+        function isProviderConnectionError(message, errorKind) {
+          if (errorKind === 'provider_connection') return true;
+          return String(message || '').trim() === providerConnectionMessage;
+        }
+
+        function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function cleanupActiveRequests() {
+          if (activeStatusController) {
+            activeStatusController.abort();
+            activeStatusController = null;
+          }
+          if (activeStartController) {
+            activeStartController.abort();
+            activeStartController = null;
+          }
+        }
+
+        async function startJob() {
+          activeStartController = new AbortController();
+          const fd = new FormData(form);
+          const resp = await fetch('/api/paste/start', {
+            method: 'POST',
+            body: fd,
+            cache: 'no-store',
+            signal: activeStartController.signal
+          });
+          activeStartController = null;
+          const data = await resp.json().catch(() => ({}));
+          if (!resp.ok || !data.ok) {
+            const error = new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+            error.errorKind = data.error_kind || null;
+            throw error;
+          }
+          syncElapsedTimer(data.elapsed_seconds || 0);
+          return data.job_id;
+        }
+
+        async function pollJob(jobId) {
+          while (true) {
+            activeStatusController = new AbortController();
+            const resp = await fetch('/api/extract/status/' + encodeURIComponent(jobId), {
+              method: 'GET',
+              cache: 'no-store',
+              signal: activeStatusController.signal
+            });
+            activeStatusController = null;
+            const data = await resp.json().catch(() => ({}));
+            if (!resp.ok || !data.ok) {
+              const error = new Error(data.error || ('{{ t('errors.request_failed_status', status='__STATUS__') }}'.replace('__STATUS__', resp.status)));
+              error.errorKind = data.error_kind || null;
+              throw error;
+            }
+
+            setProgress(data.progress || 0);
+            syncElapsedTimer(data.elapsed_seconds || 0);
+            let stageText = data.stage || {{ t('paste.loading_title')|tojson }};
+            if (data.status === 'running' && data.paragraph_total) {
+              stageText += '  (' + (data.paragraph_current || 0) + '/' + data.paragraph_total + ' ' + {{ t('common.analyzed_label')|tojson }};
+              if (data.paragraphs_timed_out) stageText += ', ' + data.paragraphs_timed_out + ' ' + {{ t('common.timed_out_label')|tojson }};
+              if (data.paragraphs_failed) stageText += ', ' + data.paragraphs_failed + ' ' + {{ t('common.failed_label')|tojson }};
+              stageText += ')';
+            }
+            if (data.status === 'cancelling' || data.cancel_requested) {
+              stageText = data.cancel_message || {{ t('job.cancelling_analysis')|tojson }};
+            }
+            setStage(stageText);
+
+            if (data.status === 'done') {
+              setProgress(100);
+              syncElapsedTimer(data.elapsed_seconds || 0);
+              stopElapsedTimer();
+              window.location.assign('/paste/result/' + encodeURIComponent(jobId));
+              return;
+            }
+
+            if (data.status === 'cancelled') {
+              window.location.assign('/paste?info=' + encodeURIComponent({{ t('messages.analysis_cancelled')|tojson }}));
+              return;
+            }
+
+            if (data.status === 'error') {
+              const error = new Error(data.error || {{ t('errors.analysis_failed')|tojson }});
+              error.errorKind = data.error_kind || null;
+              throw error;
+            }
+
+            await sleep(1000);
+          }
+        }
+
+        async function cancelJob() {
+          if (isCancelling) return;
+          isCancelling = true;
+          setCancelBusy(true);
+          setStage({{ t('job.cancelling_analysis')|tojson }});
+
+          if (currentJobId) {
+            try {
+              await fetch('/api/extract/cancel/' + encodeURIComponent(currentJobId), {
+                method: 'POST',
+                cache: 'no-store'
+              });
+            } catch (err) {
+            }
+          }
+
+          cleanupActiveRequests();
+          stopElapsedTimer();
+          window.location.assign('/paste?info=' + encodeURIComponent({{ t('messages.analysis_cancelled')|tojson }}));
+        }
+
+        async function submitViaFetch() {
+          isCancelling = false;
+          currentJobId = null;
+          clearInlineAlerts();
+          setBusy(true);
+          showOverlay();
+          setProgress(2);
+          setElapsed(0);
+          setStage({{ t('paste.job_queueing_analysis')|tojson }});
+
+          try {
+            const jobId = await startJob();
+            currentJobId = jobId;
+            setCancelBusy(false);
+            setProgress(4);
+            setStage({{ t('paste.job_started')|tojson }});
+            await pollJob(jobId);
+          } catch (err) {
+            if (err && err.name === 'AbortError') {
+              return;
+            }
+            hideOverlay();
+            setBusy(false);
+            currentJobId = null;
+            isCancelling = false;
+            if (isProviderConnectionError(err && err.message, err && err.errorKind)) {
+              showProviderConnectionAlert(err && err.message ? err.message : providerConnectionMessage);
+              return;
+            }
+            alert('{{ t('errors.analysis_failed') }}: ' + err.message);
+          }
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          submitViaFetch();
+        });
+
+        cancelBtn.addEventListener('click', function () {
+          cancelJob();
+        });
+      })();
+    </script>
+  </body>
+</html>

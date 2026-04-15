@@ -1,0 +1,11 @@
+services:
+  fallacy-finder:
+    image: jlaroche/fallacy-finder:latest
+    container_name: fallacy-finder
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8784:8080"
+    volumes:
+      - ./instance:/app/instance

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="{{ current_locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ localized_fallacy_name(fallacy) }} — {{ t('page.detail.title_suffix') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fallacy-finder-logo-256.png') }}">
+  </head>
+  <body>
+    <main class="ff-page">
+      <div class="container py-4 py-md-5 ff-shell">
+        <div class="mx-auto" style="max-width: 1040px;">
+          <div class="ff-topbar">
+            <div class="ff-brand">
+              <a href="/" class="ff-logo-link" aria-label="{{ t('nav.go_home') }}"><div class="ff-logo"><img src="{{ url_for('static', filename='fallacy-finder-logo.png') }}" alt="Fallacy Finder logo" class="ff-logo-image"></div></a>
+              <div>
+                <p class="ff-brand-title">{{ t('brand.name') }}</p>
+                <p class="ff-brand-subtitle">{{ t('detail.brand_subtitle') }}</p>
+              </div>
+            </div>
+                        <nav class="ff-toolbar-actions ff-toolbar-actions-icons" aria-label="{{ t('nav.primary_navigation') }}">
+              <a href="/" aria-label="{{ t('nav.analyze_url') }}" title="{{ t('nav.analyze_url') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-url-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-url-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/paste" aria-label="{{ t('nav.paste_text') }}" title="{{ t('nav.paste_text') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-paste-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-paste-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              <a href="/fallacies" aria-label="{{ t('nav.fallacy_library') }}" title="{{ t('nav.fallacy_library') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-library-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-library-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+              {% include "_language_picker.html" %}
+              <a href="/settings" aria-label="{{ t('nav.settings') }}" title="{{ t('nav.settings') }}" class="ff-icon-link">
+                <span class="ff-icon-frame" aria-hidden="true">
+                  <img src="{{ url_for('static', filename='ff-settings-icon.png') }}" alt="" class="ff-icon-image ff-icon-image-default">
+                  <img src="{{ url_for('static', filename='ff-settings-icon-hover.png') }}" alt="" class="ff-icon-image ff-icon-image-hover">
+                </span>
+              </a>
+            </nav>
+          </div>
+
+          <section class="ff-card ff-panel ff-panel-lg ff-detail-hero">
+            <div class="ff-detail-breadcrumb mb-3"><a href="/fallacies"><b>{{ t('nav.fallacy_library') }}</b></a> <span aria-hidden="true">/</span> <span>{{ localized_fallacy_name(fallacy) }}</span></div>
+            <div class="ff-detail-head">
+              <div class="ff-detail-icon" aria-hidden="true">{{ fallacy.icon }}</div>
+              <div class="ff-detail-copy">
+                <div class="ff-detail-meta mb-2">
+                  {% if fallacy.category %}<span class="badge ff-badge-info">{{ localized_category(fallacy.category) }} {{ t('detail.fallacy_suffix') }}</span>{% endif %}
+                  {% if fallacy.common %}<span class="badge ff-badge-total">{{ t('common.commonly_used_fallacy') }}</span>{% endif %}
+                  {% set localized_short_for = localized_fallacy_short_for(fallacy) %}
+                  {% if localized_short_for %}<span class="badge ff-badge-fallacy-type">{{ t('detail.short_for') }}: {{ localized_short_for }}</span>{% endif %}
+                </div>
+                <h1 class="ff-detail-title">{{ localized_fallacy_name(fallacy) }}</h1>
+                <p class="ff-detail-description mb-0">{{ localized_fallacy_description(fallacy) }}</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="ff-card ff-panel ff-panel-lg mt-4">
+            <div class="ff-hero-kicker">{{ t('detail.definition') }}</div>
+            <!-- <h2 class="ff-section-title mb-3">What it is</h2> -->
+            <p class="ff-detail-body mb-0">{{ localized_fallacy_description(fallacy) }}</p>
+          </section>
+
+          <section class="ff-card ff-panel ff-panel-lg mt-4">
+            <div class="ff-hero-kicker">{{ t('detail.example') }}</div>
+            <!-- <h2 class="ff-section-title mb-3">Illustrative example</h2> -->
+            <div class="ff-stack">
+              {% for example in localized_fallacy_examples(fallacy) %}
+              <blockquote class="ff-detail-example mb-0">{{ example }}</blockquote>
+              {% endfor %}
+            </div>
+          </section>
+
+          <section class="ff-card ff-panel ff-panel-lg mt-4">
+            <div class="ff-hero-kicker">{{ t('detail.extended_explanation') }}</div>
+            <h2 class="ff-section-title mb-3">{{ t('detail.how_to_think') }}</h2>
+            <p class="ff-detail-body mb-0">{{ localized_fallacy_explanation(fallacy) }}</p>
+          </section>
+
+          {% set localized_aliases = localized_fallacy_aliases(fallacy) %}
+          {% if localized_aliases %}
+          <section class="ff-card ff-panel ff-panel-lg mt-4">
+            <div class="ff-hero-kicker">{{ t('detail.aliases') }}</div>
+            <h2 class="ff-section-title mb-3">{{ t('detail.other_names') }}</h2>
+            <div class="ff-summary-row">
+              {% for alias in localized_aliases %}<span class="badge ff-badge-fallacy-type">{{ alias }}</span>{% endfor %}
+            </div>
+          </section>
+          {% endif %}
+
+          {% if related_fallacies %}
+          <section class="ff-card ff-panel ff-panel-lg mt-4">
+            <div class="ff-hero-kicker">{{ t('detail.related_entries') }}</div>
+            <div class="ff-related-heading">
+              <div>
+                <h2 class="ff-section-title mb-2">{{ t('detail.related_heading') }}</h2>
+                <p class="ff-related-intro mb-0">{{ t('detail.related_intro') }}</p>
+              </div>
+              <div class="ff-related-summary">
+                {% if related_display_options and (related_display_options|length > 1) %}
+                <button
+                  type="button"
+                  class="badge ff-badge-button ff-badge-info"
+                  id="relatedShownToggle"
+                  data-options='{{ related_display_options|tojson }}'
+                  data-current='{{ related_display_count }}'
+                  aria-label="{{ t('detail.toggle_related_shown') }}"
+                  title="{{ t('detail.toggle_related_shown') }}"
+                >{{ "{:,}".format(related_display_count or 0) }} {{ t('common.shown_suffix') }}</button>
+                {% else %}
+                <span class="badge ff-badge-info">{{ "{:,}".format(related_display_count or 0) }} {{ t('common.shown_suffix') }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="ff-related-grid" id="relatedFallacyGrid">
+              {% for item in related_fallacies %}
+              <a href="{{ url_for('fallacy_detail_page', slug=item.slug) }}" class="ff-related-card" data-related-card {% if loop.index > (related_display_count or 0) %}hidden{% endif %}>
+                <div class="ff-related-card-top">
+                  <div class="ff-related-card-icon" aria-hidden="true">{{ item.icon }}</div>
+                  <div class="ff-related-card-copywrap">
+                    <div class="ff-related-card-title">{{ localized_fallacy_name(item) }}</div>
+                    <div class="ff-related-card-meta">
+                      {% if item.common %}<span class="badge ff-badge-total">{{ t('common.common') }}</span>{% endif %}
+                      {% for badge in item.relation_badges[:3] %}
+                      <span class="badge ff-badge-relation {{ badge.class_name }}">{{ localized_relation_label(badge.label) }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="ff-related-card-copy">{{ localized_fallacy_description(item) }}</div>
+              </a>
+              {% endfor %}
+            </div>
+          </section>
+          {% endif %}
+        </div>
+      </div>
+      {% include "_app_footer.html" %}
+    </main>
+    <script>
+      (function () {
+        const toggleBtn = document.getElementById('relatedShownToggle');
+        const cards = Array.from(document.querySelectorAll('[data-related-card]'));
+        if (!toggleBtn || !cards.length) return;
+
+        let options = [];
+        try {
+          const parsed = JSON.parse(toggleBtn.getAttribute('data-options') || '[]');
+          if (Array.isArray(parsed)) {
+            options = parsed
+              .map((value) => Number(value))
+              .filter((value) => value === 3 || value === 6 || value === 9);
+          }
+        } catch (error) {
+          options = [];
+        }
+        if (!options.length) return;
+
+        let current = Number(toggleBtn.getAttribute('data-current') || options[0] || 0);
+        let isSaving = false;
+
+        function applyDisplayCount(count) {
+          current = Number(count) || options[0] || 0;
+          toggleBtn.setAttribute('data-current', String(current));
+          toggleBtn.textContent = current.toLocaleString() + ' ' + {{ t('common.shown_suffix')|tojson }};
+          cards.forEach((card, index) => {
+            card.hidden = index >= current;
+          });
+        }
+
+        async function persistDisplayCount(count) {
+          const response = await fetch('/api/settings/related-fallacy-count', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ count: count })
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok || !payload.ok) {
+            throw new Error(payload.error || {{ t('errors.related_preference_save_failed')|tojson }});
+          }
+        }
+
+        applyDisplayCount(current);
+
+        toggleBtn.addEventListener('click', async function () {
+          if (isSaving) return;
+          const currentIndex = options.indexOf(current);
+          const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % options.length : 0;
+          const previous = current;
+          const next = options[nextIndex];
+          applyDisplayCount(next);
+          isSaving = true;
+          toggleBtn.disabled = true;
+          try {
+            await persistDisplayCount(next);
+          } catch (error) {
+            applyDisplayCount(previous);
+            console.error(error);
+          } finally {
+            isSaving = false;
+            toggleBtn.disabled = false;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
