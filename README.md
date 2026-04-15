@@ -13,6 +13,7 @@
 <p align="center">
   <a href="https://github.com/jlar0che/FallacyFinder/releases"><img src="https://img.shields.io/github/v/release/jlar0che/FallacyFinder" alt="Release"></a>
   <a href="https://hub.docker.com/r/jlaroche/fallacy-finder"><img src="https://img.shields.io/docker/pulls/jlaroche/fallacy-finder" alt="Docker Pulls"></a>
+  <a href="https://hub.docker.com/r/jlaroche/brainwave"><img alt="Docker image size" src="https://img.shields.io/docker/image-size/jlaroche/fallacy-finder/latest"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License"></a>
   <img src="https://img.shields.io/badge/self--hosted-yes-6f42c1" alt="Self-hosted">
 </p>
