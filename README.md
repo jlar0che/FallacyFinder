@@ -153,7 +153,7 @@ http://YOUR-SERVER-IP:8784
 
 ## Configuration
 
-Fallacy Finder is designed to work well in self-hosted environments. Whjle we encourage experimentation with different models, after extensive testing we recommend using <a href="https://ollama.com/library/phi4"> Microsoft's Phi-4 (14b) model </a> with Fallacy Finder. 
+Fallacy Finder is designed to work well in self-hosted environments. While we encourage experimentation with different models, after extensive testing we recommend using <a href="https://ollama.com/library/phi4"> Microsoft's Phi-4 (14b) model </a> with Fallacy Finder. 
 
 **Common Configuration Options:**
 
@@ -161,9 +161,9 @@ Fallacy Finder is designed to work well in self-hosted environments. Whjle we en
 - `OPENAI_API_KEY` — optional, only needed if using OpenAI
 
 **Extended Configuration Options** <br>
-Options for HTTPS and Reverse Proxy support can be found in the .env.example file.
+Options for HTTPS and Reverse Proxy support can be found in the `.env.example` file.
 
-You can also expose and tune additional settings from within Fallacy Finder's UI.
+You can also tune additional settings from within Fallacy Finder's UI.
 
 ---
 
@@ -215,7 +215,7 @@ Especially useful contributions include:
 - model prompt and parsing improvements
 - documentation and test coverage
 
-If you open an issue or PR, thank you — seriously.
+If you open an issue or PR, thank you — _seriously_.
 
 ---
 
