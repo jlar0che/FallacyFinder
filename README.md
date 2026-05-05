@@ -131,6 +131,8 @@ services:
       - OLLAMA_MODEL=phi4:14b
       # Optional OpenAI support
       - OPENAI_API_KEY=
+      # Hugging Face
+      - HUGGINGFACE_API_KEY=
     volumes:
       - ./instance:/app/instance
       - ./logs:/app/logs
@@ -159,6 +161,7 @@ Fallacy Finder is designed to work well in self-hosted environments. While we en
 
 - `SECRET_KEY` — Flask session secret (can be generated <a href="https://it-tools.tech/token-generator">here</a>)
 - `OPENAI_API_KEY` — optional, only needed if using OpenAI
+- `HUGGINGFACE_API_KEY` - optional, only needed if using HF models
 
 **Extended Configuration Options** <br>
 Options for HTTPS and Reverse Proxy support can be found in the `.env.example` file.
