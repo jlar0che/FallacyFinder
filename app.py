@@ -37,10 +37,41 @@ from markupsafe import Markup, escape
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 BASE_DIR = Path(__file__).resolve().parent
-APP_VERSION = str(os.getenv("APP_VERSION") or "0.5.3.7").strip()
+APP_VERSION = str(os.getenv("APP_VERSION") or "0.5.3.8").strip()
 APP_AUTHOR_NAME = "Jacques Laroche"
 APP_AUTHOR_URL = "https://www.digitalcuriosity.center/about-us/#"
 APP_GITHUB_URL = "https://github.com/jlar0che/FallacyFinder"
+HF_ROUTER_API_URL = os.getenv("HF_API_URL", "https://router.huggingface.co/v1/chat/completions")
+
+
+def _load_local_dotenv() -> None:
+    try:
+        dotenv_path = BASE_DIR / ".env"
+        
+        if not dotenv_path.exists():
+            return
+        
+        with open(dotenv_path, "r", encoding="utf-8") as f:
+            for raw in f:
+                line = raw.strip()
+                if not line or line.startswith("#"):
+                    continue
+                if "=" not in line:
+                    continue
+                key, val = line.split("=", 1)
+                key = key.strip()
+                val = val.strip().strip('"').strip("'")
+
+                if key and os.getenv(key) is None:
+                    os.environ[key] = val
+
+
+    except Exception:
+        pass
+
+
+# Load local .env early so DEFAULT_SETTINGS and secret helpers can pick it up
+_load_local_dotenv()
 
 
 def _instance_dir() -> Path:
@@ -517,6 +548,7 @@ DEFAULT_SETTINGS = {
     "OLLAMA_MODEL": os.getenv("OLLAMA_MODEL", "phi4:14b"),
     "OPENAI_BASE_URL": os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/"),
     "OPENAI_MODEL": os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+    "HUGGINGFACE_MODEL": os.getenv("HUGGINGFACE_MODEL", "meta-llama/Llama-3.1-8B-Instruct:cerebras"),
     "OLLAMA_TIMEOUT": float(os.getenv("OLLAMA_TIMEOUT", "1000")),
     "OLLAMA_TEMPERATURE": float(os.getenv("OLLAMA_TEMPERATURE", "0")),
     "OLLAMA_TOP_P": float(os.getenv("OLLAMA_TOP_P", "1")),
@@ -540,17 +572,68 @@ ENABLE_FALLACY_ANALYSIS = os.getenv("ENABLE_FALLACY_ANALYSIS", "1") == "1"
 DEBUG_HIGHLIGHT = os.getenv("DEBUG_HIGHLIGHT", "0") == "1"
 
 
+def _secrets_path() -> str:
+    os.makedirs(INSTANCE_DIR, exist_ok=True)
+    return str(INSTANCE_DIR / "secrets.json")
+
+
+def _load_secrets() -> dict[str, str]:
+    path = _secrets_path()
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+        if isinstance(payload, dict):
+            return {str(k): str(v) for k, v in payload.items() if str(v or "").strip()}
+    except Exception:
+        pass
+    return {}
+
+
+def _save_secrets(payload: dict[str, str]) -> None:
+    path = _secrets_path()
+    clean = {str(k): str(v) for k, v in (payload or {}).items() if str(v or "").strip()}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(clean, f, indent=2)
+
+
+def _set_secret(name: str, value: str | None) -> None:
+    key = str(name or "").strip().upper()
+    if not key:
+        return
+    secrets_payload = _load_secrets()
+    token = str(value or "").strip()
+    if token:
+        secrets_payload[key] = token
+    else:
+        secrets_payload.pop(key, None)
+    _save_secrets(secrets_payload)
+
+
+def _get_secret(name: str) -> str:
+    key = str(name or "").strip().upper()
+    if not key:
+        return ""
+    return str(_load_secrets().get(key) or "").strip()
+
+
 def get_openai_api_key() -> str:
-    return str(os.getenv("OPENAI_API_KEY") or "").strip()
+    return str(os.getenv("OPENAI_API_KEY") or _get_secret("OPENAI_API_KEY") or "").strip()
+
+
+def get_huggingface_api_key() -> str:
+    return str(os.getenv("HUGGINGFACE_API_KEY") or _get_secret("HUGGINGFACE_API_KEY") or "").strip()
+
 
 
 def _settings_for_persistence(settings: dict[str, Any]) -> dict[str, Any]:
     persisted = dict(settings or {})
     persisted.pop("OPENAI_API_KEY", None)
     persisted.pop("OPENAI_API_KEY_CONFIGURED", None)
+    persisted.pop("HUGGINGFACE_API_KEY", None)
+    persisted.pop("HUGGINGFACE_API_KEY_CONFIGURED", None)
     return persisted
-
-
 
 def _settings_path() -> str:
     os.makedirs(INSTANCE_DIR, exist_ok=True)
@@ -586,7 +669,7 @@ def _apply_env_setting_overrides(settings: dict[str, Any]) -> dict[str, Any]:
         if raw is not None:
             overridden[name] = str(raw).strip().lower() in {"1", "true", "yes", "on"}
 
-    for key in ("AI_PROVIDER", "OLLAMA_BASE_URL", "OLLAMA_MODEL", "OPENAI_BASE_URL", "OPENAI_MODEL", "UI_LANGUAGE"):
+    for key in ("AI_PROVIDER", "OLLAMA_BASE_URL", "OLLAMA_MODEL", "OPENAI_BASE_URL", "OPENAI_MODEL", "HUGGINGFACE_MODEL", "UI_LANGUAGE"):
         apply_str(key)
 
     for key in ("OLLAMA_TOP_K", "FALLACY_MIN_PARAGRAPH_CHARS", "FALLACY_CONTEXT_RADIUS", "FALLACY_CONTEXT_PREVIEW_CHARS", "RELATED_FALLACY_COUNT"):
@@ -619,6 +702,7 @@ def load_settings() -> dict[str, Any]:
             if isinstance(saved, dict):
                 saved = dict(saved)
                 saved.pop("OPENAI_API_KEY", None)
+                saved.pop("HUGGINGFACE_API_KEY", None)
                 settings.update(saved)
         except Exception:
             pass
@@ -628,6 +712,8 @@ def load_settings() -> dict[str, Any]:
     settings["RELATED_FALLACY_COUNT"] = _sanitize_related_fallacy_count(settings.get("RELATED_FALLACY_COUNT"), default=DEFAULT_SETTINGS["RELATED_FALLACY_COUNT"])
     settings["OPENAI_API_KEY"] = ""
     settings["OPENAI_API_KEY_CONFIGURED"] = bool(get_openai_api_key())
+    settings["HUGGINGFACE_API_KEY"] = ""
+    settings["HUGGINGFACE_API_KEY_CONFIGURED"] = bool(get_huggingface_api_key())
     return settings
 
 
@@ -641,6 +727,8 @@ def current_model_label(settings: dict[str, Any]) -> str:
     provider = (settings.get("AI_PROVIDER") or "ollama").lower()
     if provider == "openai":
         return str(settings.get("OPENAI_MODEL") or "OpenAI")
+    if provider == "huggingface":
+        return str(settings.get("HUGGINGFACE_MODEL") or "Hugging Face")
     return str(settings.get("OLLAMA_MODEL") or "Ollama")
 
 
@@ -683,6 +771,7 @@ def parse_settings_form(form) -> dict[str, Any]:
     settings["OLLAMA_MODEL"] = (form.get("OLLAMA_MODEL") or settings["OLLAMA_MODEL"]).strip()
     settings["OPENAI_BASE_URL"] = (form.get("OPENAI_BASE_URL") or settings["OPENAI_BASE_URL"]).strip().rstrip("/")
     settings["OPENAI_MODEL"] = (form.get("OPENAI_MODEL") or settings["OPENAI_MODEL"]).strip()
+    settings["HUGGINGFACE_MODEL"] = (form.get("HUGGINGFACE_MODEL") or settings.get("HUGGINGFACE_MODEL") or DEFAULT_SETTINGS["HUGGINGFACE_MODEL"]).strip()
 
     def get_float(name, fallback):
         raw = (form.get(name) or "").strip()
@@ -717,6 +806,45 @@ def parse_settings_form(form) -> dict[str, Any]:
     settings["RELATED_FALLACY_COUNT"] = _sanitize_related_fallacy_count(settings.get("RELATED_FALLACY_COUNT"), default=DEFAULT_SETTINGS["RELATED_FALLACY_COUNT"])
     settings.pop("FALLACY_CHUNK_SIZE", None)
     return settings
+
+
+def _validate_huggingface_connection(model_name: str, api_key: str, timeout: float = 10.0, connect_timeout: float = 5.0) -> dict[str, Any]:
+    if not model_name:
+        raise ValueError("Please enter a Hugging Face model before testing the connection.")
+    if not api_key:
+        raise ValueError("HUGGINGFACE_API_KEY is not configured.")
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+
+    payload = { # cheapest test possible
+        "model": model_name,
+        "messages": [
+            {"role": "system", "content": "Reply with the single word ok."},
+            {"role": "user", "content": "ping"},
+        ],
+        "max_tokens": 1,
+        "temperature": 0,
+    }
+
+    resp = requests.post(HF_ROUTER_API_URL, headers=headers, json=payload, timeout=(connect_timeout, timeout))
+    resp.raise_for_status()
+    result = resp.json()
+
+    choices = result.get("choices") if isinstance(result, dict) else None
+
+    if not (isinstance(choices, list) and choices):
+        raise ValueError("Hugging Face returned a weird response format.")
+
+    resolved_id = str(model_name)
+    return {
+        "provider": "huggingface",
+        "base_url": HF_ROUTER_API_URL,
+        "models": [resolved_id],
+        "models_count": 1,
+    }
 
 
 def list_ollama_models(base_url: str, timeout: float = 10.0, connect_timeout: float = 5.0) -> list[str]:
@@ -769,6 +897,11 @@ def validate_provider_connection(settings: dict[str, Any], timeout: float = 10.0
             "models": models,
             "models_count": len(models),
         }
+
+    if provider == "huggingface":
+        model_name = str(settings.get("HUGGINGFACE_MODEL") or "").strip()
+        api_key = get_huggingface_api_key()
+        return _validate_huggingface_connection(model_name, api_key, timeout=timeout, connect_timeout=connect_timeout)
 
     base_url = str(settings.get("OLLAMA_BASE_URL") or "").strip().rstrip("/")
     model_name = str(settings.get("OLLAMA_MODEL") or "").strip()
@@ -912,6 +1045,8 @@ def _model_identity_from_settings(settings: dict[str, Any]) -> tuple[str, str, s
     provider = (settings.get("AI_PROVIDER") or "ollama").strip().lower()
     if provider == "openai":
         model_name = str(settings.get("OPENAI_MODEL") or "OpenAI")
+    elif provider == "huggingface":
+        model_name = str(settings.get("HUGGINGFACE_MODEL") or "Hugging Face")
     else:
         model_name = str(settings.get("OLLAMA_MODEL") or "Ollama")
     model_key = f"{provider}::{model_name}"
@@ -1604,10 +1739,49 @@ def openai_chat(messages: list[dict[str, str]], settings: dict[str, Any], model:
     return (((data.get("choices") or [{}])[0].get("message") or {}).get("content", "")) or ""
 
 
+def huggingface_chat(messages: list[dict[str, str]], settings: dict[str, Any], model: str | None = None, timeout_seconds: float | None = None) -> str:
+    api_key = get_huggingface_api_key()
+    if not api_key:
+        raise ValueError("HF API key is not set in the server environment.")
+
+    resolved_model = model or settings.get("HUGGINGFACE_MODEL") or os.getenv("HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct:cerebras")
+
+    read_timeout = float(timeout_seconds if timeout_seconds is not None else settings.get("OLLAMA_TIMEOUT", 60))
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": resolved_model,
+        "messages": messages or [],
+        "max_tokens": 100,
+        "temperature": 0.7,
+    }
+    response = requests.post(HF_ROUTER_API_URL, headers=headers, json=payload, timeout=(3, read_timeout))
+    response.raise_for_status()
+    result = response.json()
+
+    choices = result.get("choices") if isinstance(result, dict) else None
+    if isinstance(choices, list) and choices:
+        first = choices[0]
+        if isinstance(first, dict):
+            message = first.get("message") or {}
+            if isinstance(message, dict):
+                content = message.get("content")
+                if isinstance(content, str):
+                    return content.strip()
+                if content is not None:
+                    return str(content).strip()
+
+    raise ValueError("HF returned a weird response format.")
+
+
 def provider_chat(messages: list[dict[str, str]], settings: dict[str, Any], seed: int | None = None, timeout_seconds: float | None = None, job_id: str | None = None, cancel_check=None) -> str:
     provider = (settings.get("AI_PROVIDER") or "ollama").lower()
     if provider == "openai":
         return openai_chat(messages, settings, seed=seed, timeout_seconds=timeout_seconds)
+    if provider == "huggingface":
+        return huggingface_chat(messages, settings, model=None, timeout_seconds=timeout_seconds)
     return ollama_chat(messages, settings, seed=seed, timeout_seconds=timeout_seconds, job_id=job_id, cancel_check=cancel_check)
 
 
@@ -3630,7 +3804,10 @@ def save_settings_route():
     models: list[str] = []
     model_error = None
     save_error = None
+    openai_api_key_input = str(request.form.get("OPENAI_API_KEY") or "").strip()
     try:
+        if openai_api_key_input:
+            _set_secret("OPENAI_API_KEY", openai_api_key_input)
         provider_info = validate_provider_connection(settings)
         if provider_info.get("provider") == "ollama":
             models = provider_info.get("models") or []
@@ -3696,13 +3873,22 @@ def api_openai_test():
     payload = payload or {}
     base_url = str(payload.get("base_url") or load_settings()["OPENAI_BASE_URL"]).strip().rstrip("/")
     model_name = str(payload.get("model") or "").strip()
+    api_key = str(payload.get("api_key") or get_openai_api_key() or "").strip()
     try:
         settings = {
             "AI_PROVIDER": "openai",
             "OPENAI_BASE_URL": base_url,
             "OPENAI_MODEL": model_name,
         }
-        info = validate_provider_connection(settings)
+        if not api_key:
+            raise ValueError("OPENAI_API_KEY is not configured.")
+        models = list_openai_models(base_url, api_key)
+        info = {
+            "provider": "openai",
+            "base_url": base_url,
+            "models_count": len(models),
+            "models": models,
+        }
         return jsonify({
             "ok": True,
             "base_url": info.get("base_url") or base_url,
@@ -3711,6 +3897,23 @@ def api_openai_test():
         })
     except Exception as e:
         return jsonify({"ok": False, "base_url": base_url, "error": str(e)}), 400
+
+
+@app.post("/api/huggingface/test")
+def api_huggingface_test():
+    payload = request.get_json(silent=True) if request.is_json else request.form
+    payload = payload or {}
+    model_name = str(payload.get("model") or load_settings().get("HUGGINGFACE_MODEL") or "").strip()
+    try:
+        info = _validate_huggingface_connection(model_name, get_huggingface_api_key())
+        return jsonify({
+            "ok": True,
+            "base_url": info.get("base_url"),
+            "models_count": info.get("models_count") or 0,
+            "models": (info.get("models") or [])[:25],
+        })
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 400
 
 
 @app.post("/api/history/check")

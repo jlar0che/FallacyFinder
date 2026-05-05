@@ -114,6 +114,9 @@
               {% if settings.AI_PROVIDER == 'openai' %}
                 {% set provider_label = 'OPENAI' %}
                 {% set provider_host = ((settings.OPENAI_BASE_URL or '').replace('https://', '').replace('http://', '').split('/')[0]) %}
+              {% elif settings.AI_PROVIDER == 'huggingface' %}
+                {% set provider_label = 'HUGGINGFACE' %}
+                {% set provider_host = 'huggingface.co' %}
               {% else %}
                 {% set provider_label = 'OLLAMA' %}
                 {% set provider_host = ((settings.OLLAMA_BASE_URL or '').replace('https://', '').replace('http://', '').split('/')[0]) %}
@@ -138,6 +141,7 @@
                 <select class="form-select" name="AI_PROVIDER" id="providerSelect">
                   <option value="ollama" {% if settings.AI_PROVIDER == 'ollama' %}selected{% endif %}>Ollama</option>
                   <option value="openai" {% if settings.AI_PROVIDER == 'openai' %}selected{% endif %}>{{ t('settings.openai_compatible') }}</option>
+                  <option value="huggingface" {% if settings.AI_PROVIDER == 'huggingface' %}selected{% endif %}>Hugging Face</option>
                 </select>
               </div>
 
@@ -188,19 +192,37 @@
                       <div class="ff-inline-field-row">
                         <div class="ff-inline-field-main">
                           <label class="form-label fw-semibold">OPENAI_API_KEY</label>
-                          <div class="form-control d-flex align-items-center justify-content-between gap-3" id="openaiApiKeyStatus" aria-live="polite">
-                            <span>{% if settings.OPENAI_API_KEY_CONFIGURED %}Configured in server environment{% else %}Not configured in server environment{% endif %}</span>
-                            <span class="ff-badge ff-badge-soft">ENV</span>
-                          </div>
+                          <input type="password" class="form-control" name="OPENAI_API_KEY" id="openaiApiKeyInput" value="" placeholder="sk-... (leave blank to keep existing)">
                         </div>
                         <div class="ff-inline-field-action d-flex align-items-end">
                           <button type="button" class="btn btn-outline-secondary w-100" id="testOpenaiBtn">{{ t('settings.test_api') }}</button>
                         </div>
                       </div>
-                      <div class="form-text">This key is never shown in the UI and is read only from the <code>OPENAI_API_KEY</code> environment variable.</div>
+                      <div class="form-text">Stored server-side only; never shown back in this UI. {% if settings.OPENAI_API_KEY_CONFIGURED %}Current status: configured.{% else %}Current status: not configured.{% endif %}</div>
                     </div>
                     <div class="col-12">
                       <div id="openaiTestResult" class="small ff-muted"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="provider-section" id="huggingfaceSection">
+                <div class="ff-card ff-panel">
+                  <div class="ff-section-title">Hugging Face</div>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold">HUGGINGFACE_MODEL</label>
+                      <input type="text" class="form-control" name="HUGGINGFACE_MODEL" id="huggingfaceModelInput" value="{{ settings.HUGGINGFACE_MODEL or 'meta-llama/Llama-3.1-8B-Instruct:cerebras' }}" placeholder="meta-llama/Llama-3.1-8B-Instruct:cerebras">
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-text">Stored server-side only; never shown in this UI.</div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button type="button" class="btn btn-outline-secondary" id="testHuggingfaceBtn">{{ t('settings.test_api') }}</button>
+                    </div>
+                    <div class="col-12">
+                      <div id="huggingfaceTestResult" class="small ff-muted"></div>
                     </div>
                   </div>
                 </div>
@@ -330,6 +352,7 @@
         const saveHint = document.getElementById('settingsSaveHint');
         const ollamaSection = document.getElementById('ollamaSection');
         const openaiSection = document.getElementById('openaiSection');
+        const huggingfaceSection = document.getElementById('huggingfaceSection');
         const toggleAdvancedSwitch = document.getElementById('toggleAdvancedSwitch');
         const advancedOptions = document.getElementById('advancedOptions');
 
@@ -340,8 +363,13 @@
 
         const openaiBaseUrlInput = document.getElementById('openaiBaseUrl');
         const openaiModelInput = document.getElementById('openaiModelInput');
+        const openaiApiKeyInput = document.getElementById('openaiApiKeyInput');
         const openaiTestBtn = document.getElementById('testOpenaiBtn');
         const openaiResultBox = document.getElementById('openaiTestResult');
+
+        const huggingfaceModelInput = document.getElementById('huggingfaceModelInput');
+        const huggingfaceTestBtn = document.getElementById('testHuggingfaceBtn');
+        const huggingfaceResultBox = document.getElementById('huggingfaceTestResult');
         const settingsTestAlertHost = document.getElementById('settingsTestAlertHost');
 
         let lastSuccessfulSignature = '';
@@ -357,7 +385,14 @@
             return JSON.stringify({
               provider: 'openai',
               base_url: (openaiBaseUrlInput && openaiBaseUrlInput.value || '').trim(),
-              model: (openaiModelInput && openaiModelInput.value || '').trim()
+              model: (openaiModelInput && openaiModelInput.value || '').trim(),
+              has_token_input: !!((openaiApiKeyInput && openaiApiKeyInput.value || '').trim())
+            });
+          }
+          if (activeProvider() === 'huggingface') {
+            return JSON.stringify({
+              provider: 'huggingface',
+              model: (huggingfaceModelInput && huggingfaceModelInput.value || '').trim()
             });
           }
           return JSON.stringify({
@@ -378,10 +413,12 @@
         }
 
         function buildProviderIssueMessage() {
-          const provider = activeProvider() === 'openai' ? 'OPENAI' : 'OLLAMA';
+          const provider = activeProvider() === 'openai'
+            ? 'OPENAI'
+            : (activeProvider() === 'huggingface' ? 'HUGGINGFACE' : 'OLLAMA');
           const host = activeProvider() === 'openai'
             ? connectionHostFromUrl(openaiBaseUrlInput && openaiBaseUrlInput.value)
-            : connectionHostFromUrl(baseUrlInput && baseUrlInput.value);
+            : (activeProvider() === 'huggingface' ? 'huggingface.co' : connectionHostFromUrl(baseUrlInput && baseUrlInput.value));
           return connectionIssueTemplate
             .replace('__PROVIDER__', provider)
             .replace('__HOST__', host || savedUrlLabel);
@@ -487,6 +524,7 @@
           const provider = activeProvider();
           ollamaSection.style.display = provider === 'ollama' ? '' : 'none';
           openaiSection.style.display = provider === 'openai' ? '' : 'none';
+          huggingfaceSection.style.display = provider === 'huggingface' ? '' : 'none';
           removeProviderIssueAlert();
           invalidateConnectionTest({{ t('settings.save_hint')|tojson }});
         }
@@ -512,6 +550,11 @@
           openaiResultBox.className = className || 'small ff-muted';
         }
 
+        function setHuggingFaceTestState(message, className) {
+          huggingfaceResultBox.textContent = message || '';
+          huggingfaceResultBox.className = className || 'small ff-muted';
+        }
+
         function setTestBusy(isBusy) {
           testBtn.disabled = !!isBusy;
           testBtn.textContent = isBusy ? {{ t('common.testing')|tojson }} : {{ t('settings.test_ollama')|tojson }};
@@ -520,6 +563,11 @@
         function setOpenAITestBusy(isBusy) {
           openaiTestBtn.disabled = !!isBusy;
           openaiTestBtn.textContent = isBusy ? {{ t('common.testing')|tojson }} : {{ t('settings.test_api')|tojson }};
+        }
+
+        function setHuggingFaceTestBusy(isBusy) {
+          huggingfaceTestBtn.disabled = !!isBusy;
+          huggingfaceTestBtn.textContent = isBusy ? {{ t('common.testing')|tojson }} : {{ t('settings.test_api')|tojson }};
         }
 
         async function refreshOllamaModelOptions(fd, expectedSignature) {
@@ -587,10 +635,32 @@
             if (provider === 'openai') {
               const payload = {
                 base_url: (openaiBaseUrlInput.value || '').trim(),
-                model: (openaiModelInput.value || '').trim()
+                model: (openaiModelInput.value || '').trim(),
+                api_key: (openaiApiKeyInput.value || '').trim()
               };
               setOpenAITestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', (payload.base_url || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
               const resp = await fetch('/api/openai/test', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                cache: 'no-store'
+              });
+              const data = await resp.json();
+              if (initialSignature !== getConnectionSignature()) return;
+              if (!data.ok) {
+                showProviderIssueAlert(buildProviderIssueMessage());
+                return;
+              }
+              removeProviderIssueAlert();
+              return;
+            }
+
+            if (provider === 'huggingface') {
+              const payload = {
+                model: (huggingfaceModelInput.value || '').trim()
+              };
+              setHuggingFaceTestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', 'huggingface.co'), 'small ff-muted');
+              const resp = await fetch('/api/huggingface/test', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -626,13 +696,15 @@
             if (initialSignature !== getConnectionSignature()) return;
             setTestState('', 'small ff-muted');
             setOpenAITestState('', 'small ff-muted');
+            setHuggingFaceTestState('', 'small ff-muted');
           }
         }
 
         async function testOpenAIConnection() {
           const payload = {
             base_url: (openaiBaseUrlInput.value || '').trim(),
-            model: (openaiModelInput.value || '').trim()
+            model: (openaiModelInput.value || '').trim(),
+            api_key: (openaiApiKeyInput.value || '').trim()
           };
           setOpenAITestBusy(true);
           setOpenAITestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', (payload.base_url || {{ t('settings.saved_url')|tojson }})), 'small ff-muted');
@@ -666,6 +738,42 @@
           }
         }
 
+        async function testHuggingFaceConnection() {
+          const payload = {
+            model: (huggingfaceModelInput.value || '').trim()
+          };
+          setHuggingFaceTestBusy(true);
+          setHuggingFaceTestState({{ t('settings.checking_api', host='__HOST__')|tojson }}.replace('__HOST__', 'huggingface.co'), 'small ff-muted');
+          setSaveEnabled(false, {{ t('settings.waiting_successful_test')|tojson }});
+
+          try {
+            const resp = await fetch('/api/huggingface/test', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+              cache: 'no-store'
+            });
+            const data = await resp.json();
+            if (!data.ok) {
+              setHuggingFaceTestState('', 'small ff-muted');
+              removeManagedTestAlerts();
+              removeProviderIssueAlert();
+              showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+              invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+              return;
+            }
+
+            setHuggingFaceTestState('', 'small ff-muted');
+            removeProviderIssueAlert();
+            lastSuccessfulSignature = getConnectionSignature();
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_successful_models', count='__COUNT__')|tojson }}.replace('__COUNT__', String(data.models_count)), 6000, 'success');
+            setSaveEnabled(true, {{ t('settings.save_hint')|tojson }});
+          } finally {
+            setHuggingFaceTestBusy(false);
+          }
+        }
+
         [baseUrlInput, modelSelect].forEach((el) => {
           if (!el) return;
           el.addEventListener('input', function () {
@@ -680,7 +788,7 @@
           });
         });
 
-        [openaiBaseUrlInput, openaiModelInput].forEach((el) => {
+        [openaiBaseUrlInput, openaiModelInput, openaiApiKeyInput].forEach((el) => {
           if (!el) return;
           el.addEventListener('input', function () {
             removeProviderIssueAlert();
@@ -690,6 +798,20 @@
           el.addEventListener('change', function () {
             removeProviderIssueAlert();
             setOpenAITestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.api_settings_changed')|tojson }});
+          });
+        });
+
+        [huggingfaceModelInput].forEach((el) => {
+          if (!el) return;
+          el.addEventListener('input', function () {
+            removeProviderIssueAlert();
+            setHuggingFaceTestState('', 'small ff-muted');
+            invalidateConnectionTest({{ t('settings.api_settings_changed')|tojson }});
+          });
+          el.addEventListener('change', function () {
+            removeProviderIssueAlert();
+            setHuggingFaceTestState('', 'small ff-muted');
             invalidateConnectionTest({{ t('settings.api_settings_changed')|tojson }});
           });
         });
@@ -708,6 +830,16 @@
           testOpenAIConnection().catch((err) => {
             setOpenAITestBusy(false);
             setOpenAITestState('', 'small ff-muted');
+            removeManagedTestAlerts();
+            showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
+            invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });
+          });
+        });
+
+        huggingfaceTestBtn.addEventListener('click', function () {
+          testHuggingFaceConnection().catch((err) => {
+            setHuggingFaceTestBusy(false);
+            setHuggingFaceTestState('', 'small ff-muted');
             removeManagedTestAlerts();
             showManagedTestAlert({{ t('settings.connection_failed_short')|tojson }}, 6000, 'error');
             invalidateConnectionTest({{ t('settings.connection_failed_retest')|tojson }}, { preserveAlerts: true });

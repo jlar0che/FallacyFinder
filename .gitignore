@@ -1,0 +1,8 @@
+.env
+.venv/
+.venv-win/
+__pycache__/
+*.pyc
+instance/secrets.json
+/instance
+*.sqlite3
